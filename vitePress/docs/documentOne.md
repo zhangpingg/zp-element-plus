@@ -8,7 +8,7 @@ footer: true
 
 ## 源码 code
 
-```js
+```vue
 <template>
   <div>{{ name }}</div>
 </template>
@@ -39,3 +39,4 @@ import ComponentA from './component/ComponentA.vue'
 
 [本地文档](./markdown-examples)  
 [在线链接](https://vitepress.dev/reference/runtime-api#usedata)
+

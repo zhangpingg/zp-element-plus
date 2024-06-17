@@ -1,4 +1,6 @@
 import { defineConfig } from "vitepress";
+// @vitepress-demo-preview/plugin: 支持区块内的方式展示 demo 和示例代码
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -26,5 +28,13 @@ export default defineConfig({
         socialLinks: [
             { icon: "github", link: "https://github.com/vuejs/vitepress" },
         ],
+    },
+    markdown: {
+        // @vitepress-demo-preview的配置
+        config(md) {
+            // 支持区块内的方式展示 demo 和示例代码
+            md.use(containerPreview)
+            md.use(componentPreview)
+        }
     },
 });
