@@ -1,3 +1,5 @@
+/** 自定义.md文件渲染 */
+
 import path, { resolve } from 'path'
 import fs from 'fs'
 // @ts-ignore

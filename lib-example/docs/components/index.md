@@ -14,37 +14,37 @@ npm install @wocwin/t-ui-plus -S
 pnpm add @wocwin/t-ui-plus -S
 ```
 
-
 ### 使用
-> #### 前提条件：使用项目必须全局注册 Element-plus组件库
+
+> #### 前提条件：使用项目必须全局注册 Element-plus 组件库
 
 ```js
 // main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
-import "element-plus/theme-chalk/dark/css-vars.css";
-import locale from "element-plus/es/locale/lang/zh-cn";
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import locale from 'element-plus/es/locale/lang/zh-cn'
 // element-plus图标
-import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import TuiPlus from '@wocwin/t-ui-plus'
 import '@wocwin/t-ui-plus/lib/style.css'
 const app = createApp(App)
 // 注册所有图标
-  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    app.component(key, component);
-  }
-  // 注册ElementPlus
-  app.use(ElementPlus, {
-    locale // 语言设置
-    // size: Cookies.get('size') || 'medium' // 尺寸设置
-  });
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+// 注册ElementPlus
+app.use(ElementPlus, {
+  locale, // 语言设置
+  // size: Cookies.get('size') || 'medium' // 尺寸设置
+})
 app.use(TuiPlus)
 app.mount('#app')
 ```
 
-### T-ui-plus组件 Volar 类型提示
+### T-ui-plus 组件 Volar 类型提示
 
 ```js
 // 需要在使用的项目的tsconfig.json文件中添加以下
@@ -56,12 +56,14 @@ compilerOptions：{
 
 ```
 
-### 🔨  Vue3 + Vite项目中安装引入报如下错误的解决方法
-> #### 把项目的vite版本升级到4+
+### 🔨 Vue3 + Vite 项目中安装引入报如下错误的解决方法
+
+> #### 把项目的 vite 版本升级到 4+
 
 <img src="../public/img/error.png">
 
-### docs文档结构目录
+### docs 文档结构目录
+
 ```
 ├─ examples               # VPDemo组件自动解析此文件夹下的所有.vue文件
 ├─ components             # .md文件
@@ -71,6 +73,7 @@ compilerOptions：{
 |  │  ├─ global.ts        # 全局变量定义
 |  │  └─ plugins.ts       # 自定义.md文件渲染
 │  ├─ theme               # 主题配置
+|  |  └─ index.ts         # 注册element-plus、自己组件库插件; 注册VPDemo组件
 │  ├─ utils               # 文档展开隐藏代码高亮
 │  ├─ vitepress
 |  │  ├─ vp-demo          # VPDemo组件源码
@@ -82,7 +85,7 @@ compilerOptions：{
 └─ vite.config.ts         # vite 全局配置文件（支持tsx）
 ```
 
-### Git 提交规范（PR提交规范）
+### Git 提交规范（PR 提交规范）
 
 - `ci`: ci 配置文件和脚本的变动;
 - `chore`: 构建系统或辅助工具的变动;
@@ -95,13 +98,18 @@ compilerOptions：{
 - `test`: 补充缺失的测试用例或者修正现有的测试用例;
 - `revert`: 回滚操作;
 
+### vue2 基础组件
 
-### vue2基础组件
 > 基于 vue2 + Element-ui 和 ant-design-vue 二次封装的基础组件
-******
-#### [Vue2 基础组件文档地址](https://wocwin.github.io/t-ui/)
-******
-#### [Vue2 基础组件码云地址](https://gitee.com/wocwin/t-ui)
-******
-#### [Vue2 基础组件GitHub地址](https://github.com/wocwin/t-ui)
 
+---
+
+#### [Vue2 基础组件文档地址](https://wocwin.github.io/t-ui/)
+
+---
+
+#### [Vue2 基础组件码云地址](https://gitee.com/wocwin/t-ui)
+
+---
+
+#### [Vue2 基础组件 GitHub 地址](https://github.com/wocwin/t-ui)

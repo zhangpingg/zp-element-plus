@@ -1,3 +1,5 @@
+/** 全局变量定义 */
+
 import { resolve } from 'path'
 
 // 项目目录
@@ -8,4 +10,3 @@ export const docsDirName = 'docs'
 
 // 文档库目录
 export const docRoot = resolve(projRoot, docsDirName)
-

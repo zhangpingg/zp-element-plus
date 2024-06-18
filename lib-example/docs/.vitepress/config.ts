@@ -1,15 +1,16 @@
 import { defineConfig } from 'vitepress'
 import { mdPlugin } from './config/plugins'
+
 export default defineConfig({
   title: 'TuiPlus基础组件文档',
   description: '基于Element-plus基础组件封装使用',
   lang: 'cn-ZH',
   base: '/t-ui-plus/',
-  lastUpdated: true,
+  lastUpdated: true, // 文档最后，最后修改时间是否显影
   themeConfig: {
-    logo: '/favicon.ico',
-    siteTitle: 'TuiPlus基础组件文档',
-    outline: 3,
+    logo: '/favicon.ico', // 左侧侧边栏顶部-标题前的logo
+    siteTitle: 'TuiPlus基础组件文档', // 左侧侧边栏顶部-标题
+    outline: 3, // 控制的目录层级，哪些显示。因为文档中的标题是3级标题，默认是显示的
     socialLinks: [
       { icon: 'github', link: 'https://github.com/wocwin/t-ui-plus' },
     ],

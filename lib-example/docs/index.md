@@ -2,7 +2,6 @@
 layout: home
 
 title: T-ui-plus
-# titleTemplate: 选项卡描述
 editLink: true
 lastUpdated: true
 hero:

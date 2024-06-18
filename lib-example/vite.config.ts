@@ -21,9 +21,9 @@ export default defineConfig({
     replace({
       preventAssignment: true,
       values: {
-        'process.env.NODE_ENV': JSON.stringify('production') // 或者 'production'
-      }
-    })
+        'process.env.NODE_ENV': JSON.stringify('production'), // 或者 'production'
+      },
+    }),
     // viteCompression({
     //   verbose: true,
     //   disable: false, // 不禁用压缩
@@ -41,7 +41,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 3300,
-    open: true,
     https: false,
     proxy: {
       '^/mes': {
@@ -74,9 +73,7 @@ export default defineConfig({
     outDir: 'lib',
     emptyOutDir: false, // 默认情况下，若 outDir 在 root 目录下，则 Vite 会在构建时清空该目录。若 outDir 在根目录之外则会抛出一个警告避免意外删除掉重要的文件。
     rollupOptions: {
-      plugins: [
-        terser()
-      ],
+      plugins: [terser()],
       // 请确保外部化那些你的库中不需要的依赖
       external: f === 'iife' ? ['vue'] : ['vue', '@vueuse/core'],
       output: {
