@@ -1,6 +1,6 @@
 # TSelect 下拉选择组件
 
-### 单选
+## 单选
 
 :::demo
 TSelect/single

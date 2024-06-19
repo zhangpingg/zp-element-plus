@@ -19,7 +19,7 @@ footer: true
 </script>
 ```
 
-## 引用组件+自定义样式
+### 引用组件+自定义样式
 
 <div class='box'>
   <ComponentA />
