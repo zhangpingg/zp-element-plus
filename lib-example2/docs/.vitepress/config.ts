@@ -45,26 +45,6 @@ export default defineConfig({
           {
             text: 'Button 按钮',
             link: '/components/button'
-          },
-          {
-            text: 'Collpase 折叠面板',
-            link: '/components/collapse'
-          },
-          {
-            text: 'Dropdown 下拉菜单',
-            link: '/components/dropdown'
-          },
-          {
-            text: 'Icon 图标',
-            link: '/components/icon'
-          },
-          {
-            text: 'Message 消息提示',
-            link: '/components/message'
-          },
-          {
-            text: 'Tooltip 文字提示',
-            link: '/components/tooltip'
           }
         ]
       }

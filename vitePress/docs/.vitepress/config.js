@@ -38,6 +38,7 @@ export default defineConfig({
         // github 跳转
         socialLinks: [
             { icon: "github", link: "https://github.com/vuejs/vitepress" },
+            { icon: 'npm', link: 'https://www.npmjs.com/package/pf-component-library' }
         ],
         // 左侧侧边栏
         sidebar: [
@@ -53,6 +54,7 @@ export default defineConfig({
     },
     markdown: {
         config(md) {
+            // 示例预览功能（查看，copy）
             md.use(containerPreview)
             md.use(componentPreview)
         }
