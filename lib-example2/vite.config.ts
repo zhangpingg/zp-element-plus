@@ -10,11 +10,7 @@ const COMPONENTS_DIR = 'components'
 
 type FileList = Record<string, string>
 
-const generateFilesList = (
-  dirPath: string,
-  pattern: string,
-  suffix: string = ''
-): FileList => {
+const generateFilesList = (dirPath: string, pattern: string, suffix: string = ''): FileList => {
   const files = glob.sync(`${dirPath}/${pattern}`)
   return files.reduce<FileList>((list, file) => {
     const componentName = file.split(/[/.]/)[2]
@@ -29,7 +25,7 @@ const makeList = (dirPath: string): FileList => {
     ...generateFilesList(dirPath, '**/index.ts'),
     ...generateFilesList(dirPath, '**/index.css', 'style'),
     ...generateFilesList(dirPath, '**/style.css', 'style'),
-    ...generateFilesList(dirPath, '**/types.ts', 'types')
+    ...generateFilesList(dirPath, '**/types.ts', 'types'),
   }
 }
 
@@ -47,7 +43,7 @@ export default defineConfig({
         '@popperjs/core',
         '@fortawesome/fontawesome-svg-core',
         '@fortawesome/free-solid-svg-icons',
-        '@fortawesome/vue-fontawesome'
+        '@fortawesome/vue-fontawesome',
       ],
       output: [
         {
@@ -56,7 +52,7 @@ export default defineConfig({
           entryFileNames: '[name].js',
           preserveModules: true, // 保留原来目录结构
           preserveModulesRoot: '.',
-          assetFileNames: '[name][extname]'
+          assetFileNames: '[name][extname]',
         },
         {
           format: 'commonjs',
@@ -64,29 +60,29 @@ export default defineConfig({
           entryFileNames: '[name].js',
           preserveModules: true,
           preserveModulesRoot: '.',
-          assetFileNames: '[name][extname]'
+          assetFileNames: '[name][extname]',
         },
         {
           format: 'es',
           dir: 'dist',
           entryFileNames: '[name].mjs', // 输出单文件
-          assetFileNames: '[name][extname]'
+          assetFileNames: '[name][extname]',
         },
         {
           format: 'commonjs',
           dir: 'dist',
           entryFileNames: '[name].js',
-          assetFileNames: '[name][extname]'
-        }
+          assetFileNames: '[name][extname]',
+        },
       ],
-      preserveEntrySignatures: 'strict'
+      preserveEntrySignatures: 'strict',
     },
     sourcemap: true, // 对应到具体代码
-    emptyOutDir: false
+    emptyOutDir: false,
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./components', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./components', import.meta.url)),
+    },
+  },
 })

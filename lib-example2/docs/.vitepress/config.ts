@@ -1,10 +1,8 @@
 import { defineConfig } from 'vitepress'
 import { fileURLToPath, URL } from 'node:url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import {
-  containerPreview,
-  componentPreview
-} from '@vitepress-demo-preview/plugin'
+import { containerPreview, componentPreview } from '@vitepress-demo-preview/plugin'
+import path from 'path'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,27 +13,28 @@ export default defineConfig({
     plugins: [vueJsx()],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('../../', import.meta.url))
-      }
-    }
+        '@': fileURLToPath(new URL('../../', import.meta.url)),
+        //'@': path.resolve(),
+      },
+    },
   },
   markdown: {
     config(md) {
       md.use(containerPreview)
       md.use(componentPreview)
-    }
+    },
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {
         text: '指南',
-        link: '/'
+        link: '/',
       },
       {
         text: '组件',
-        link: '/components/button'
-      }
+        link: '/components/button',
+      },
     ],
 
     sidebar: [
@@ -44,21 +43,21 @@ export default defineConfig({
         items: [
           {
             text: 'Button 按钮',
-            link: '/components/button'
-          }
-        ]
-      }
+            link: '/components/button',
+          },
+        ],
+      },
     ],
 
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/RicardoPang/pf-component-library'
+        link: 'https://github.com/RicardoPang/pf-component-library',
       },
       {
         icon: 'npm',
-        link: 'https://www.npmjs.com/package/pf-component-library'
-      }
-    ]
-  }
+        link: 'https://www.npmjs.com/package/pf-component-library',
+      },
+    ],
+  },
 })

@@ -20,3 +20,5 @@ git commit -m 'deploy'
 git push -f git@github.com:RicardoPang/ricardopang.github.io.git main
 
 cd -
+
+# 【部署项目】
