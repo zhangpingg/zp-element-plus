@@ -9,4 +9,6 @@ title: 新标题
 
 ## 源码 code
 
-<preview path="../component/ComponentA.vue"></preview>
+<!--<preview path="../component/ComponentA.vue"></preview>-->
+
+<preview path="../../components/Button/Button.vue"></preview>

@@ -62,6 +62,7 @@ export default defineConfig({
                     { text: "文档1", link: "/documentOne" },
                     { text: "文档2", link: "/documentTwo" },
                     { text: "文档100", link: "/documentHundred/index.md" },
+                    { text: "ZpButton", link: "/component/button.md" },
                 ],
             },
         ],

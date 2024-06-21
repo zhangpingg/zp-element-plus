@@ -10,24 +10,22 @@ footer: true
 
 ```vue
 <template>
-  <div>{{ name }}</div>
+    <div>{{ name }}</div>
 </template>
 
 <script setup>
-    import { ref } from "vue";
-    const name = ref("张三");
+import { ref } from "vue";
+const name = ref("张三");
 </script>
 ```
 
 ### 引用组件+自定义样式
 
 <div class='box'>
-  <ComponentA />
+  内容
 </div>
 
-<script setup>
-import ComponentA from './component/ComponentA.vue'
-</script>
+<script setup></script>
 
 <style lang='less' scoped>
   .box{
@@ -37,6 +35,5 @@ import ComponentA from './component/ComponentA.vue'
 
 ## 链接跳转
 
-[本地文档](./markdown-examples)  
+[本地文档](./documentTwo)  
 [在线链接](https://vitepress.dev/reference/runtime-api#usedata)
-

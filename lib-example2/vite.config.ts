@@ -30,14 +30,17 @@ const makeList = (dirPath: string): FileList => {
 }
 
 const list = makeList(COMPONENTS_DIR)
-console.log(list)
+console.log(11, list)
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx(), eslint()],
   build: {
+    sourcemap: true, // 对应到具体代码
+    emptyOutDir: false,
     rollupOptions: {
       input: list,
+      // 不打包这些库
       external: [
         'vue',
         '@popperjs/core',
@@ -77,8 +80,6 @@ export default defineConfig({
       ],
       preserveEntrySignatures: 'strict',
     },
-    sourcemap: true, // 对应到具体代码
-    emptyOutDir: false,
   },
   resolve: {
     alias: {
