@@ -18,7 +18,7 @@ const generateFilesList = (dirPath, pattern, suffix = "") => {
 
 const makeList = (dirPath) => {
     return {
-        ...generateFilesList(dirPath, "**/index.ts"),
+        ...generateFilesList(dirPath, "**/index.js"),
         //...generateFilesList(dirPath, "**/index.css", "style"),
         //...generateFilesList(dirPath, "**/style.css", "style"),
         //...generateFilesList(dirPath, "**/types.ts", "types"),

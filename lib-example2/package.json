@@ -3,6 +3,7 @@
   "version": "0.2.4",
   "autor": "",
   "description": "pf-component-library组件库",
+  "type": "module",
   "main": "dist/index.es.js",
   "module": "./dist/es/index.js",
   "types": "./dist/es/index.d.ts",
@@ -17,7 +18,6 @@
     "components"
   ],
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --outDir dist/es --project tsconfig.build.json && vue-tsc --outDir dist/lib --project tsconfig.build.json && vite build",
