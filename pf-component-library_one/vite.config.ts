@@ -70,7 +70,7 @@ export default defineConfig({
       ],
       output: [
         {
-          // 【打包出来的是保留目录结构, 便于阅读和引用源码,有利于按需加载，使用者可以只引入实际需要的组件，减小应用的体积】
+          // 【打包出来的是保留目录结构,即将每个组件或模块分别打包成独立的文件。便于阅读维护扩展,有利于按需加载特定的组件或模块，使用者可以只引入实际需要的组件，减小应用的体积】
           // 指定输出文件的格式 es、cjs(commonjs)、umd
           // es： ES 模块格式。适用于现代浏览器和打包工具，如 Webpack、Rollup 和 Parcel。这些文件使用 import 和 export 语句，并且可以被现代浏览器原生解析
           // cjs：CommonJS 模块格式。适用于 Node.js 环境和旧版的打包工具。这些文件使用 require 和 module.exports 语法
