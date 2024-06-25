@@ -154,3 +154,10 @@ npm run docs:dev
 - `docs`: 文档变动;
 - `test`: 补充缺失的测试用例或者修正现有的测试用例;
 - `revert`: 回滚操作;
+
+
+```js
+components
+    lib
+
+```
