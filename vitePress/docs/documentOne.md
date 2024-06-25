@@ -37,3 +37,15 @@ const name = ref("张三");
 
 [本地文档](./documentTwo)  
 [在线链接](https://vitepress.dev/reference/runtime-api#usedata)
+
+## 文字换行
+
+第一行文字  
+第二行文字  
+输入两个或多个空格，然后按回车键
+
+第一行文字 <br />
+第二行文字
+
+第一行文字\
+第二行文字
