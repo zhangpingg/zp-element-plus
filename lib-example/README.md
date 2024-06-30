@@ -157,7 +157,13 @@ npm run docs:dev
 
 
 ```js
-components
-    lib
-
+docs
+  .vitepress
+    config
+      global.ts       #自定义全局变量
+      plugins.ts      #自定义md插件（示例-预览代码/copy）
+    theme             #自定义主题相关文件
+      index.ts        
+      useComponents.js
+    
 ```

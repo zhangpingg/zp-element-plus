@@ -1,6 +1,6 @@
 /** 自定义.md文件渲染 */
 
-import path, { resolve } from 'path'
+import path from 'path'
 import fs from 'fs'
 // @ts-ignore
 import MarkdownIt from 'markdown-it'
@@ -17,6 +17,7 @@ interface ContainerOpts {
   validate?(params: string): boolean
   render?(tokens: Token[], index: number): string
 }
+
 export const mdPlugin = (md: MarkdownIt) => {
   md.use(mdContainer, 'demo', {
     validate(params) {
