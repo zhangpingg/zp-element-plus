@@ -1,14 +1,15 @@
 # T-ui-Plus
 
-## [Vue2 基于 Element-ui基础组件传送门](https://github.com/wocwin/t-ui)
+## [Vue2 基于 Element-ui 基础组件传送门](https://github.com/wocwin/t-ui)
 
 > 基于 Element-ui 二次封装基础组件地址
->
-## [T-ui-Plus使用Demo项目](https://github.com/wocwin/wocwin-admin)
 
->`wocwin-admin`是基于 Vue3.3、TypeScript、Vite4、Pinia、Element-Plus 开源的一套后台管理模板；此项目全面使用了`T-ui-Plus`二次封装基础组件库
-  
+## [T-ui-Plus 使用 Demo 项目](https://github.com/wocwin/wocwin-admin)
+
+> `wocwin-admin`是基于 Vue3.3、TypeScript、Vite4、Pinia、Element-Plus 开源的一套后台管理模板；此项目全面使用了`T-ui-Plus`二次封装基础组件库
+
 ``
+
 ## 介绍
 
 > 基于 vue3+ ts+ Element-plus 二次封装组件
@@ -42,44 +43,45 @@ npm i @wocwin/t-ui-plus
 
 ## 全局注册使用
 
-> ### 前提条件：使用项目必须全局注册 Element-plus组件库
+> ### 前提条件：使用项目必须全局注册 Element-plus 组件库
 
 ```js
 // 在main.js中按下引入
-import { createApp } from "vue";
-import App from "./App.vue";
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
-import "element-plus/theme-chalk/dark/css-vars.css";
-import locale from "element-plus/es/locale/lang/zh-cn";
+import { createApp } from 'vue';
+import App from './App.vue';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
+import 'element-plus/theme-chalk/dark/css-vars.css';
+import locale from 'element-plus/es/locale/lang/zh-cn';
 // element-plus图标
-import * as ElementPlusIconsVue from "@element-plus/icons-vue";
-import TuiPlus from '@wocwin/t-ui-plus'
-import '@wocwin/t-ui-plus/lib/style.css'
-const app = createApp(App)
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import TuiPlus from '@wocwin/t-ui-plus';
+import '@wocwin/t-ui-plus/lib/style.css';
+const app = createApp(App);
 // 注册所有图标
-  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-    app.component(key, component);
-  }
-  // 注册ElementPlus
-  app.use(ElementPlus, {
-    locale // 语言设置
-    // size: Cookies.get('size') || 'medium' // 尺寸设置
-  });
-app.use(TuiPlus)
-app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component);
+}
+// 注册ElementPlus
+app.use(ElementPlus, {
+  locale, // 语言设置
+  // size: Cookies.get('size') || 'medium' // 尺寸设置
+});
+app.use(TuiPlus);
+app.mount('#app');
 ```
 
 ## 按需引入
 
 ```js
 // 在main.js中按下引入
-import '@wocwin/t-ui-plus/lib/style.css'
+import '@wocwin/t-ui-plus/lib/style.css';
 // 单个.vue文件引入
 <script setup lang="ts">
-  import {TDetail, TForm} from "@wocwin/t-ui-plus"
-</script>
+  import {(TDetail, TForm)} from "@wocwin/t-ui-plus"
+</script>;
 ```
+
 ## Use CDN in Project(暂不支持)
 
 ```html
@@ -92,6 +94,7 @@ import '@wocwin/t-ui-plus/lib/style.css'
   <script src="https://unpkg.com/@wocwin/t-ui-plus@latest"></script>
 </head>
 ```
+
 ## t-ui-plus Volar 组件类型提示
 
 ```js
@@ -103,12 +106,15 @@ compilerOptions：{
 }
 
 ```
-## Vue3 + Vite项目中安装引入报如下错误的解决方法
-> #### 把项目的vite版本升级到4+
+
+## Vue3 + Vite 项目中安装引入报如下错误的解决方法
+
+> #### 把项目的 vite 版本升级到 4+
 
 <img src="./README_GIF/error.png">
 
 ## 安装依赖
+
 > ### 注意: 本地环境版本最好安装 [Node.js 16.x+](https://nodejs.org/en)、[pnpm 7.x+](https://github.com/pnpm/pnpm/)
 
 ```shell
@@ -118,7 +124,7 @@ pnpm install
 
 ```
 
-## 使用[t-ui-plus组件的后台管理系统地址](https://github.com/wocwin/wocwin-admin)
+## 使用[t-ui-plus 组件的后台管理系统地址](https://github.com/wocwin/wocwin-admin)
 
 ## 本地运行 vuepress 中组件文档
 
@@ -136,7 +142,7 @@ npm run docs:dev
 
 ## 微信交流群
 
->目前微信群已超过 200 人，需要加微信好友(请备注 T-ui-Plus)，拉大家进群
+> 目前微信群已超过 200 人，需要加微信好友(请备注 T-ui-Plus)，拉大家进群
 
 |                微信二维码                 |
 | :---------------------------------------: |
@@ -155,15 +161,14 @@ npm run docs:dev
 - `test`: 补充缺失的测试用例或者修正现有的测试用例;
 - `revert`: 回滚操作;
 
-
 ```js
 docs
   .vitepress
-    config
-      global.ts       #自定义全局变量
-      plugins.ts      #自定义md插件（示例-预览代码/copy）
-    theme             #自定义主题相关文件
-      index.ts        
+    config              #自定义配置文件
+      global.ts           #自定义全局变量
+      plugins.ts          #自定义md插件（示例-预览代码/copy）
+    theme               #自定义主题相关文件
+      index.ts
       useComponents.js
-    
+
 ```
