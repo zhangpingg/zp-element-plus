@@ -154,3 +154,16 @@ npm run docs:dev
 - `docs`: 文档变动;
 - `test`: 补充缺失的测试用例或者修正现有的测试用例;
 - `revert`: 回滚操作;
+
+
+```js
+docs
+  .vitepress
+    config
+      global.ts       #自定义全局变量
+      plugins.ts      #自定义md插件（示例-预览代码/copy）
+    theme             #自定义主题相关文件
+      index.ts        
+      useComponents.js
+    
+```
