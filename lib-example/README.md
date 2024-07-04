@@ -161,14 +161,36 @@ npm run docs:dev
 - `test`: 补充缺失的测试用例或者修正现有的测试用例;
 - `revert`: 回滚操作;
 
-```js
-docs
-  .vitepress
-    config              #自定义配置文件
-      global.ts           #自定义全局变量
-      plugins.ts          #自定义md插件（示例-预览代码/copy）
-    theme               #自定义主题相关文件
-      index.ts
-      useComponents.js
-
+```
+├─ docs
+│  ├─ .vitepress
+│  │  ├─ config                 #（自定义插件配置）
+│  │  │  ├─ global.ts           # 自定义全局变量
+│  │  │  └─ plugins.ts          # 自定义md插件（演示组件代码/copy）
+│  │  ├─ theme                  #（主题相关配置文件）
+│  │  │  ├─ index.ts            # 主题配置（注册element-plus插件、注册自己组件库插件、注册VPDemo组件）
+│  │  │  └─ useComponents.js    # 注册演示组件（Demo、DemoBlock），这个是一个插件
+│  │  ├─ utils
+│  │  │  └─ highlight.ts        # 演示组件的时候，代码高亮
+│  │  ├─ vitepress
+│  │  │  ├─ components
+│  │  │  │  └─ vp-demo          # VPDemo组件
+│  │  │  ├─ style               # VPDemo组件样式
+│  │  │  └─ index.ts            # 导出VPDemo组件
+│  │  └─ config.ts              # vitepress的配置文件（左侧菜单，顶部导航）
+│  ├─ components                # .md文件
+│  ├─ example                   # 演示的组件源码（VPDemo组件自动解析此文件夹下的所有.vue文件）
+│  ├─ public                    # 静态资源文件
+│  ├─ index.md                  # 文档home页面
+│  ├─ tsconfig                  # typescript 全局配置
+│  └─ vite.config               # vite 全局配置文件（支持tsx）
+├─ packages
+│  ├─ button
+│  │  ├─ src
+│  │  │  └─ index.vue           # 组件源码
+│  │  └─ index.ts               # 调用方法withInstall,生成插件，并导出
+│  ├─ ...
+│  ├─ index.ts                  # 导出组件，公共方法，每个插件的install方法
+│  └─ withInstall.ts            # withInstall方法，用于注册组件
+└─ public
 ```
