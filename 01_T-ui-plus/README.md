@@ -82,19 +82,6 @@ import '@wocwin/t-ui-plus/lib/style.css';
 </script>;
 ```
 
-## Use CDN in Project(暂不支持)
-
-```html
-<head>
-  <!-- Import style -->
-  <link rel="stylesheet" href="//unpkg.com/@wocwin/t-ui-plus/lib/style.css" />
-  <!-- Import Vue 3 -->
-  <script src="//unpkg.com/vue@3"></script>
-  <!-- Import component library -->
-  <script src="https://unpkg.com/@wocwin/t-ui-plus@latest"></script>
-</head>
-```
-
 ## t-ui-plus Volar 组件类型提示
 
 ```js
@@ -106,60 +93,6 @@ compilerOptions：{
 }
 
 ```
-
-## Vue3 + Vite 项目中安装引入报如下错误的解决方法
-
-> #### 把项目的 vite 版本升级到 4+
-
-<img src="./README_GIF/error.png">
-
-## 安装依赖
-
-> ### 注意: 本地环境版本最好安装 [Node.js 16.x+](https://nodejs.org/en)、[pnpm 7.x+](https://github.com/pnpm/pnpm/)
-
-```shell
-npm install -g pnpm
-
-pnpm install
-
-```
-
-## 使用[t-ui-plus 组件的后台管理系统地址](https://github.com/wocwin/wocwin-admin)
-
-## 本地运行 vuepress 中组件文档
-
-```shell
-// docs项目(文档demo示例)基于vue3+vite项目
-npm run docs:dev
-
-```
-
-## Thanks to all the contributors
-
-<a href="https://github.com/wocwin/t-ui-plus/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=wocwin/t-ui-plus" alt="contributors" />
-</a>
-
-## 微信交流群
-
-> 目前微信群已超过 200 人，需要加微信好友(请备注 T-ui-Plus)，拉大家进群
-
-|                微信二维码                 |
-| :---------------------------------------: |
-| <img src="./public/wocwin.jpg" width=170> |
-
-## Git 提交规范
-
-- `ci`: ci 配置文件和脚本的变动;
-- `chore`: 构建系统或辅助工具的变动;
-- `fix`: 代码 BUG 修复;
-- `feat`: 新功能;
-- `perf`: 性能优化和提升;
-- `refactor`: 仅仅是代码变动，既不是修复 BUG 也不是引入新功能;
-- `style`: 代码格式调整，可能是空格、分号、缩进等等;
-- `docs`: 文档变动;
-- `test`: 补充缺失的测试用例或者修正现有的测试用例;
-- `revert`: 回滚操作;
 
 ```js
 ├─ docs
