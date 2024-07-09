@@ -1,3 +1,3 @@
 <template>
-  <div>组件提示-22</div>
+  <t-button> 按钮2 </t-button>
 </template>

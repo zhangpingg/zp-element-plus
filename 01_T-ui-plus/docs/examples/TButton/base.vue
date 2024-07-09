@@ -1,5 +1,7 @@
 <template>
-  <div>组件-11</div>
+  <div>
+    <t-button type="primary"> 按钮1 </t-button>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
