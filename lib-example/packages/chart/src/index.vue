@@ -23,11 +23,11 @@ import {
   onBeforeUnmount,
   markRaw,
   useAttrs,
-} from 'vue'
-import { useResizeObserver } from '@vueuse/core'
-import { debounce, toLine } from '../../utils'
-import { computed } from 'vue'
-const { proxy } = getCurrentInstance() as any
+} from 'vue';
+import { useResizeObserver } from '@vueuse/core';
+import { debounce, toLine } from '../../utils';
+import { computed } from 'vue';
+const { proxy } = getCurrentInstance() as any;
 const props = defineProps({
   options: {
     type: Object,
@@ -49,89 +49,89 @@ const props = defineProps({
     type: String,
     default: '暂无数据',
   },
-})
+});
 
-const echartRef = ref<HTMLDivElement>()
-const chart = ref()
-const emits = defineEmits()
-const events = Object.entries(useAttrs())
+const echartRef = ref<HTMLDivElement>();
+const chart = ref();
+const emits = defineEmits();
+const events = Object.entries(useAttrs());
 
 // 图表初始化
 const renderChart = () => {
-  chart.value = markRaw(proxy.$echarts.init(echartRef.value, props.theme))
-  setOption(props.options)
+  chart.value = markRaw(proxy.$echarts.init(echartRef.value, props.theme));
+  setOption(props.options);
   // 返回chart实例
-  emits('chart', chart.value)
+  emits('chart', chart.value);
 
   // 监听图表事件
   events.forEach(([key, value]) => {
     if (key.startsWith('on') && !key.startsWith('onChart')) {
-      const on = toLine(key).substring(3)
-      chart.value.on(on, (...args) => emits(on, ...args))
+      const on = toLine(key).substring(3);
+      chart.value.on(on, (...args) => emits(on, ...args));
     }
-  })
+  });
 
   // 监听元素变化
-  useResizeObserver(echartRef.value, resizeChart)
+  useResizeObserver(echartRef.value, resizeChart);
   // 大小自适应
   // window.addEventListener('resize', resizeChart)
-}
+};
 
 // 重绘图表函数
 const resizeChart = debounce(
   () => {
-    chart.value?.resize()
+    chart.value?.resize();
   },
   300,
   true
-)
+);
 
 // 设置图表函数
 const setOption = debounce(
   async (data) => {
-    if (!chart.value) return
-    chart.value.setOption(data, true, true)
-    await nextTick()
-    resizeChart()
+    if (!chart.value) return;
+    chart.value.setOption(data, true, true);
+    await nextTick();
+    resizeChart();
   },
   300,
   true
-)
+);
 
 const formatEmpty = computed(() => {
   if (typeof props.isEmpty === 'function') {
-    return props.isEmpty(props.options)
+    return props.isEmpty(props.options);
   }
-  return props.isEmpty
-})
+  return props.isEmpty;
+});
 
 watch(
   () => props.options,
   async (nw) => {
-    await nextTick()
-    setOption(nw)
+    await nextTick();
+    setOption(nw);
   },
   { deep: true }
-)
+);
 
 watch(
   () => props.theme,
   async () => {
-    chart.value.dispose()
-    renderChart()
+    chart.value.dispose();
+    renderChart();
   }
-)
+);
 
 onMounted(() => {
-  renderChart()
-})
+  renderChart();
+});
 onBeforeUnmount(() => {
   // 取消监听
   // window.removeEventListener('resize', resizeChart)
   // 销毁echarts实例
-  chart.value.dispose()
-  chart.value = null
-})
+  chart.value.dispose();
+  chart.value = null;
+});
 </script>
 
 <style lang="scss" scoped>
