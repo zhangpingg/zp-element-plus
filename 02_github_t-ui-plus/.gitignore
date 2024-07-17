@@ -12,6 +12,7 @@ docs/.vitepress/.temp
 docs/.vitepress/cache
 docs/.vitepress/cache/deps/
 docs/.vitepress/dist
+.vitepress
 
 # local env files
 .env.local

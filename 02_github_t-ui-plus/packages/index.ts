@@ -1,30 +1,27 @@
-import { debounce, throttle, formatNumber } from "./utils"
-import type { Component, App } from "vue"
-// import ElementPlus from 'element-plus'
-// import 'element-plus/dist/index.css'
-// import locale from 'element-plus/lib/locale/lang/zh-cn' // 因element-plus默认是英文，我们指定一下默认中文
-import TLayoutPage from "./layout-page"
-import TLayoutPageItem from "./layout-page-item"
-import TQueryCondition from "./query-condition"
-import TTable from "./table"
-import TForm from "./form"
-import TSelect from "./select"
-import TSelectTable from "./select-table"
-import TDetail from "./detail"
-import TButton from "./button"
-import TStepWizard from "./step-wizard"
-import TTimerBtn from "./timer-btn"
-import TModuleForm from "./module-form"
-import TAdaptivePage from "./adaptive-page"
-import TDatePicker from "./date-picker"
-import TRadio from "./radio"
-import TCheckbox from "./checkbox"
-import TChart from "./chart"
-import TTabs from "./tabs"
+import { debounce, throttle, formatNumber } from './utils';
+import type { Component, App } from 'vue';
+import TLayoutPage from './layout-page';
+import TLayoutPageItem from './layout-page-item';
+import TQueryCondition from './query-condition';
+import TTable from './table';
+import TForm from './form';
+import TSelect from './select';
+import TSelectTable from './select-table';
+import TDetail from './detail';
+import TButton from './button';
+import TStepWizard from './step-wizard';
+import TTimerBtn from './timer-btn';
+import TModuleForm from './module-form';
+import TAdaptivePage from './adaptive-page';
+import TDatePicker from './date-picker';
+import TRadio from './radio';
+import TCheckbox from './checkbox';
+import TChart from './chart';
+import TTabs from './tabs';
 
-// 存储组件列表
+// 组件列表（经过 withInstall 处理过的，可以按需引用）
 const components: {
-  [propName: string]: Component
+  [propName: string]: Component;
 } = {
   TLayoutPage,
   TLayoutPageItem,
@@ -44,35 +41,22 @@ const components: {
   TCheckbox,
   TChart,
   TTabs
-}
-// 插件声明：声明所有插件
-// 插件注册：在 Vue 项目的入口文件中，通过 ( app.use(插件) ) 进行注册
-const installComponents: any = (app: App) => {
-  // components.forEach((comp: any) => {
-  //   app.component(comp.name as string, comp)
-  // })
-  //   app.use(ElementPlus, {
-  //     locale // 语言设置
-  //   // size: Cookies.get('size') || 'medium' // 设置默认尺寸
-  // })
+};
+
+// vue 插件中的 install 方法（app：Vue应用程序实例）
+const install: any = (app: any) => {
   for (const key in components) {
-    app.component(key, components[key])
+    app.component(key, components[key]);
   }
-}
-// vue插件
-// - install：每个插件都有一个 install 方法
-// - 参数：是通过 Vue.createApp() 创建的 app 实例
-const install: any = (app: any, router?: any) => {
-  // !router && installRouter(app);
-  installComponents(app)
-}
+};
+// 第一种安装方式？？？（项目中直接引入vue.js？）
 // @ts-ignore
 if (typeof window !== 'undefined' && window.Vue) {
   // @ts-ignore
-  install(window.Vue)
+  install(window.Vue);
 }
 
-// 按需引入
+// 单个导出组件（经过 withInstall 处理过的，可以按需引用）
 export {
   TLayoutPage,
   TLayoutPageItem,
@@ -92,13 +76,15 @@ export {
   TCheckbox,
   TChart,
   TTabs
-}
-/**
- * @description 公共方法
- */
-export { throttle, debounce, formatNumber }
+};
 
+// 公共方法
+export { throttle, debounce, formatNumber };
+
+// 导出vue插件（如果插件是一个对象，必须提供 install 方法，并且参数是Vue对象，即应用实例）—— 用于全局安装组件库
+// 把组件库当做一个插件去安装，即使用 Vue.use() 方法安装
+// import TuiPlus from "@wocwin/t-ui-plus"   （TuiPlus就是导出的插件对象）
+// app.use(TuiPlus)
 export default {
-  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
   install
-}
+};
