@@ -49,14 +49,16 @@ const install: any = (app: any) => {
     app.component(key, components[key]);
   }
 };
-// 第一种安装方式？？？（项目中直接引入vue.js？）
-// @ts-ignore
-if (typeof window !== 'undefined' && window.Vue) {
-  // @ts-ignore
-  install(window.Vue);
-}
 
-// 单个导出组件（经过 withInstall 处理过的，可以按需引用）
+// 【1-全局安装组件库】导出vue插件（如果插件是一个对象，必须提供 install 方法，并且参数是Vue对象，即应用实例）
+// 把组件库当做一个插件去安装，即使用 Vue.use() 方法安装
+// import TuiPlus from "@wocwin/t-ui-plus"   （TuiPlus就是导出的插件对象）
+// app.use(TuiPlus)
+export default {
+  install
+};
+
+// 【2-按需引用】导出各个组件（经过 withInstall 处理过的）
 export {
   TLayoutPage,
   TLayoutPageItem,
@@ -78,13 +80,12 @@ export {
   TTabs
 };
 
+// 【3-项目中直接引入vue.js】
+// @ts-ignore
+if (typeof window !== 'undefined' && window.Vue) {
+  // @ts-ignore
+  install(window.Vue);
+}
+
 // 公共方法
 export { throttle, debounce, formatNumber };
-
-// 导出vue插件（如果插件是一个对象，必须提供 install 方法，并且参数是Vue对象，即应用实例）—— 用于全局安装组件库
-// 把组件库当做一个插件去安装，即使用 Vue.use() 方法安装
-// import TuiPlus from "@wocwin/t-ui-plus"   （TuiPlus就是导出的插件对象）
-// app.use(TuiPlus)
-export default {
-  install
-};

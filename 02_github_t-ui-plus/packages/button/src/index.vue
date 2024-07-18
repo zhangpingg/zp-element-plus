@@ -4,13 +4,11 @@
       <slot />
     </el-button>
   </el-tooltip>
-  <el-button v-else v-bind="$attrs" @click="handleClick">
-    前缀1+<slot />
-  </el-button>
+  <el-button v-else v-bind="$attrs" @click="handleClick"> 前缀2+<slot /> </el-button>
 </template>
 
 <script setup lang="ts" name="TButton">
-import { ref } from "vue"
+import { ref } from 'vue';
 const props = defineProps({
   time: {
     type: Number,
@@ -18,27 +16,27 @@ const props = defineProps({
   },
   tip: {
     type: String,
-    default: ""
+    default: ''
   },
   placement: {
     type: String,
-    default: "top"
+    default: 'top'
   },
   tipProps: {
     type: Object,
     default: () => ({})
   }
-})
+});
 // 抛出事件
-const emits = defineEmits(["click"])
-const record = ref(0)
+const emits = defineEmits(['click']);
+const record = ref(0);
 const handleClick = () => {
-  let newTime = new Date()
+  let newTime = new Date();
   if (newTime.getTime() - record.value > props.time) {
-    emits("click")
+    emits('click');
   }
-  record.value = new Date().getTime()
-}
+  record.value = new Date().getTime();
+};
 </script>
 <style lang="scss" scoped>
 .t-button-tip {
