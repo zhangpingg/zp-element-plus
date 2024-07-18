@@ -3,6 +3,8 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "main": "lib/zp-element-plus.umd.cjs",
+    "module": "lib/zp-element-plus.umd.cjs",
     "scripts": {
         "dev": "vite --host 0.0.0.0",
         "build": "vite build",

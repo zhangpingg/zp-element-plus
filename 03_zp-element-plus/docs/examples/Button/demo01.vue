@@ -5,6 +5,5 @@
 </template>
 
 <script setup>
-//import ZpButton from "@/button/src/index.vue";
 import ZpButton from "../../../packages/button/src/index.vue";
 </script>

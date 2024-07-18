@@ -24,7 +24,23 @@ export default defineConfig({
         extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".vue", ".mjs"],
     },
     build: {
-        sourcemap: true, // 对应到具体代码
+        outDir: "lib",
         emptyOutDir: false,
+        // cssCodeSplit: true, // 强制内联CSS
+        rollupOptions: {
+            // 请确保外部化那些你的库中不需要的依赖
+            external: ["vue"],
+            output: {
+                // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+                globals: {
+                    vue: "Vue",
+                },
+            },
+        },
+        lib: {
+            entry: "./packages/index.js",
+            name: "zp-element-plus",
+            fileName: "zp-element-plus",
+        },
     },
 });
