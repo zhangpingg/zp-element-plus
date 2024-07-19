@@ -30,7 +30,8 @@ export default defineConfig({
         // 导航
         nav: [
             { text: "首页", link: "/" },
-            { text: "文档1", link: "/documentOne" },
+            { text: "文档1", link: "/component/documentOne" },
+            { text: "安装指南", link: "/component/index.md" },
             {
                 text: "GitHub地址",
                 link: "https://www.baidu.com/",
@@ -59,9 +60,8 @@ export default defineConfig({
             {
                 text: "组件",
                 items: [
-                    { text: "文档1", link: "/documentOne" },
-                    { text: "文档2", link: "/documentTwo" },
-                    { text: "文档100", link: "/documentHundred/index.md" },
+                    { text: "文档1", link: "/component/documentOne" },
+                    { text: "文档2", link: "/component/documentTwo" },
                     { text: "ZpButton", link: "/component/button.md" },
                 ],
             },

@@ -9,4 +9,4 @@ title: 新标题
 
 ## 源码 code
 
-<preview path="../demo/Button/demo01.vue"></preview>
+<preview path="../examples/Button/demo01.vue"></preview>
