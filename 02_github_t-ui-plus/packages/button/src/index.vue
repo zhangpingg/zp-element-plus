@@ -4,7 +4,9 @@
       <slot />
     </el-button>
   </el-tooltip>
-  <el-button v-else v-bind="$attrs" @click="handleClick"> 前缀2+<slot /> </el-button>
+  <el-button v-else v-bind="$attrs" @click="handleClick">
+    <slot />
+  </el-button>
 </template>
 
 <script setup lang="ts" name="TButton">
