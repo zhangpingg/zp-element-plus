@@ -12,14 +12,18 @@
     ],
     "scripts": {
         "dev": "vite --host 0.0.0.0",
-        "build": "vite build",
+        "build:es": "rimraf lib && vite build",
+        "build:browser": "rimraf lib && vite -f iife build",
+        "build:all": "rimraf lib && run-p build:es build:browser",
         "preview": "vite preview",
         "docs:dev": "vitepress dev docs",
         "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "docs:preview": "vitepress preview docs",
+        "deploy": "deploy.sh"
     },
     "dependencies": {
         "element-plus": "^2.7.7",
+        "rimraf": "^6.0.1",
         "vue": "^3.4.21"
     },
     "devDependencies": {

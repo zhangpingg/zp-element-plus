@@ -21,7 +21,7 @@ export default defineConfig({
         emptyOutDir: true,
         // cssCodeSplit: true, // 强制内联CSS
         rollupOptions: {
-            // 请确保外部化那些你的库中不需要的依赖
+            // 指定哪些模块不被打包进最终的 bundle 中，而是作为外部依赖
             external: ["vue"],
             output: {
                 // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量

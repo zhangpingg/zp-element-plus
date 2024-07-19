@@ -11,7 +11,7 @@ export default defineConfig({
     title: "组件库", // 网站的标题、顶部左侧-标题
     description: "组件库文档",
     lang: "cn-ZH",
-    // base: '/xxx',   // url添加base，http://localhost:5173/xxx
+    base: "/zp-element-plus", // url添加base，http://localhost:5173/xxx
     lastUpdated: true, // 文档最后，最后修改时间是否显影
     vite: {
         //plugins: [vueJsx()],
