@@ -11,7 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+docs/.vitepress/.temp
 docs/.vitepress/cache
+docs/.vitepress/cache/deps/
+docs/.vitepress/dist
+.vitepress
 lib
 
 # Editor directories and files

@@ -1,6 +1,10 @@
 <template>
   <div class="t_adaptive_page">
-    <div :style="{ width: isShow('leftContent') ? `${leftWidth}px` : '0px' }" v-if="isShow('leftContent')" class="left_content">
+    <div
+      :style="{ width: isShow('leftContent') ? `${leftWidth}px` : '0px' }"
+      v-if="isShow('leftContent')"
+      class="left_content"
+    >
       <div class="left_tree">
         <slot name="leftContent" />
       </div>
@@ -13,7 +17,11 @@
           </template>
         </t-query-condition>
       </t-layout-page-item>
-      <t-layout-page-item class="table_main" :class="{ 't_table_self-filling': isTTableSelfFilling }" :style="tablePageStyle">
+      <t-layout-page-item
+        class="table_main"
+        :class="{ 't_table_self-filling': isTTableSelfFilling }"
+        :style="tablePageStyle"
+      >
         <t-table
           v-bind="{ columnSetting, ...$attrs }"
           :isSlotToolbar="isShow('toolbar')"
@@ -31,11 +39,11 @@
 </template>
 
 <script setup lang="ts" name="TAdaptivePage">
-import TLayoutPage from "../../layout-page/src/index.vue"
-import TLayoutPageItem from "../../layout-page-item/src/index.vue"
-import TTable from "../../table/src/index.vue"
-import TQueryCondition from "../../query-condition/src/index.vue"
-import { getCurrentInstance, onMounted, ref, useSlots } from "vue"
+import TLayoutPage from '../../layout-page/src/index.vue';
+import TLayoutPageItem from '../../layout-page-item/src/index.vue';
+import TTable from '../../table/src/index.vue';
+import TQueryCondition from '../../query-condition/src/index.vue';
+import { getCurrentInstance, onMounted, ref, useSlots } from 'vue';
 defineProps({
   leftWidth: {
     type: Number,
@@ -56,30 +64,32 @@ defineProps({
   },
   // 是否table自动撑满
   isTTableSelfFilling: Boolean
-})
-const slots = useSlots()
+});
+const slots = useSlots();
 // 判断是否使用漏了某个插槽
 const isShow = (name: string) => {
-  return Object.keys(slots).includes(name)
-}
+  return Object.keys(slots).includes(name);
+};
 // 获取实例方法
-const instance = getCurrentInstance() as any
+const instance = getCurrentInstance() as any;
 // 获取ref
-const TQueryConditionPage = ref<HTMLElement | null>(null) as any
-const TTablePage = ref<HTMLElement | null>(null) as any
+const TQueryConditionPage = ref<HTMLElement | null>(null) as any;
+const TTablePage = ref<HTMLElement | null>(null) as any;
 onMounted(() => {
   const exposedObj = {
     ...TQueryConditionPage.value.$.exposed,
     ...TTablePage.value.$.exposed
-  }
-  const entries = Object.entries(exposedObj)
+  };
+  const entries = Object.entries(exposedObj);
   // console.log('111', entries)
   for (const [key, value] of entries) {
-    instance.exposed[key] = value
+    instance.exposed[key] = value;
   }
   // console.log(789, instance)
-})
-defineExpose({ ...instance.exposed, TQueryConditionPage, TTablePage })
+});
+defineExpose({ ...instance.exposed, TQueryConditionPage, TTablePage });
+
+
 </script>
 <style lang="scss" scoped>
 .t_adaptive_page {

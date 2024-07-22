@@ -29,8 +29,8 @@ module.exports = {
         tsx: 'never',
       },
     ],
-    'no-console': 'warn',
-    'no-debugger': 'warn',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     semi: 2, // 行尾分号结尾
     quotes: ['error', 'single'], // 单引号，如果不是就报错

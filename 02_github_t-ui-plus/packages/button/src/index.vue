@@ -39,9 +39,6 @@ const handleClick = () => {
   }
   record.value = new Date().getTime();
 };
-
-let aa: Boolean = 2;
-console.log(11, aa);
 </script>
 <style lang="scss" scoped>
 .t-button-tip {

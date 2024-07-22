@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-const aa: Array = '1';
+const aa: number = '1';
 </script>
 
 <style lang="less" scoped></style>
