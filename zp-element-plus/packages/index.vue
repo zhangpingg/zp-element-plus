@@ -1,5 +1,5 @@
 <template>
-  <div>11件</div>
+  <div>11件{{ aa }}</div>
 </template>
 
 <script setup lang="ts">
