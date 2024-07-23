@@ -1,18 +1,9 @@
 <template>
-  <div>11件{{ aa }}</div>
+  <div>11件</div>
 </template>
 
 <script setup lang="ts">
-
-
-
-const aa: number = 1
-
-
-
-
-
-
+const aa: string = 1;
 </script>
 
 <style lang="less" scoped></style>
