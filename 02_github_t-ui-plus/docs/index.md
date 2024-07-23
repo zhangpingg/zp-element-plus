@@ -5,6 +5,7 @@ title: T-ui-plus
 # titleTemplate: 选项卡描述
 editLink: true
 lastUpdated: true
+
 hero:
   name: T-ui-plus
   text: vue3基础组件
@@ -19,6 +20,7 @@ hero:
     - theme: brand
       text: 组件预览
       link: /components/TSelect/base.md
+      
 features:
   # - icon: 🔨
   #   title: 实际项目
@@ -31,7 +33,7 @@ features:
     details: 享受 Vue3 + vite3 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
 ---
 
-<p style="display: flex;
+<!--<p style="display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;">
@@ -53,4 +55,4 @@ features:
   <a href="https://github.com/wocwin/t-ui-plus/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=wocwin/t-ui-plus" alt="contributors" />
   </a>
-</p>
+</p>-->

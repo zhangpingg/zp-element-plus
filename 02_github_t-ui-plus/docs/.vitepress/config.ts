@@ -8,6 +8,7 @@ export default defineConfig({
   lastUpdated: true,  // 文档最后，最后修改时间是否显影
   themeConfig: {
     logo: "/favicon.ico",  // 左侧侧边栏顶部-标题前的logo
+    //logo: '/img/hero.jpg',
     siteTitle: "TuiPlus基础组件文档",
     outline: 3, // 控制的目录层级，哪些显示。因为文档中的标题是3级标题，默认是显示的
     socialLinks: [{ icon: "github", link: "https://github.com/wocwin/t-ui-plus" }, { icon: 'github', link: 'https://www.baidu.com/' },],

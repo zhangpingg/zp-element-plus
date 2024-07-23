@@ -6,30 +6,30 @@ editLink: true
 lastUpdated: true
 
 hero:
-    name: "首页标题"
-    text: "首页的一些描述"
-    tagline: 一些介绍，标语等......
+    name: "zp-element-plus"
+    text: ' '
+    tagline: 使用Vue3基于Element-plus二次封装的组件库
     image:
         src: /imgs/hero.jpg
         alt: 头像
     actions:
         - theme: alt
-          text: 文档1
-          link: /component/documentOne
+          text: 安装指南
+          link: /component/indexGuide.md
         - theme: brand
-          text: 文档2
-          link: /component/documentTwo
+          text: 组件预览
+          link: /component/button.md
 
 features:
     - icon: 🧩
-      title: 特点1
-      details: 一些简单介绍
+      title: 安装简单
+      details: 跟 Element-plus 插件的一样的安装方式
     - icon: 🔨
-      title: 特点2
-      details: 一些简单介绍
+      title: 封装模式
+      details: 基于 Element-plus 二次封装
     - icon: ✈️
-      title: 特点3
-      details: 一些简单介绍
+      title: 封装模式
+      details: vite + vue3 模式
 ---
 
-<p>其他.....</p>
+<p></p>

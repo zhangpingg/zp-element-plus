@@ -1,0 +1,3 @@
+rules:
+  MD041: 0
+  MD033: 0 # 关闭 no-inline-html 规则

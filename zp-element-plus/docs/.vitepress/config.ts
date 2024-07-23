@@ -1,8 +1,8 @@
 import { defineConfig } from "vitepress";
-//import {
-//    containerPreview,
-//    componentPreview,
-//} from "@vitepress-demo-preview/plugin";
+import {
+    containerPreview,
+    componentPreview,
+} from "@vitepress-demo-preview/plugin";
 import path from "path";
 import { fileURLToPath, URL } from "node:url";
 
@@ -11,7 +11,7 @@ export default defineConfig({
     title: "组件库", // 网站的标题、顶部左侧-标题
     description: "组件库文档",
     lang: "cn-ZH",
-    base: "/zp-element-plus", // url添加base，http://localhost:3001/xxx
+    base: "/zp-element-plus/", // url添加base，http://localhost:3001/xxx
     lastUpdated: true, // 文档最后，最后修改时间是否显影
     vite: {
         //plugins: [vueJsx()],
@@ -24,14 +24,13 @@ export default defineConfig({
     },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        logo: "/imgs/hero.jpg", // 顶部左侧-标题前的logo
-        siteTitle: "组件文档", // 顶部左侧-标题（会覆盖上面的title）
+        logo: "/favicon.ico", // 顶部左侧-标题前的logo
+        siteTitle: "ZpElementPlus 组件文档", // 顶部左侧-标题（会覆盖上面的title）
         outline: 3, // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
         // 导航
         nav: [
-            { text: "首页", link: "/" },
-            { text: "文档1", link: "/component/documentOne" },
-            { text: "安装指南", link: "/component/index.md" },
+            { text: "安装指南", link: "/component/indexGuide.md" },
+            { text: "组件预览", link: "/component/button.md" },
             {
                 text: "GitHub地址",
                 link: "https://www.baidu.com/",
@@ -60,18 +59,16 @@ export default defineConfig({
             {
                 text: "组件",
                 items: [
-                    { text: "文档1", link: "/component/documentOne" },
-                    { text: "文档2", link: "/component/documentTwo" },
                     { text: "ZpButton", link: "/component/button.md" },
                 ],
             },
         ],
     },
     markdown: {
-        //config(md) {
-        //    // 示例预览功能（查看，copy）
-        //    md.use(containerPreview);
-        //    md.use(componentPreview);
-        //},
+        config(md) {
+            // 示例预览功能（查看，copy）
+            md.use(containerPreview);
+            md.use(componentPreview);
+        },
     },
 });
