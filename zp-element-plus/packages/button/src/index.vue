@@ -1,9 +1,7 @@
 <template>
   <div>
-    <el-button type="primary"> zp前缀1+<slot /> </el-button>
+    <el-button type="primary"> 前缀1+<slot /> </el-button>
   </div>
 </template>
 
-<script setup lang="ts" name="ZpButton">
-let a: string = 2;
-</script>
+<script setup lang="ts" name="ZpButton"></script>
