@@ -1,7 +1,7 @@
 {
   "name": "zp-element-plus",
-  "version": "1.0.1",
-  "private": true,
+  "version": "1.0.3",
+  "private": false,
   "type": "module",
   "main": "lib/zp-element-plus.umd.cjs",
   "module": "lib/zp-element-plus.umd.cjs",
