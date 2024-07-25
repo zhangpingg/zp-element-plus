@@ -26,6 +26,6 @@
 │  │  └─ index.ts               # 调用方法withInstall，注册为全局组件，并导出
 │  ├─ ...
 │  ├─ index.ts                  # 导出组件，公共方法，定义插件(用于注册为全局组件)
-│  └─ withInstall.ts            # withInstall方法，用于把组件注册为全局组件
+│  └─ withInstall.ts            # withInstall方法，用于在项目中，使用vue.use(xxx)注册全局组件
 └─ public                       # 静态资源文件
 ```

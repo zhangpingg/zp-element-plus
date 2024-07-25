@@ -2,6 +2,8 @@
   "name": "zp-element-plus",
   "version": "1.0.3",
   "private": false,
+  "author": "Tuwan",
+  "description": "使用Vue3基于Element-plus二次封装的组件库",
   "type": "module",
   "main": "lib/zp-element-plus.umd.cjs",
   "module": "lib/zp-element-plus.umd.cjs",
@@ -24,6 +26,7 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.14.5",
