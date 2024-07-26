@@ -27,7 +27,7 @@ import locale from "element-plus/es/locale/lang/zh-cn"
 import * as ElementPlusIconsVue from "@element-plus/icons-vue" // element-plus图标
 // zp-element-plus 组件库
 import ZpElementPlus from "zp-element-plus"
-// import "@wocwin/t-ui-plus/lib/style.css"  // 待开发
+import 'zp-element-plus/lib/style.css';
 
 const app = createApp(App)
 // 注册所有图标
@@ -47,7 +47,8 @@ app.mount("#app")
 
 ```js
 // 在main.js中按下引入
-// import "@wocwin/t-ui-plus/lib/style.css"  // 待开发
+import 'zp-element-plus/lib/style.css';
+
 // 单个.vue文件引入
 <script setup lang="ts">
   import { Xxx } from "zp-element-plus"

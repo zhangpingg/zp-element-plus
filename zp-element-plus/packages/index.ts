@@ -1,15 +1,17 @@
 import type { Component, App } from 'vue';
 import ZpButton from './button';
+import ZpSelect from './select'
 
 // 组件列表
 const components: {
   [propName: string]: Component;
 } = {
   ZpButton,
+  ZpSelect,
 };
 
 // vue 插件中的 install 方法（app：Vue应用程序实例）
-const install = (app) => {
+const install = (app: App) => {
   for (const key in components) {
     app.component(key, components[key]);
   }
@@ -24,4 +26,4 @@ export default {
 };
 
 // 【2-按需引用】导出各个组件
-export { ZpButton };
+export { ZpButton, ZpSelect };

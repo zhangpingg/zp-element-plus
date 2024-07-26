@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue';
+import type { App, Plugin } from 'vue';
 
 type SFCWithInstall<T> = T & Plugin;
 
@@ -10,7 +10,7 @@ export const withInstall = <T, E extends Record<string, any>>(main: T, extra?: E
       app.component(comp.name, comp);
     }
   };
-  // Button.a = 2
+  // input.Search = Search组件
   if (extra) {
     for (const [compName, comp] of Object.entries(extra)) {
       (main as Record<string, any>)[compName] = comp;

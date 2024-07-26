@@ -13,6 +13,7 @@ export default defineConfig({
     lang: "cn-ZH",
     base: "/zp-element-plus/", // url添加base，http://localhost:3001/xxx
     lastUpdated: true, // 文档最后，最后修改时间是否显影
+    head: [['link', { rel: 'icon', href: '/zp-element-plus/favicon.ico' }]],
     vite: {
         //plugins: [vueJsx()],
         resolve: {
@@ -24,7 +25,7 @@ export default defineConfig({
     },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        logo: "/favicon.ico", // 顶部左侧-标题前的logo
+        logo: "/imgs/hero.jpg", // 顶部左侧-标题前的logo
         siteTitle: "ZpElementPlus 组件文档", // 顶部左侧-标题（会覆盖上面的title）
         outline: 3, // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
         // 导航

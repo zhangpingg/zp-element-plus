@@ -4,4 +4,4 @@
 
 ## 源码 code
 
-<preview path="../examples/Button/demo01.vue"></preview>
+<preview path="../examples/button/demo01.vue"></preview>
