@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
+import CustomA from './components/customA.vue';
 
 const zpSearchFormRef = ref<any>(null);
 const formList = reactive([
@@ -25,6 +26,13 @@ const formList = reactive([
             { label: '杭州', value: 'hangzhou' },
             { label: '北京', value: 'beijing' },
         ],
+    },
+    {
+        type: 'custom',
+        label: '自定义',
+        prop: 'zz',
+        customComponent: CustomA,
+        placeholder: '占位符',
     },
 ]);
 

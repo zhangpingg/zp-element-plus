@@ -83,6 +83,13 @@
                             v-bind="{ ...getDatePickerAttr(type), ...restItem }"
                         />
                     </el-form-item>
+                    <el-form-item :label="label" :prop="prop" v-if="type === 'custom'">
+                        <component
+                            :is="customComponent"
+                            :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
+                            @onChange="(val) => changeCustomComponent(prop, val, restItem.onChange)"
+                        />
+                    </el-form-item>
                     <!-- <el-form-item :label="label" :prop="prop" v-if="type === 'custom'">
                         <component
                             :is="CustomComponentMap[customComponent]"
