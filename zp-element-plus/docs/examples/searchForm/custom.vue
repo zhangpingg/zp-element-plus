@@ -12,26 +12,16 @@
 
 <script setup lang="ts">
 import { ref, reactive, markRaw } from 'vue';
-import CustomMonthRangeNoYear from './components/customMonthRangeNoYear.vue';
+import CustomCity from './components/customCity.vue';
 
 const zpSearchFormRef = ref<any>(null);
 const formList = reactive([
     { type: 'input', label: '输入框', prop: 'aa' },
     {
-        type: 'select',
-        label: '下拉框',
-        prop: 'bb',
-        options: [
-            { label: '上海', value: 'shanghai' },
-            { label: '杭州', value: 'hangzhou' },
-            { label: '北京', value: 'beijing' },
-        ],
-    },
-    {
         type: 'custom',
         label: '自定义',
         prop: 'zz',
-        customComponent: markRaw(CustomMonthRangeNoYear),
+        customComponent: markRaw(CustomCity),
         placeholder: '占位符',
     },
 ]);
@@ -46,4 +36,4 @@ const onReset = () => {
     const params = zpSearchFormRef.value.getFormData();
     console.log('重置：', params);
 };
-</script>
+</script>./components/customCity.vue

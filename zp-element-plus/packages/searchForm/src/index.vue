@@ -87,16 +87,10 @@
                         <component
                             :is="customComponent"
                             :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
+                            :restItem="restItem"
                             @onChange="(val) => changeCustomComponent(prop, val, restItem.onChange)"
                         />
                     </el-form-item>
-                    <!-- <el-form-item :label="label" :prop="prop" v-if="type === 'custom'">
-                        <component
-                            :is="CustomComponentMap[customComponent]"
-                            :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
-                            @onChange="(val) => changeCustomComponent(prop, val, restItem.onChange)"
-                        />
-                    </el-form-item> -->
                 </el-col>
                 <el-col :span="btnLayoutSpan" class="tf-btnCol">
                     <el-form-item>
@@ -114,7 +108,6 @@
 import { reactive, computed, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
 import { isValidArr, clearInvalidKey } from '../../utils/utils.tool';
-// import { CustomComponentMap } from './const';
 
 const props = defineProps({
     // form配置
@@ -312,7 +305,8 @@ onMounted(() => {
         justify-content: flex-end;
     }
     :deep(.el-cascader),
-    :deep(.el-input) {
+    :deep(.el-input),
+    :deep(.el-select) {
         width: 100%;
     }
 }
