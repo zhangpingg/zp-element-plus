@@ -6,7 +6,7 @@ import {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "组件库", // 网站的标题、顶部左侧-标题
+    title: "zp-element-plus 组件库", // 网站的标题、顶部左侧-标题
     description: "组件库文档",
     lang: "cn-ZH",
     base: "/zp-element-plus/", // url添加base，http://localhost:3001/xxx
@@ -49,16 +49,16 @@ export default defineConfig({
             {
                 text: "组件",
                 items: [
-                    { text: "ZpButton", link: "..//component/button" },
-                    { text: 'SearchForm 查询表单', link: '../component/searchForm' }
+                    { text: "ZpButton", link: "/component/button" },
+                    { text: 'SearchForm 查询表单', link: '/component/searchForm' }
                 ],
             },
-            {
-                text: "工具",
-                items: [
-                    { text: "utils", link: "/component/button.md" },
-                ],
-            },
+            // {
+            //     text: "工具",
+            //     items: [
+            //         { text: "utils", link: "/component/button.md" },
+            //     ],
+            // },
         ],
     },
     markdown: {

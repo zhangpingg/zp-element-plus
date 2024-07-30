@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import CustomA from './components/customA.vue';
+import { ref, reactive, markRaw } from 'vue';
+import CustomMonthRangeNoYear from './components/customMonthRangeNoYear.vue';
 
 const zpSearchFormRef = ref<any>(null);
 const formList = reactive([
@@ -31,7 +31,7 @@ const formList = reactive([
         type: 'custom',
         label: '自定义',
         prop: 'zz',
-        customComponent: CustomA,
+        customComponent: markRaw(CustomMonthRangeNoYear),
         placeholder: '占位符',
     },
 ]);

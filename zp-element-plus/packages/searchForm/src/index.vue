@@ -133,7 +133,7 @@ const props = defineProps({
     },
 });
 const emit = defineEmits(['onSubmit', 'onReset']);
-const formData = reactive({});
+const formData = reactive<object>({});
 const formRef = ref();
 
 // 查询按钮的布局span
@@ -150,7 +150,7 @@ const btnLayoutSpan = computed(() => {
  * @param {String} type 日期选择器类型
  * @returns {Object} 返回日期时间选择器相应的属性
  */
-const getDatePickerAttr = (type) => {
+const getDatePickerAttr = (type: string) => {
     let _attrs = {};
     switch (type) {
         case 'year':
@@ -196,7 +196,7 @@ const getDatePickerAttr = (type) => {
 };
 // 初始化查询的参数，赋默认值
 const initSearchParams = () => {
-    props.formList.forEach((item) => {
+    props.formList.forEach((item: any) => {
         const { prop } = item;
         if (item.value) {
             formData[isValidArr(prop) ? prop.join(',') : prop] = item.value;
@@ -209,8 +209,8 @@ const initSearchParams = () => {
  * @param {String} key 对象中的某个key
  * @returns {String} 返回选项
  */
-const getItemByKey = (list, key) => {
-    const _item = list.find((item) => {
+const getItemByKey = (list: any[], key: string) => {
+    const _item = list.find((item: any) => {
         const _flag = (isValidArr(item.prop) ? item.prop.join(',') : item.prop) === key;
         return _flag;
     });
@@ -221,7 +221,7 @@ const getItemByKey = (list, key) => {
  * @param {Object} data 需要格式化的对象
  * @returns {Object} 返回格式化后的对象
  */
-const formatFormData = (data) => {
+const formatFormData = (data: any) => {
     const _data = clearInvalidKey(data);
     for (let key in _data) {
         let _item = getItemByKey(props.formList, key);
@@ -277,7 +277,7 @@ const formatFormData = (data) => {
     return clearInvalidKey(_data);
 };
 // change-自定义组件
-const changeCustomComponent = (prop, val, callback) => {
+const changeCustomComponent = (prop: string, val: string | number, callback: Function) => {
     formData[prop] = val;
     callback && callback();
 };
