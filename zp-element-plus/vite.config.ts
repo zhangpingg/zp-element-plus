@@ -18,7 +18,7 @@ export default defineConfig({
   resolve: {
     // 配置别名
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': fileURLToPath(new URL('./packages', import.meta.url)),
     },
     // 类型： string[] 导入时想要省略的扩展名列表。
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".vue", ".mjs"],

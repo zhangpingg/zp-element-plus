@@ -3,8 +3,6 @@ import {
     containerPreview,
     componentPreview,
 } from "@vitepress-demo-preview/plugin";
-import path from "path";
-import { fileURLToPath, URL } from "node:url";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -14,15 +12,6 @@ export default defineConfig({
     base: "/zp-element-plus/", // url添加base，http://localhost:3001/xxx
     lastUpdated: true, // 文档最后，最后修改时间是否显影
     head: [['link', { rel: 'icon', href: '/zp-element-plus/favicon.ico' }]],
-    vite: {
-        //plugins: [vueJsx()],
-        resolve: {
-            alias: {
-                //"@": fileURLToPath(new URL("../../", import.meta.url)),
-                //"@": path.resolve(),
-            },
-        },
-    },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         logo: "/imgs/hero.jpg", // 顶部左侧-标题前的logo
@@ -60,7 +49,14 @@ export default defineConfig({
             {
                 text: "组件",
                 items: [
-                    { text: "ZpButton", link: "/component/button.md" },
+                    { text: "ZpButton", link: "..//component/button" },
+                    { text: 'SearchForm 查询表单', link: '../component/searchForm' }
+                ],
+            },
+            {
+                text: "工具",
+                items: [
+                    { text: "utils", link: "/component/button.md" },
                 ],
             },
         ],
