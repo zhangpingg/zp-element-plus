@@ -6,7 +6,7 @@ lastUpdated: true
 footer: true
 ---
 
-## 源码 code
+### 源码 code
 
 ```vue
 <template>
@@ -33,19 +33,22 @@ const name = ref("张三");
   }
 </style>
 
-## 链接跳转
+### 链接跳转
 
-[本地文档](./documentTwo)  
-[在线链接](https://vitepress.dev/reference/runtime-api#usedata)
+[内部链接](./documentTwo)  
+[外部链接](https://vitepress.dev/reference/runtime-api#usedata)
 
-## 文字换行
+### 文字换行
 
+(输入两个或多个空格，然后按回车键)  
 第一行文字  
 第二行文字  
-输入两个或多个空格，然后按回车键
 
-第一行文字 <br />
-第二行文字
+(br 标签)<br /> 
+第一行文字<br /> 
+第二行文字  
 
+(反斜杠 /)\
 第一行文字\
 第二行文字
+

@@ -12,6 +12,7 @@ export default defineConfig({
     description: "组件库文档",
     lang: "cn-ZH",
     base: "/zp-element-plus", // url添加base，http://localhost:5173/xxx
+    head: [['link', { rel: 'icon', href: '/zp-element-plus/favicon.ico' }]],
     lastUpdated: true, // 文档最后，最后修改时间是否显影
     vite: {
         //plugins: [vueJsx()],
@@ -31,7 +32,7 @@ export default defineConfig({
         nav: [
             { text: "首页", link: "/" },
             { text: "文档1", link: "/component/documentOne" },
-            { text: "安装指南", link: "/component/index.md" },
+            { text: "安装指南", link: "/component/indexGuide" },
             {
                 text: "GitHub地址",
                 link: "https://www.baidu.com/",
