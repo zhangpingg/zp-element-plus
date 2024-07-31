@@ -1,13 +1,11 @@
 <template>
-    <div>
-        <ZpSearchForm
-            ref="zpSearchFormRef"
-            :formConfig="{ labelWidth: 120 }"
-            :formList="formList"
-            @onSubmit="onSubmit"
-            @onReset="onReset"
-        />
-    </div>
+    <ZpSearchForm
+        ref="zpSearchFormRef"
+        :formConfig="{ labelWidth: 120 }"
+        :formList="formList"
+        @onSubmit="onSubmit"
+        @onReset="onReset"
+    />
 </template>
 
 <script setup lang="ts">

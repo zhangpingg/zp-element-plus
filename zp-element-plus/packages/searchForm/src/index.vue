@@ -18,7 +18,7 @@
 -->
 
 <template>
-    <div class="tf">
+    <div class="sf">
         <el-form label-width="110" :model="formData" ref="formRef" v-bind="formConfig">
             <el-row>
                 <el-col
@@ -92,7 +92,7 @@
                         />
                     </el-form-item>
                 </el-col>
-                <el-col :span="btnLayoutSpan" class="tf-btnCol">
+                <el-col :span="btnLayoutSpan" class="sf-btnCol">
                     <el-form-item>
                         <el-button type="primary" @click="submitForm">查询</el-button>
                         <el-button @click="resetForm(formRef)">重置</el-button>
@@ -255,12 +255,6 @@ const formatFormData = (data: any) => {
                     _data[key.split(',')[0]] = _data[key][0];
                     _data[key.split(',')[1]] = _data[key][1];
                     break;
-                case 'custom':
-                    if (_item.customComponent === 'MonthRange') {
-                        _data[key.split(',')[0]] = _data[key][0];
-                        _data[key.split(',')[1]] = _data[key][1];
-                    }
-                    break;
             }
         }
         if (key.indexOf(',') > -1) {
@@ -299,8 +293,8 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
-.tf {
-    .tf-btnCol {
+.sf {
+    .sf-btnCol {
         display: flex;
         justify-content: flex-end;
     }

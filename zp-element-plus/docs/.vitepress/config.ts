@@ -16,7 +16,7 @@ export default defineConfig({
         // https://vitepress.dev/reference/default-theme-config
         logo: "/imgs/hero.jpg", // 顶部左侧-标题前的logo
         siteTitle: "ZpElementPlus 组件文档", // 顶部左侧-标题（会覆盖上面的title）
-        outline: 3, // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
+        outline: [3, 4], // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
         // 导航
         nav: [
             { text: "安装指南", link: "/component/indexGuide.md" },

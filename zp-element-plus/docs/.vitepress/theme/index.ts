@@ -10,9 +10,8 @@ import ZpElementPlus from "../../../packages";
 // 示例预览
 import { ElementPlusContainer } from "@vitepress-demo-preview/component";
 import "@vitepress-demo-preview/component/dist/style.css";
-
-// import '@/components/css/index.css'
-// import './custom.css'
+// 样式
+import '../../public/css/vitepress.css'
 
 export default {
     ...DefaultTheme, // vitepress 默认主题
@@ -23,15 +22,15 @@ export default {
         DefaultTheme.enhanceApp(ctx);
 
         // 注册element-plus插件
-        ctx.app.use(ElementPlus, {
+        app.use(ElementPlus, {
             locale, // 语言设置
         });
         // 注册所有图标为全局组件
         for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-            ctx.app.component(key, component);
+            app.component(key, component);
         }
         // 注册自己组件库插件
-        ctx.app.use(ZpElementPlus);
+        app.use(ZpElementPlus);
         // 示例预览
         app.component("demo-preview", ElementPlusContainer);
     },

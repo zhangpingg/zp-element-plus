@@ -9,18 +9,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, markRaw } from 'vue';
-import CustomCity from './components/customCity.vue';
+import { ref, reactive } from 'vue';
 
 const zpSearchFormRef = ref<any>(null);
 const formList = reactive([
-    { type: 'input', label: '输入框', prop: 'aa' },
     {
-        type: 'custom',
-        label: '自定义',
-        prop: 'zz',
-        customComponent: markRaw(CustomCity),
-        placeholder: '占位符',
+        type: 'select',
+        label: '是否开启',
+        prop: 'bb',
+        options: [
+            { label: '开启', value: 1 },
+            { label: '关闭', value: 0 },
+        ],
+        isConvertToBoolean: true,
+    },
+    {
+        type: 'daterange',
+        label: '日期区间',
+        prop: ['startDate', 'endDate'],
+        isJoinTimeSuffix: true,
+    },
+    {
+        type: 'datetimerange',
+        label: '日期时间区间',
+        prop: ['startDateTime', 'endDateTime'],
+        isJoinTimeSuffix: true,
     },
 ]);
 
@@ -35,4 +48,3 @@ const onReset = () => {
     console.log('重置：', params);
 };
 </script>
-./components/customCity.vue
