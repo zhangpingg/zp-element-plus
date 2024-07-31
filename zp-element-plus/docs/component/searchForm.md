@@ -29,7 +29,7 @@
 | 属性名     |                            说明                             |   类型 | 默认值 |
 | ---------- | :---------------------------------------------------------: | -----: | ------ |
 | formConfig | 设置表单 `Form` 的属性，继承至 `element-plus` 的 `Form API` | object | —      |
-| formList   |           设置查询条件的列表，详见 `formList API`           |  array | []     |
+| formList   |            设置表单项的列表，详见 `formList API`            |  array | []     |
 
 `element-plus` 的[`Form API`](https://element-plus.org/zh-CN/component/form#form-api)
 
