@@ -10,16 +10,17 @@ import ZpElementPlus from "../../../packages";
 // 示例预览
 import { ElementPlusContainer } from "@vitepress-demo-preview/component";
 import "@vitepress-demo-preview/component/dist/style.css";
-// 样式
+// 样式（修改 vitepress 默认样式）
 import '../../public/css/vitepress.css'
 
 export default {
     ...DefaultTheme, // vitepress 默认主题
-    // ctx：上下文对象
-    // ctx.app：Vue 应用程序实例
+    // app：Vue 应用程序实例
+    // router: Vue Router 实例
+    // siteData：VitePress 生成的站点数据
     enhanceApp(ctx) {
-        const { app } = ctx;
-        DefaultTheme.enhanceApp(ctx);
+        const { app, router, siteData } = ctx;
+        DefaultTheme.enhanceApp(ctx);  // 调用默认主题的 enhanceApp 方法，保留默认行为
 
         // 注册element-plus插件
         app.use(ElementPlus, {

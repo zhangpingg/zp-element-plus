@@ -17,7 +17,7 @@ const formList = reactive([
     { type: 'input', label: '输入框', prop: 'aa' },
     {
         type: 'custom',
-        label: '自定义',
+        label: '自定义-城市',
         prop: 'zz',
         customComponent: markRaw(CustomCity),
         placeholder: '占位符',
@@ -35,4 +35,3 @@ const onReset = () => {
     console.log('重置：', params);
 };
 </script>
-./components/customCity.vue

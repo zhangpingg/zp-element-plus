@@ -37,7 +37,7 @@
 
 | 属性名             |                                        说明                                         |      类型 | 默认值 |
 | ------------------ | :---------------------------------------------------------------------------------: | --------: | ------ |
-| type               |                           设置表单项类型，详见 `type API`                           |      enum | —      |
+| type               |                          设置表单项类型，详见 `type 枚举`                           |      enum | —      |
 | customComponent    |                          自定义的组件, `type: custom`有效                           | component | —      |
 | isConvertToBoolean |                   是否将值转换为`boolean`类型, `type: select`有效                   |   boolean | —      |
 | isJoinTimeSuffix   | 是否拼接时间后缀，`type`为`daterange、datetimerange` 有效，如 `2024-01-02 00:00:00` |   boolean | —      |
@@ -45,16 +45,16 @@
 
 `element-plus` 的[`FormItem API`](https://element-plus.org/zh-CN/component/form#formitem-api)
 
-#### type API
+#### type 枚举
 
-| 属性名        |                         说明                          |   类型 | 默认值 |
-| ------------- | :---------------------------------------------------: | -----: | ------ |
-| input         |                        输入框                         | string | —      |
-| select        |                        下拉框                         | string | —      |
-| cascader      |                         级联                          | string | —      |
-| year          |                     年，如 `2024`                     | string | —      |
-| month         |                   月，如 `2024-01`                    | string | —      |
-| monthrange    |             月区间，如 `2024-01、2024-02`             | string | —      |
-| daterange     |         日期区间，如 `2024-01-02、2024-05-06`         | string | —      |
-| datetimerange | 日期时间区间，如 `2024-01-02 11:22、2024-05-06 22:33` | string | —      |
-| custom        |                      自定义组件                       | string | —      |
+| 属性名        |                         说明                          |
+| ------------- | :---------------------------------------------------: |
+| input         |                        输入框                         |
+| select        |                        下拉框                         |
+| cascader      |                         级联                          |
+| year          |                     年，如 `2024`                     |
+| month         |                   月，如 `2024-01`                    |
+| monthrange    |             月区间，如 `2024-01、2024-02`             |
+| daterange     |         日期区间，如 `2024-01-02、2024-05-06`         |
+| datetimerange | 日期时间区间，如 `2024-01-02 11:22、2024-05-06 22:33` |
+| custom        |                      自定义组件                       |

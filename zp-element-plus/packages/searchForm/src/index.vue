@@ -88,7 +88,10 @@
                             :is="customComponent"
                             :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
                             :restItem="restItem"
-                            @onChange="(val) => changeCustomComponent(prop, val, restItem.onChange)"
+                            @onChange="
+                                (val: string | number) =>
+                                    changeCustomComponent(prop, val, restItem.onChange)
+                            "
                         />
                     </el-form-item>
                 </el-col>
@@ -126,12 +129,12 @@ const props = defineProps({
     },
 });
 const emit = defineEmits(['onSubmit', 'onReset']);
-const formData = reactive<object>({});
-const formRef = ref();
+const formData = reactive<{ [key: string | number]: any }>({});
+const formRef = ref<HTMLFormElement | null>(null);
 
 // 查询按钮的布局span
 const btnLayoutSpan = computed(() => {
-    const _layoutSpanMap = {
+    const _layoutSpanMap: { [key: number]: number } = {
         0: 24,
         1: 16,
         2: 8,
@@ -202,7 +205,7 @@ const initSearchParams = () => {
  * @param {String} key 对象中的某个key
  * @returns {String} 返回选项
  */
-const getItemByKey = (list: any[], key: string) => {
+const getItemByKey = (list: { [key: string]: any }, key: string) => {
     const _item = list.find((item: any) => {
         const _flag = (isValidArr(item.prop) ? item.prop.join(',') : item.prop) === key;
         return _flag;
@@ -214,7 +217,7 @@ const getItemByKey = (list: any[], key: string) => {
  * @param {Object} data 需要格式化的对象
  * @returns {Object} 返回格式化后的对象
  */
-const formatFormData = (data: any) => {
+const formatFormData = (data: { [key: string]: any }) => {
     const _data = clearInvalidKey(data);
     for (let key in _data) {
         let _item = getItemByKey(props.formList, key);
@@ -266,7 +269,7 @@ const formatFormData = (data: any) => {
 // change-自定义组件
 const changeCustomComponent = (prop: string, val: string | number, callback: Function) => {
     formData[prop] = val;
-    callback && callback();
+    callback?.();
 };
 // 提交表单
 const submitForm = () => {
@@ -274,7 +277,7 @@ const submitForm = () => {
     emit('onSubmit', _formData);
 };
 // 重置表单
-const resetForm = (formEl) => {
+const resetForm = (formEl: HTMLFormElement | null) => {
     if (!formEl) return;
     formEl.resetFields();
     initSearchParams();
