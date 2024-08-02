@@ -22,7 +22,7 @@
         <el-form label-width="110" :model="formData" ref="formRef" v-bind="formConfig">
             <el-row>
                 <el-col
-                    :span="8"
+                    :span="formItemLayoutSpan"
                     v-for="{
                         type,
                         label,
@@ -127,19 +127,34 @@ const props = defineProps({
             return [];
         },
     },
+    // 一行展示表单项的个数
+    colSpan: {
+        type: Number,
+        default: () => 3,
+    },
 });
 const emit = defineEmits(['onSubmit', 'onReset']);
 const formData = reactive<{ [key: string | number]: any }>({});
 const formRef = ref<HTMLFormElement | null>(null);
 
-// 查询按钮的布局span
+// 表单项的布局 span
+const formItemLayoutSpan = computed(() => {
+    const _layoutSpanMap: { [key: number]: number } = {
+        2: 12,
+        3: 8,
+        4: 6,
+    };
+    return _layoutSpanMap[props.colSpan];
+});
+// 查询按钮的布局 span
 const btnLayoutSpan = computed(() => {
     const _layoutSpanMap: { [key: number]: number } = {
         0: 24,
-        1: 16,
-        2: 8,
+        1: 24 / props.colSpan,
+        2: 24 / props.colSpan,
+        3: 24 / props.colSpan,
     };
-    return _layoutSpanMap[props.formList.length % 3];
+    return _layoutSpanMap[props.formList.length % props.colSpan];
 });
 /**
  * @description 根据日期选择器类型，获取日期时间选择器相应的属性
