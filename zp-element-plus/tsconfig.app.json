@@ -4,6 +4,7 @@
     "env.d.ts",
     "src/**/*",
     "src/**/*.vue",
+    "docs/**/*.ts",
     "packages/**/*",
     "packages/**/*.vue",
     "packages/**/*.ts"

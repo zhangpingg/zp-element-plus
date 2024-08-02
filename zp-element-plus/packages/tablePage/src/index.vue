@@ -13,6 +13,7 @@
             @selection-change="onSelectionChange"
             @row-click="onRowClick"
             v-bind="props.tableConfig"
+            class="r-table"
         >
             <el-table-column
                 v-for="item in props.tableConfig.columns"
@@ -35,11 +36,11 @@
         <slot name="extra"></slot>
         <div class="tp-pagination mt-15" v-if="isHasPage">
             <el-pagination
-                :page-sizes="globalConst.paginationMap.pageSizes"
+                :page-sizes="10"
                 layout="total, prev, pager, next, sizes, jumper"
                 background
                 :current="1"
-                :page-size="globalConst.paginationMap.pageSize"
+                :page-size="10"
                 :total="0"
                 @current-change="onChangePageCurrent"
                 @size-change="onChangePageSize"
@@ -49,7 +50,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts" name="ZpTablePage">
 import { ref, getCurrentInstance } from 'vue';
 import { isValidVal } from '../../utils/util.tool.ts';
 
@@ -121,6 +122,14 @@ defineExpose({ clearSelection });
     .tp-pagination {
         display: flex;
         justify-content: flex-end;
+    }
+}
+.r-table {
+    :deep(table) {
+        margin: 0;
+        tr {
+            background: #fff;
+        }
     }
 }
 </style>

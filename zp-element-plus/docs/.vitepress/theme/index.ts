@@ -11,7 +11,7 @@ import ZpElementPlus from "../../../packages";
 import { ElementPlusContainer } from "@vitepress-demo-preview/component";
 import "@vitepress-demo-preview/component/dist/style.css";
 // 样式（修改 vitepress 默认样式）
-import '../../public/css/vitepress.css'
+import '../../public/css/index.css'
 
 export default {
     ...DefaultTheme, // vitepress 默认主题
