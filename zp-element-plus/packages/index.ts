@@ -1,5 +1,6 @@
 import type { Component, App } from 'vue';
 import ZpSearchForm from './searchForm'
+import ZpTablePage from './tablePage'
 import ZpButton from './button';
 import ZpSelect from './select'
 
@@ -8,6 +9,7 @@ const components: {
   [propName: string]: Component;
 } = {
   ZpSearchForm,
+  ZpTablePage,
   ZpButton,
   ZpSelect,
 };
@@ -28,4 +30,4 @@ export default {
 };
 
 // 【2-按需引用】导出各个组件
-export { ZpSearchForm, ZpButton, ZpSelect };
+export { ZpSearchForm, ZpTablePage, ZpButton, ZpSelect };

@@ -110,7 +110,7 @@
 <script setup lang="ts" name="ZpSearchForm">
 import { reactive, computed, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
-import { isValidArr, clearInvalidKey } from '../../utils/utils.tool';
+import { isValidArr, clearInvalidKey } from '../../utils/util.tool';
 
 const props = defineProps({
     // form配置

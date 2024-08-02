@@ -50,7 +50,8 @@ export default defineConfig({
                 text: "组件",
                 items: [
                     { text: "ZpButton", link: "/component/button" },
-                    { text: 'SearchForm 查询表单', link: '/component/searchForm' }
+                    { text: 'SearchForm 查询表单', link: '/component/searchForm' },
+                    { text: 'TablePage 表格分页', link: '/component/tablePage' },
                 ],
             },
             // {
