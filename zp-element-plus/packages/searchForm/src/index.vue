@@ -194,7 +194,7 @@ const getDatePickerAttr = (type: string) => {
 const initSearchParams = () => {
     props.formList.forEach((item: any) => {
         const { prop } = item;
-        if (item.value) {
+        if (item.value || item.value === 0) {
             formData[isValidArr(prop) ? prop.join(',') : prop] = item.value;
         }
     });
@@ -225,7 +225,7 @@ const formatFormData = (data: { [key: string]: any }) => {
             switch (_item.type) {
                 case 'select':
                     if (_item.isConvertToBoolean) {
-                        _data[key] = !!_data[key];
+                        _data[key] = !!Number(_data[key]);
                     }
                     break;
                 case 'daterange':

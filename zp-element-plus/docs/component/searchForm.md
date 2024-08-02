@@ -10,19 +10,80 @@
 
 ### 默认值
 
-默认值可通过 `value` 来设置
+默认值可通过 `value` 来设置。
 <preview path="../examples/searchForm/defaultValue.vue"></preview>
 
-### 自定义查询条件
-
-在默认查询条件下，可以自定义查询条件，可通过设置 `type: custom`，`customComponent: markRaw(<组件>)`
-<preview path="../examples/searchForm/custom.vue"></preview>
-
-### 转换值，拼接时间后缀
+### 转换值 / 拼接时间后缀
 
 `type：select` 时，点击查询的时候，是否转换值为 `boolean` 类型的值。  
-`type`为`daterange、datetimerange` 时，是否拼接时间后缀，如 `2024-01-02 00:00:00`
+`type`为`daterange、datetimerange` 时，是否拼接时间后缀，如 `2024-01-02 00:00:00`。
 <preview path="../examples/searchForm/convertJoin.vue"></preview>
+
+### 自定义表单项
+
+在现有的表单项下，可以添加自定义表单项，可通过设置 `type: custom`，`customComponent: markRaw(<组件>)` 来实现。
+<preview path="../examples/searchForm/custom.vue"></preview>
+
+::: details 点击查看代码
+
+::: code-group
+
+```vue [customCity.vue]
+<template>
+    <el-select v-model="city" placeholder="请选择" clearable @change="changeCity" v-bind="restItem">
+        <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+        />
+    </el-select>
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+
+const props = defineProps({
+    value: {
+        type: String,
+        default: () => null,
+    },
+    restItem: {
+        type: Object,
+        default: () => {},
+    },
+});
+const emit = defineEmits(['onChange']);
+
+const options = [
+    { label: '上海', value: 'shanghai' },
+    { label: '杭州', value: 'hangzhou' },
+    { label: '北京', value: 'beijing' },
+];
+
+const city = ref();
+
+// change-城市
+const changeCity = (val) => {
+    emit('onChange', val);
+};
+
+watch(
+    () => props.value,
+    (newVal) => {
+        city.value = newVal;
+    },
+    {
+        immediate: true,
+        deep: true,
+    },
+);
+</script>
+
+<style lang="less" scoped></style>
+```
+
+:::
 
 ### API
 
@@ -57,4 +118,4 @@
 | monthrange    |             月区间，如 `2024-01、2024-02`             |
 | daterange     |         日期区间，如 `2024-01-02、2024-05-06`         |
 | datetimerange | 日期时间区间，如 `2024-01-02 11:22、2024-05-06 22:33` |
-| custom        |                      自定义组件                       |
+| custom        |                        自定义                         |
