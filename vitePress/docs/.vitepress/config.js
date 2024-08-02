@@ -31,8 +31,8 @@ export default defineConfig({
         // 导航
         nav: [
             { text: "首页", link: "/" },
-            { text: "文档1", link: "/component/documentOne" },
             { text: "安装指南", link: "/component/indexGuide" },
+            { text: "组件预览", link: "/component/documentOne", activeMatch: '^/component/' },
             {
                 text: "GitHub地址",
                 link: "https://www.baidu.com/",

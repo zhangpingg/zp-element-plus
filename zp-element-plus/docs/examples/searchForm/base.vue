@@ -5,7 +5,11 @@
         :formList="formList"
         @onSubmit="onSubmit"
         @onReset="onReset"
-    />
+    >
+        <template #extra>
+            <el-button type="danger" @click="exportList">导出</el-button>
+        </template>
+    </ZpSearchForm>
 </template>
 
 <script setup lang="ts">
@@ -67,5 +71,10 @@ const onSubmit = () => {
 const onReset = () => {
     const params = zpSearchFormRef.value.getFormData();
     console.log('重置：', params);
+};
+// 导出
+const exportList = () => {
+    const params = zpSearchFormRef.value.getFormData();
+    console.log('导出：', params);
 };
 </script>

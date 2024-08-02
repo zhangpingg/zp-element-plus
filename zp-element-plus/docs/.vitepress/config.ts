@@ -19,8 +19,8 @@ export default defineConfig({
         outline: [3, 4], // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
         // 导航
         nav: [
-            { text: "安装指南", link: "/component/indexGuide.md" },
-            { text: "组件预览", link: "/component/button.md" },
+            { text: "安装指南", link: "/component/indexGuide" },
+            { text: "组件预览", link: "/component/button", activeMatch: '^/component/' },
             {
                 text: "GitHub地址",
                 link: "https://www.baidu.com/",
