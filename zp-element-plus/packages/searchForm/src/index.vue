@@ -122,7 +122,7 @@ const props = defineProps({
     },
     // 查询条件列表
     formList: {
-        type: Object,
+        type: Array<{ [key: string]: any }>,
         default() {
             return [];
         },
