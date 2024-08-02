@@ -156,4 +156,6 @@ export default config;
 
 ### 导入其他文件的代码片段
 
-待学习
+<<< ./example/code.js
+
+<<< @/component/example/code.js

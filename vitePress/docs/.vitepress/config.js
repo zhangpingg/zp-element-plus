@@ -18,7 +18,7 @@ export default defineConfig({
         //plugins: [vueJsx()],
         resolve: {
             alias: {
-                "@": fileURLToPath(new URL("../../", import.meta.url)),
+                //"@": fileURLToPath(new URL("../../", import.meta.url)),
                 //"@": path.resolve(),
             },
         },
@@ -40,6 +40,7 @@ export default defineConfig({
             {
                 text: "博客",
                 items: [
+                    { text: "vitePress", link: "https://vitepress.dev/zh/" },
                     { text: "CSDN", link: "https://blog.csdn.net/cwin8951" },
                     {
                         text: "掘金",

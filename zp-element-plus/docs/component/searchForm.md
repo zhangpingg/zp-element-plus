@@ -28,60 +28,7 @@
 
 ::: code-group
 
-```vue [customCity.vue]
-<template>
-    <el-select v-model="city" placeholder="请选择" clearable @change="changeCity" v-bind="restItem">
-        <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-        />
-    </el-select>
-</template>
-
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-
-const props = defineProps({
-    value: {
-        type: String,
-        default: () => null,
-    },
-    restItem: {
-        type: Object,
-        default: () => {},
-    },
-});
-const emit = defineEmits(['onChange']);
-
-const options = [
-    { label: '上海', value: 'shanghai' },
-    { label: '杭州', value: 'hangzhou' },
-    { label: '北京', value: 'beijing' },
-];
-
-const city = ref();
-
-// change-城市
-const changeCity = (val) => {
-    emit('onChange', val);
-};
-
-watch(
-    () => props.value,
-    (newVal) => {
-        city.value = newVal;
-    },
-    {
-        immediate: true,
-        deep: true,
-    },
-);
-</script>
-
-<style lang="less" scoped></style>
-```
+<<< @/examples/searchForm/components/customCity.vue
 
 :::
 
@@ -119,3 +66,7 @@ watch(
 | daterange     |         日期区间，如 `2024-01-02、2024-05-06`         |
 | datetimerange | 日期时间区间，如 `2024-01-02 11:22、2024-05-06 22:33` |
 | custom        |                        自定义                         |
+
+```
+
+```
