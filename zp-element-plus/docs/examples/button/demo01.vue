@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <ZpButton>按钮</ZpButton>
-    <ZpSelect></ZpSelect>
-  </div>
+    <div>
+        <ZpButton>按钮</ZpButton>
+    </div>
 </template>
 
 <script setup lang="ts"></script>
