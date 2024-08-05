@@ -2,17 +2,19 @@
     <ZpTablePage
         :tableConfig="tablePageData.tableConfig"
         :pageConfig="tablePageData.pageConfig"
-        @onSelectionChange="changeTableSelection"
         @onChangePageCurrent="changePageCurrent"
         @onChangePageSize="changePageSize"
     >
-        <template #operationColumn>
-            <el-table-column width="120" fixed="right">
-                <template #header>操作</template>
-                <template #default="{ row }">
-                    <el-button type="primary" link @click="goDetail(row)"> 详情 </el-button>
-                </template>
-            </el-table-column>
+        <template #gg="{ scope: { row } }">
+            <el-date-picker
+                v-model="row.gg"
+                type="month"
+                placeholder="请选择"
+                format="YYYY-MM"
+                valueFormat="YYYY-MM"
+                class="yp-picker"
+                @change="(val) => changeMonth(val, row)"
+            />
         </template>
     </ZpTablePage>
 </template>
@@ -25,10 +27,9 @@ const tablePageData = reactive<{ [key: string]: any }>({
     tableConfig: {
         loading: false,
         columns: [
-            { label: '全选', type: 'selection', width: 60, align: 'center', fixed: 'left' },
-            { label: 'id', prop: 'id', minWidth: 100 },
             { label: '姓名', prop: 'aa', minWidth: 100 },
             { label: '手机号', prop: 'bb', minWidth: 100 },
+            { label: '月份', prop: 'gg', minWidth: 100, slotName: 'gg' },
         ],
         data: [],
     },
@@ -69,14 +70,9 @@ const changePageSize = (val) => {
     tablePageData.pageConfig.currentPage = 1;
     getData();
 };
-// change-表格复选框
-const changeTableSelection = (data) => {
-    console.log('选中的数据', data);
-};
-
-// 跳转详情
-const goDetail = (row) => {
-    console.log('当前行数据：', row);
+// change-月份
+const changeMonth = (val, row) => {
+    console.log('value&当前行数据：', val, row);
 };
 
 onMounted(() => {

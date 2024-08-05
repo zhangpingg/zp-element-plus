@@ -5,6 +5,8 @@ import "element-plus/dist/index.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import locale from "element-plus/es/locale/lang/zh-cn";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue"; // 图标并进行全局注册
+// view-ui-plus
+import 'view-ui-plus/dist/styles/viewuiplus.css';
 // 自己的组件库
 import ZpElementPlus from "../../../packages";
 // 示例预览

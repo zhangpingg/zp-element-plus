@@ -159,3 +159,13 @@ export default config;
 <<< ./example/code.js
 
 <<< @/component/example/code.js
+
+### 整合：容器+代码组+导入代码片段
+::: details 点击查看代码
+
+::: code-group
+
+<<< ./example/code.js
+<<< @/component/example/code.js
+
+:::

@@ -1,8 +1,13 @@
 <template>
+    <ZpSearchForm
+        :formList="formList"
+        @onSubmit="onSubmit"
+        @onReset="onReset"
+        ref="zpSearchFormRef"
+    />
     <ZpTablePage
         :tableConfig="tablePageData.tableConfig"
         :pageConfig="tablePageData.pageConfig"
-        @onSelectionChange="changeTableSelection"
         @onChangePageCurrent="changePageCurrent"
         @onChangePageSize="changePageSize"
     >
@@ -18,14 +23,55 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { resData } from './utils/const';
 
+const zpSearchFormRef = ref<any>(null);
+const formList = reactive([
+    { type: 'input', label: '输入框', prop: 'aa' },
+    {
+        type: 'select',
+        label: '下拉框',
+        prop: 'bb',
+        value: 'hangzhou',
+        options: [
+            { label: '上海', value: 'shanghai' },
+            { label: '杭州', value: 'hangzhou' },
+            { label: '北京', value: 'beijing' },
+        ],
+    },
+    {
+        type: 'cascader',
+        label: '级联',
+        prop: 'cc',
+        options: [
+            {
+                label: '安徽',
+                value: 'anhui',
+                children: [
+                    {
+                        label: '合肥',
+                        value: 'hefei',
+                    },
+                ],
+            },
+            {
+                label: '福建',
+                value: 'fujian',
+                children: [
+                    {
+                        label: '厦门',
+                        value: 'xiamen',
+                    },
+                ],
+            },
+        ],
+    },
+]);
 const tablePageData = reactive<{ [key: string]: any }>({
     tableConfig: {
         loading: false,
         columns: [
-            { label: '全选', type: 'selection', width: 60, align: 'center', fixed: 'left' },
             { label: 'id', prop: 'id', minWidth: 100 },
             { label: '姓名', prop: 'aa', minWidth: 100 },
             { label: '手机号', prop: 'bb', minWidth: 100 },
@@ -41,8 +87,10 @@ const tablePageData = reactive<{ [key: string]: any }>({
 
 // 获取数据
 const getData = async () => {
+    const formData = zpSearchFormRef.value.getFormData();
     const { currentPage, pageSize } = tablePageData.pageConfig;
     const _params = {
+        ...formData,
         index: currentPage,
         sise: pageSize,
     };
@@ -58,6 +106,17 @@ const getData = async () => {
         tablePageData.tableConfig.loading = false;
     }
 };
+// 查询
+const onSubmit = () => {
+    tablePageData.pageConfig.currentPage = 1;
+    getData();
+};
+// 重置
+const onReset = () => {
+    tablePageData.pageConfig.pageSize = 10;
+    tablePageData.pageConfig.currentPage = 1;
+    getData();
+};
 // change-分页页码
 const changePageCurrent = (val) => {
     tablePageData.pageConfig.currentPage = val;
@@ -69,11 +128,6 @@ const changePageSize = (val) => {
     tablePageData.pageConfig.currentPage = 1;
     getData();
 };
-// change-表格复选框
-const changeTableSelection = (data) => {
-    console.log('选中的数据', data);
-};
-
 // 跳转详情
 const goDetail = (row) => {
     console.log('当前行数据：', row);

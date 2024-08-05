@@ -36,7 +36,7 @@
         <slot name="extra"></slot>
         <div class="tp-pagination mt-15" v-if="isHasPage">
             <el-pagination
-                :page-sizes="10"
+                :page-sizes="[10, 20, 30, 40, 50]"
                 layout="total, prev, pager, next, sizes, jumper"
                 background
                 :current="1"
@@ -124,9 +124,11 @@ defineExpose({ clearSelection });
         justify-content: flex-end;
     }
 }
+
 .r-table {
     :deep(table) {
         margin: 0;
+
         tr {
             background: #fff;
         }
