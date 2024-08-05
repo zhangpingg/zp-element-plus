@@ -116,21 +116,17 @@ const props = defineProps({
     // form配置
     formConfig: {
         type: Object,
-        default() {
-            return {};
-        },
+        default: {},
     },
     // 查询条件列表
     formList: {
         type: Array<{ [key: string]: any }>,
-        default() {
-            return [];
-        },
+        default: [],
     },
     // 一行展示表单项的个数
     colSpan: {
         type: Number,
-        default: () => 3,
+        default: 3,
     },
 });
 const emit = defineEmits(['onSubmit', 'onReset']);

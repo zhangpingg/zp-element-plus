@@ -32,7 +32,7 @@ const resData = [
     {
         id: 4,
         aa: '赵六',
-        bb: '18258261043',
+        bb: null,
         cc: 1,
         dd: null,
         ee: 4,

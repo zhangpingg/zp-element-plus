@@ -2,6 +2,7 @@
     <ZpTablePage
         :tableConfig="tablePageData.tableConfig"
         :pageConfig="tablePageData.pageConfig"
+        emptyCellContent="--"
         @onSelectionChange="changeTableSelection"
         @onChangePageCurrent="changePageCurrent"
         @onChangePageSize="changePageSize"

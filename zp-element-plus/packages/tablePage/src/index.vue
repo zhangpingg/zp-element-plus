@@ -51,23 +51,19 @@
 </template>
 
 <script setup lang="ts" name="ZpTablePage">
-import { ref, getCurrentInstance } from 'vue';
-import { isValidVal } from '../../utils/util.tool.ts';
+import { ref } from 'vue';
+import { isValidVal } from '../../utils/util.tool';
 
 const props = defineProps({
     // 表格配置
     tableConfig: {
         type: Object,
-        default() {
-            return { columns: [], data: [] };
-        },
+        default: { columns: [], data: [] },
     },
     // 分页配置
     pageConfig: {
         type: Object,
-        default() {
-            return {};
-        },
+        default: {},
     },
     // 是否有页码
     isHasPage: {
@@ -87,26 +83,22 @@ const emit = defineEmits([
     'onChangePageSize',
 ]);
 
-const {
-    proxy: { globalConst },
-} = getCurrentInstance();
-
 const tableRef = ref();
 
 // 选择表格复选框
-const onSelectionChange = (list) => {
+const onSelectionChange = (list: { [key: string]: any }[]) => {
     emit('onSelectionChange', list);
 };
 // 当某一行被点击时会触发
-const onRowClick = (row, column, event) => {
+const onRowClick = (row: { [key: string]: any }, column: { [key: string]: any }, event: Event) => {
     emit('onRowClick', row, column, event);
 };
 // change-分页页码
-const onChangePageCurrent = (val) => {
+const onChangePageCurrent = (val: number) => {
     emit('onChangePageCurrent', val);
 };
 // change-分页条数
-const onChangePageSize = (val) => {
+const onChangePageSize = (val: number) => {
     emit('onChangePageSize', val);
 };
 // 清空选中的项
