@@ -74,21 +74,21 @@
 
 #### Attributes
 
-| 属性名           | 说明                                                      | 类型    | 默认值 |
-| :--------------- | :-------------------------------------------------------- | :------ | :----- |
-| tableConfig      | 设置表单表格的属性，继承至 `element-plus` 的 `Table API`  | object  | {}     |
-| pageConfig       | 设置分页的属性，继承至 `element-plus` 的 `Pagination API` | object  | {}     |
-| isHasPage        | 是否有分页                                                | boolean | true   |
-| emptyCellContent | 空单元格内容                                              | string  | -      |
+| 属性名           | 说明                                                      | 类型      | 默认值 |
+| :--------------- | :-------------------------------------------------------- | :-------- | :----- |
+| tableConfig      | 设置表单表格的属性，继承至 `element-plus` 的 `Table API`  | `object`  | {}     |
+| pageConfig       | 设置分页的属性，继承至 `element-plus` 的 `Pagination API` | `object`  | {}     |
+| isHasPage        | 是否有分页                                                | `boolean` | true   |
+| emptyCellContent | 空单元格内容                                              | `string`  | -      |
 
 #### Events
 
-| 方法名              | 说明                       | 类型                                                                        |
-| :------------------ | :------------------------- | :-------------------------------------------------------------------------- |
-| onSelectionChange   | 勾选表格前面的复选框时触发 | <abbr title="(newSelection: any[]) => void">Function</abbr>                 |
-| onRowClick          | 点击表格行时触发           | <abbr title="(row: any, column: any, event: Event) => void">Function</abbr> |
-| onChangePageCurrent | 切换分页页码时触发         | <abbr title="(value: number) => void">Function</abbr>                       |
-| onChangePageSize    | 切换分页条数时触发         | <abbr title="(value: number) => void">Function</abbr>                       |
+| 方法名              | 说明                       | 类型                                                                          |
+| :------------------ | :------------------------- | :---------------------------------------------------------------------------- |
+| onSelectionChange   | 勾选表格前面的复选框时触发 | <abbr title="(newSelection: any[]) => void">`Function`</abbr>                 |
+| onRowClick          | 点击表格行时触发           | <abbr title="(row: any, column: any, event: Event) => void">`Function`</abbr> |
+| onChangePageCurrent | 切换分页页码时触发         | <abbr title="(value: number) => void">`Function`</abbr>                       |
+| onChangePageSize    | 切换分页条数时触发         | <abbr title="(value: number) => void">`Function`</abbr>                       |
 
 #### Slot
 
