@@ -6,7 +6,7 @@
         @onSubmit="onSubmit"
         @onReset="onReset"
     >
-        <template #extra>
+        <template #extraBtn>
             <el-button type="danger" @click="exportList">导出</el-button>
         </template>
     </ZpSearchForm>

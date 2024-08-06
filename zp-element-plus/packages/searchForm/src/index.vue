@@ -99,7 +99,7 @@
                     <el-form-item>
                         <el-button type="primary" @click="submitForm">查询</el-button>
                         <el-button @click="resetForm(formRef)">重置</el-button>
-                        <slot name="extra"></slot>
+                        <slot name="extraBtn"></slot>
                     </el-form-item>
                 </el-col>
             </el-row>

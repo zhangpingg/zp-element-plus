@@ -5,13 +5,14 @@ title: 文档2标题
 
 ### 表格
 
-| 姓名 | 年龄  | 性别 |
-| ---- | :---: | ---: |
-| 张三 |  10   |   男 |
-| 李四 |  20   |   女 |
-| 王五 |  30   |   女 |
+| 姓名 | 年龄 | 性别 |
+| :--- | :--- | :--- |
+| 张三 | 10   | 男   |
+| 李四 | 20   | 女   |
+| 王五 | 30   | 女   |
 
 ### 自定义容器
+
 类型、标题、内容。
 
 ::: info 提示
@@ -36,8 +37,8 @@ title: 文档2标题
 ```js
 console.log("Hello, VitePress!");
 ```
-:::
 
+:::
 
 ### GitHub 风格的状态警报
 
@@ -161,6 +162,7 @@ export default config;
 <<< @/component/example/code.js
 
 ### 整合：容器+代码组+导入代码片段
+
 ::: details 点击查看代码
 
 ::: code-group
@@ -169,3 +171,7 @@ export default config;
 <<< @/component/example/code.js
 
 :::
+
+### 悬浮提示
+
+<abbr title="(event: FocusEvent) => void">Function</abbr>

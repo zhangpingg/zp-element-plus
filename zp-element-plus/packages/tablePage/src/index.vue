@@ -33,7 +33,7 @@
             </el-table-column>
             <slot name="operationColumn"></slot>
         </el-table>
-        <slot name="extra"></slot>
+        <slot name="main"></slot>
         <div class="tp-pagination mt-15" v-if="isHasPage">
             <el-pagination
                 :page-sizes="[10, 20, 30, 40, 50]"
