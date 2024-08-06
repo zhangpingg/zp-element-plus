@@ -70,6 +70,12 @@
 
 <preview path="../examples/tablePage/mainSlot.vue"></preview>
 
+### 合并单元格
+
+合并列的单元格。
+
+<preview path="../examples/tablePage/mergeCell.vue"></preview>
+
 ### API
 
 #### Attributes

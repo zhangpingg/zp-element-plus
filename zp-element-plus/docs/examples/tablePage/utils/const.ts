@@ -8,6 +8,7 @@ const resData = [
         ee: 1,
         ff: 1,
         gg: '2024-01',
+        hh: 1,
     },
     {
         id: 2,
@@ -18,6 +19,7 @@ const resData = [
         ee: 2,
         ff: 2,
         gg: null,
+        hh: 1,
     },
     {
         id: 3,
@@ -28,6 +30,7 @@ const resData = [
         ee: 3,
         ff: 3,
         gg: null,
+        hh: 2,
     },
     {
         id: 4,
@@ -38,6 +41,7 @@ const resData = [
         ee: 4,
         ff: 4,
         gg: null,
+        hh: 2,
     },
 ];
 

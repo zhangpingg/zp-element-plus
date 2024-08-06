@@ -12,7 +12,6 @@ const isValidVal = (val: any) => {
     return true;
 };
 
-
 /**
  * @description 判断-是否是有效的非空数组
  * @param {any} list 传入的值
@@ -50,5 +49,81 @@ const clearInvalidKey = (data: any, isCLearEmptyArray = true) => {
     return _data;
 };
 
+/**
+ * @description 浏览器下载文件
+ * @param {String} url 文件地址/文件流
+ * @param {String } fileName 文件名（文件流必传）
+ * @param {Boolean } isFileStream 是否是文件流
+ */
+const downloadFile = (url, fileName, isFileStream = false) => {
+    const downloadByBlob = (blob) => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = fileName || url.split('/').pop().split('?')[0];
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        URL.revokeObjectURL(downloadLink.href);
+    };
+    if (isFileStream) {
+        const blob = new Blob([url], { type: 'application/octet-stream' });
+        downloadByBlob(blob);
+        return;
+    }
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.blob();
+        })
+        .then((blob) => {
+            downloadByBlob(blob);
+        })
+        .catch((error) => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+};
 
-export { isValidVal, isValidArr, clearInvalidKey }
+/**
+ * @description 转换为合并单元格数据列表，添加【**RowSpan】字段，transToNergeCellList(list, ['a', 'b'])
+ * @param {Array} 列表数据
+ * @param {Array } 需要合并的字段key列表
+ */
+const transToMergeCellList = (dataList, strList) => {
+    let _dataList = [...dataList];
+    const mergeCell = (cellList, mergeType) => {
+        const mergeTypeMap = cellList.reduce((prev, curr) => {
+            const prevX = { ...prev };
+            if (prevX[curr[mergeType]]) {
+                prevX[curr[mergeType]].count += 1;
+            } else {
+                prevX[curr[mergeType]] = {
+                    count: 1,
+                    selected: false,
+                };
+            }
+            return prevX;
+        }, {});
+        const newList = cellList.map((item) => {
+            if (mergeTypeMap[item[mergeType]].selected) {
+                return {
+                    ...item,
+                    [`${mergeType}RowSpan`]: 0,
+                };
+            }
+            mergeTypeMap[item[mergeType]].selected = true;
+            return {
+                ...item,
+                [`${mergeType}RowSpan`]: mergeTypeMap[item[mergeType]].count,
+            };
+        }, []);
+        return newList;
+    };
+    strList.forEach((item) => {
+        _dataList = mergeCell(_dataList, item);
+    });
+    return _dataList;
+};
+
+export { isValidVal, isValidArr, clearInvalidKey, downloadFile, transToMergeCellList };
