@@ -40,12 +40,7 @@
                 </div>
             </template>
             <!-- 常规上传 -->
-            <el-button
-                v-else
-                type="primary"
-                :icon="Plus"
-                :disabled="fileList.length >= attrs?.limit"
-            >
+            <el-button v-else :icon="Plus" :disabled="fileList.length >= attrs?.limit">
                 上传文件
             </el-button>
         </slot>
