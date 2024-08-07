@@ -95,7 +95,7 @@ const props = defineProps({
         ],
     },
 });
-const emit = defineEmits(['uploadSuccess', 'removeSuccess', 'handleClickName']);
+const emit = defineEmits(['uploadSuccess', 'removeSuccess', 'onClickFileName']);
 
 // 上传的文件列表 通过组件ref回显和取上传后的数据
 const fileList = ref([]);
@@ -190,7 +190,7 @@ const handlePreview = (uploadFile) => {
         downloadFile(uploadFile.url, uploadFile.name);
         return;
     }
-    emit('handleClickName', uploadFile);
+    emit('onClickFileName', uploadFile);
 };
 
 // 删除已上传的拖拽文件
