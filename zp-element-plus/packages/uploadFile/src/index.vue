@@ -60,7 +60,13 @@ import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import Cookies from 'js-cookie';
 import { downloadFile } from '../../utils/util.tool';
-import type { UploadFile, UploadFiles } from 'element-plus';
+import type { UploadRawFile, UploadFile, UploadFiles } from 'element-plus';
+
+interface IMaxSizeItem {
+    types: string[];
+    maxSize: number;
+    errTip: string;
+}
 
 const attrs: { [key: string]: any } = useAttrs();
 
@@ -94,17 +100,13 @@ const props = defineProps({
     // types: image=图片 video=视频 audio=音频 application=wps/pdf text=txt other=其他文件类型
     maxSizeList: {
         type: Array,
-        default: () => [
-            // { types: ['image'], maxSize: 5, errTip: '图片文件大小不超过5M' },
-            // { types: ['video', 'audio'], maxSize: 200, errTip: '视频音频文件大小不超过200M' },
-            // { types: ['other'], maxSize: 10, errTip: '文件大小不能超过10M' },
-        ],
+        default: () => [],
     },
 });
 const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onClickFileName']);
 
 const fileList = ref<any[]>([]); // 上传的文件列表
-const uploadLoad = ref(null); // 上传loading对象
+const uploadLoad = ref<any>(null); // 上传loading对象
 // 是否拖拽
 const isDragType = computed(() => {
     // 解决drag属性简写问题
@@ -116,18 +118,18 @@ const isDragUploadedDisabled = computed(() => {
 });
 
 // 上传前
-const beforeUpload = (rawFile) => {
+const beforeUpload = (rawFile: UploadRawFile) => {
     if (!checkAccept(rawFile)) return false;
     if (!checkSize(rawFile)) return false;
     if (!uploadLoad.value) {
         uploadLoad.value = ElLoading.service({
-            target: document.querySelector(props.loadingContainer),
+            target: props.loadingContainer,
             text: '上传中...',
         });
     }
 };
 // 校验允许上传文件后缀名
-const checkAccept = (rawFile) => {
+const checkAccept = (rawFile: UploadRawFile) => {
     const accept = attrs?.accept;
     if (!accept) return true;
     const suffixName = rawFile.name.split('.').pop();
@@ -138,8 +140,8 @@ const checkAccept = (rawFile) => {
     return true;
 };
 // 校验文件大小
-const checkSize = (rawFile) => {
-    const { maxSize, maxSizeList } = props;
+const checkSize = (rawFile: UploadRawFile) => {
+    const { maxSize, maxSizeList }: any = props;
     const fileSize = rawFile.size / 1024 / 1024; // 文件大小
     const fileType = rawFile.type.split('/')[0]; // 文件类型
     // 通用上传文件大小限制
@@ -149,9 +151,15 @@ const checkSize = (rawFile) => {
     }
     // 根据文件类型分别设置上传文件大小限制
     let sizeError = false;
+    let typesList = maxSizeList
+        .map((item: IMaxSizeItem) => {
+            return item.types;
+        })
+        .flat();
     for (let i = 0; i < maxSizeList.length; i++) {
         if (
-            (maxSizeList[i].types.includes(fileType) || maxSizeList[i].types.includes('other')) &&
+            (maxSizeList[i].types.includes(fileType) ||
+                (!typesList.includes(fileType) && maxSizeList[i].types.includes('other'))) &&
             fileSize > maxSizeList[i].maxSize
         ) {
             sizeError = true;
@@ -162,7 +170,7 @@ const checkSize = (rawFile) => {
     return !sizeError;
 };
 // 上传成功
-const handleSuccess = (response, uploadFile, uploadFiles) => {
+const handleSuccess = (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     if (response.code !== 200) {
         uploadFile.status = 'fail';
         uploadFile.url = '';
@@ -194,9 +202,8 @@ const handleRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     emit('onRemoveSuccess', fileList.value);
 };
 
-// 超出限制
-const handleExceed = (files, uploadFiles) => {
-    console.log('超出限制', files, uploadFiles);
+// 超出数量限制
+const handleExceed = () => {
     ElMessage({ plain: true, message: '超出上传数量限制', type: 'error' });
 };
 
