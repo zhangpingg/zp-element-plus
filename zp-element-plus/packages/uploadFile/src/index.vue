@@ -49,7 +49,7 @@
             </slot>
         </template>
         <template #file>
-            <slot name="file"> </slot>
+            <slot name="file"></slot>
         </template>
     </el-upload>
 </template>
@@ -61,12 +61,7 @@ import { Plus } from '@element-plus/icons-vue';
 import Cookies from 'js-cookie';
 import { downloadFile } from '../../utils/util.tool';
 import type { UploadRawFile, UploadFile, UploadFiles } from 'element-plus';
-
-interface IMaxSizeItem {
-    types: string[];
-    maxSize: number;
-    errTip: string;
-}
+import type { IMaxSizeItem } from './interface';
 
 const attrs: { [key: string]: any } = useAttrs();
 
@@ -191,7 +186,6 @@ const handleSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
         fileList.value = uploadFiles.filter((k) => k.status === 'success');
         uploadLoad.value.close();
         uploadLoad.value = null;
-        console.log('接口全部请求完成', fileList.value);
         fileList.value.length && emit('onUploadSuccess', fileList.value);
     }
 };

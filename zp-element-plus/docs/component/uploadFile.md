@@ -23,3 +23,7 @@
 通过 `maxSizeList` 分别控制不同文件类型的大小限制。
 
 <preview path="../examples/uploadFile/complexFileSize.vue"></preview>
+
+### demo
+
+<preview path="../examples/uploadFile/demo.vue"></preview>
