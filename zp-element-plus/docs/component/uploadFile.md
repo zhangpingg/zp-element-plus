@@ -5,3 +5,5 @@
 ### 基本使用
 
 <preview path="../examples/uploadFile/base.vue"></preview>
+
+### multiple 上传时，只会上传第一个文件

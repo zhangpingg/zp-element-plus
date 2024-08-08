@@ -1,17 +1,16 @@
 <template>
     <el-upload
         name="uploadFile"
+        :headers="{ [headersToken]: Cookies.get('token') }"
         :file-list="fileList"
-        :headers="{ Authorization: 'tooken-123456' }"
-        :action="action"
         :show-file-list="!isDragType"
-        :disabled="isDragUploaded"
+        :disabled="isDragUploadedDisabled"
         :before-upload="beforeUpload"
         :on-success="handleSuccess"
         :on-remove="handleRemove"
         :on-exceed="handleExceed"
         :on-preview="handlePreview"
-        :class="[{ 'drag-uploaded': isDragUploaded }, 'upload-file-component']"
+        :class="[{ 'drag-uploaded': isDragUploadedDisabled }, 'uploadFileContainer']"
     >
         <slot>
             <!-- 拖拽上传 -->
@@ -59,34 +58,35 @@
 import { ref, computed, useAttrs } from 'vue';
 import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
+import Cookies from 'js-cookie';
 import { downloadFile } from '../../utils/util.tool';
 
-const attrs = useAttrs();
+const attrs: { [key: string]: any } = useAttrs();
 
 const props = defineProps({
-    // 上传api
-    api: {
+    // 设置上传的请求头部的token字段名
+    headersToken: {
         type: String,
-        default: '/api/quality/common/file/upload',
+        default: 'Authorization',
     },
-    // loading目标
-    loadingTarget: {
+    // loading动画的容器
+    loadingContainer: {
         type: String,
-        default: '.upload-file-component',
+        default: '.uploadFileContainer',
     },
     // 是否需要下载
     needDownload: {
         type: Boolean,
         default: false,
     },
-    // 通用上传文件大小限制 maxSizeNum和maxSizeArr二选一
-    maxSizeNum: {
+    // 通用上传文件大小限制 maxSize 和 maxSizeList 二选一
+    maxSize: {
         type: Number,
         default: null,
     },
     // 根据文件类型分别设置上传文件大小限制
     // types: image=图片 video=视频 audio=音频 application=wps/pdf text=txt other=其他文件类型
-    maxSizeArr: {
+    maxSizeList: {
         type: Array,
         default: () => [
             // { types: ['image'], maxSize: 5, errTip: '图片文件大小不超过5M' },
@@ -95,52 +95,46 @@ const props = defineProps({
         ],
     },
 });
-const emit = defineEmits(['uploadSuccess', 'removeSuccess', 'onClickFileName']);
+const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onClickFileName']);
 
-// 上传的文件列表 通过组件ref回显和取上传后的数据
-const fileList = ref([]);
-// 上传loading
-const uploading = ref(null);
-// 根据环境拼接api
-const action = computed(() => {
-    return '/test' + props.api;
-});
+const fileList = ref([]); // 上传的文件列表
+const uploadLoad = ref(null); // 上传loading对象
 // 是否拖拽
 const isDragType = computed(() => {
     // 解决drag属性简写问题
     return attrs?.drag || attrs.drag === '';
 });
 // 是否拖拽上传成功
-const isDragUploaded = computed(() => {
+const isDragUploadedDisabled = computed(() => {
     return isDragType.value && fileList.value.length > 0;
 });
 
 // 上传前
 const beforeUpload = (rawFile) => {
-    const { maxSizeNum, maxSizeArr } = props;
+    const { maxSize, maxSizeList } = props;
     const fileSize = rawFile.size / 1024 / 1024; // 图片大小
     const fileType = rawFile.type.split('/')[0]; // 图片类型
     // 通用上传文件大小限制
-    if (maxSizeNum && fileSize > maxSizeNum) {
-        ElMessage({ plain: true, message: `文件大小不能超过${maxSizeNum}M`, type: 'error' });
+    if (maxSize && fileSize > maxSize) {
+        ElMessage({ plain: true, message: `文件大小不能超过${maxSize}M`, type: 'error' });
         return false;
     }
     // 根据文件类型分别设置上传文件大小限制
     let sizeError = false;
-    for (let i = 0; i < maxSizeArr.length; i++) {
+    for (let i = 0; i < maxSizeList.length; i++) {
         if (
-            (maxSizeArr[i].types.includes(fileType) || maxSizeArr[i].types.includes('other')) &&
-            fileSize > maxSizeArr[i].maxSize
+            (maxSizeList[i].types.includes(fileType) || maxSizeList[i].types.includes('other')) &&
+            fileSize > maxSizeList[i].maxSize
         ) {
             sizeError = true;
-            ElMessage({ plain: true, message: maxSizeArr[i].errTip, type: 'error' });
+            ElMessage({ plain: true, message: maxSizeList[i].errTip, type: 'error' });
             break;
         }
     }
     if (sizeError) return false;
-    if (uploading.value) return false;
-    uploading.value = ElLoading.service({
-        target: document.querySelector(props.loadingTarget),
+    if (uploadLoad.value) return false;
+    uploadLoad.value = ElLoading.service({
+        target: document.querySelector(props.loadingContainer),
         text: '上传中...',
     });
 };
@@ -165,17 +159,17 @@ const handleSuccess = (response, uploadFile, uploadFiles) => {
     fileList.value.push(uploadFile);
     if (fileList.value.length === uploadFiles.length) {
         fileList.value = uploadFiles.filter((k) => k.status === 'success');
-        uploading.value.close();
-        uploading.value = null;
+        uploadLoad.value.close();
+        uploadLoad.value = null;
         console.log('接口全部请求完成', fileList.value);
-        fileList.value.length && emit('uploadSuccess', fileList.value);
+        fileList.value.length && emit('onUploadSuccess', fileList.value);
     }
 };
 
 // 移除
 const handleRemove = (uploadFile, uploadFiles) => {
     fileList.value = [...uploadFiles];
-    emit('removeSuccess', fileList.value);
+    emit('onRemoveSuccess', fileList.value);
 };
 
 // 超出限制

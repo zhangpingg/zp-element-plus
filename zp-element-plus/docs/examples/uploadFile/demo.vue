@@ -1,24 +1,22 @@
 <template>
-    <ZpUploadFile ref="uploadFileRef" @handleClickName="handleClickName" v-bind="uploadConfig" />
-    <el-button type="primary" @click="submitData">获取文件列表</el-button>
+    <ZpUploadFile
+        ref="uploadFileRef"
+        action="/test/api/quality/common/file/upload"
+        :multiple="true"
+        :limit="3"
+        :show-file-list="true"
+        :maxSizeList="[
+            { types: ['image'], maxSize: 5, errTip: '图片文件大小不超过5M' },
+            { types: ['video', 'audio'], maxSize: 200, errTip: '视频音频文件大小不超过200M' },
+            { types: ['other'], maxSize: 10, errTip: '文件大小不能超过10M' },
+        ]"
+        @onClickFileName="clickFileName"
+    />
+    <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
-// 配置
-const uploadConfig = {
-    // drag: true,
-    multiple: true,
-    showFileList: true,
-    needDownload: true,
-    limit: 3,
-    maxSizeArr: [
-        { types: ['image'], maxSize: 5, errTip: '图片文件大小不超过5M' },
-        { types: ['video', 'audio'], maxSize: 200, errTip: '视频音频文件大小不超过200M' },
-        { types: ['other'], maxSize: 10, errTip: '文件大小不能超过10M' },
-    ],
-};
 
 const uploadFileRef = ref();
 
@@ -39,18 +37,17 @@ const getDetail = () => {
         uploadFileRef.value.fileList = [...files];
     }, 1000);
 };
-
-// 提交数据
-const submitData = () => {
-    const params = {
-        files: uploadFileRef.value.fileList.map((k) => k.url),
-    };
-    console.log('params', params);
+// 单击名称 needDownload 为false才执行
+const clickFileName = (uploadFile) => {
+    console.log('文件', uploadFile);
 };
-
-// 单击名称 needDownload为false才执行
-const handleClickName = (uploadFile) => {
-    console.log('单击了', uploadFile);
+// 获取文件列表
+const getFileList = () => {
+    const fileList = uploadFileRef.value.fileList.map((item) => ({
+        name: item.name,
+        url: item.url,
+    }));
+    console.log('文件列表', fileList);
 };
 
 onMounted(() => {
