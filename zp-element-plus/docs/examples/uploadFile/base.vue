@@ -2,6 +2,7 @@
     <ZpUploadFile
         ref="uploadFileRef"
         action="/test/api/quality/common/file/upload"
+        :file-list="files"
         :show-file-list="true"
         @onClickFileName="clickFileName"
     />
@@ -12,6 +13,17 @@
 import { ref } from 'vue';
 
 const uploadFileRef = ref();
+
+const files = [
+    {
+        name: 'img01.jpg',
+        url: 'https://t12.baidu.com/it/u=2944858655,3260611328&fm=58',
+    },
+    {
+        name: 'img02.jpg',
+        url: 'https://t12.baidu.com/it/u=3165178178,1926556480&fm=58',
+    },
+];
 
 // 单击名称 needDownload 为false才执行
 const clickFileName = (uploadFile) => {

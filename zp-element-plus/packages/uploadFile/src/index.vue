@@ -55,15 +55,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, useAttrs } from 'vue';
+import { ref, computed, watch, useAttrs } from 'vue';
 import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import Cookies from 'js-cookie';
 import { downloadFile } from '../../utils/util.tool';
+import type { UploadFile, UploadFiles } from 'element-plus';
 
 const attrs: { [key: string]: any } = useAttrs();
 
 const props = defineProps({
+    // 默认的文件列表
+    fileList: {
+        type: Array,
+        default: [],
+    },
     // 设置上传的请求头部的token字段名
     headersToken: {
         type: String,
@@ -97,7 +103,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onClickFileName']);
 
-const fileList = ref([]); // 上传的文件列表
+const fileList = ref<any[]>([]); // 上传的文件列表
 const uploadLoad = ref(null); // 上传loading对象
 // 是否拖拽
 const isDragType = computed(() => {
@@ -111,9 +117,31 @@ const isDragUploadedDisabled = computed(() => {
 
 // 上传前
 const beforeUpload = (rawFile) => {
+    if (!checkAccept(rawFile)) return false;
+    if (!checkSize(rawFile)) return false;
+    if (!uploadLoad.value) {
+        uploadLoad.value = ElLoading.service({
+            target: document.querySelector(props.loadingContainer),
+            text: '上传中...',
+        });
+    }
+};
+// 校验允许上传文件后缀名
+const checkAccept = (rawFile) => {
+    const accept = attrs?.accept;
+    if (!accept) return true;
+    const suffixName = rawFile.name.split('.').pop();
+    if (!accept.includes(suffixName)) {
+        ElMessage({ plain: true, message: '文件类型不正确', type: 'error' });
+        return false;
+    }
+    return true;
+};
+// 校验文件大小
+const checkSize = (rawFile) => {
     const { maxSize, maxSizeList } = props;
-    const fileSize = rawFile.size / 1024 / 1024; // 图片大小
-    const fileType = rawFile.type.split('/')[0]; // 图片类型
+    const fileSize = rawFile.size / 1024 / 1024; // 文件大小
+    const fileType = rawFile.type.split('/')[0]; // 文件类型
     // 通用上传文件大小限制
     if (maxSize && fileSize > maxSize) {
         ElMessage({ plain: true, message: `文件大小不能超过${maxSize}M`, type: 'error' });
@@ -131,14 +159,8 @@ const beforeUpload = (rawFile) => {
             break;
         }
     }
-    if (sizeError) return false;
-    if (uploadLoad.value) return false;
-    uploadLoad.value = ElLoading.service({
-        target: document.querySelector(props.loadingContainer),
-        text: '上传中...',
-    });
+    return !sizeError;
 };
-
 // 上传成功
 const handleSuccess = (response, uploadFile, uploadFiles) => {
     if (response.code !== 200) {
@@ -167,7 +189,7 @@ const handleSuccess = (response, uploadFile, uploadFiles) => {
 };
 
 // 移除
-const handleRemove = (uploadFile, uploadFiles) => {
+const handleRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     fileList.value = [...uploadFiles];
     emit('onRemoveSuccess', fileList.value);
 };
@@ -179,7 +201,7 @@ const handleExceed = (files, uploadFiles) => {
 };
 
 // 单击名称
-const handlePreview = (uploadFile) => {
+const handlePreview = (uploadFile: UploadFile) => {
     if (props.needDownload) {
         downloadFile(uploadFile.url, uploadFile.name);
         return;
@@ -188,14 +210,22 @@ const handlePreview = (uploadFile) => {
 };
 
 // 删除已上传的拖拽文件
-const removeDragFileItem = (index) => {
+const removeDragFileItem = (index: number) => {
     fileList.value.splice(index, 1);
 };
 
 defineExpose({
     fileList,
 });
+watch(
+    () => props.fileList,
+    (newVal) => {
+        fileList.value = newVal;
+    },
+    { immediate: true },
+);
 </script>
+
 <style lang="less" scoped>
 .drag-uploaded {
     :deep(.el-upload-dragger:not(:focus)),
