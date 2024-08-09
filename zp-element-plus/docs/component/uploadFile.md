@@ -32,4 +32,6 @@
 
 ### 单个拖拽上传
 
+只能上传一个文件。如果要上传多个，则去掉 `singleDrag` 属性即可。
+
 <preview path="../examples/uploadFile/singleDrag.vue"></preview>

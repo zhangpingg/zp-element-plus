@@ -9,26 +9,26 @@
         :on-remove="removeFile"
         :on-exceed="exceedFileAuantity"
         :on-preview="previewFile"
-        :class="[{ 'drag-uploaded': drag }, 'uploadFileContainer']"
         :drag="drag"
+        id="uploadFileContainer"
     >
         <slot>
             <!-- 拖拽上传 -->
             <template v-if="drag">
-                <div class="drag-upload" v-if="(singleDrag && fileList.length === 0) || !singleDrag">
+                <div class="dragUpload" v-if="(singleDrag && fileList.length === 0) || !singleDrag">
                     <el-icon class="el-icon--upload" size="52"><upload-filled /></el-icon>
                     <div class="el-upload__text">点击或将文件拖拽到这里上传</div>
                     <div class="el-upload__tip" v-if="attrs?.accept">支持扩展名：{{ attrs?.accept }}</div>
                 </div>
                 <div
-                    class="drag-file flex-col-c"
+                    class="dragFile"
                     v-for="(item, index) in fileList"
                     :key="index"
                     v-if="singleDrag && fileList.length > 0"
                 >
-                    <p class="drag-file-main flex-c" @click="previewFile(item)">
+                    <p class="dragFile-main" @click="previewFile(item)">
                         <el-icon class="cup"><Document /></el-icon>
-                        <i class="drag-file-name e-1 cup ml-5"> {{ item.name }}</i>
+                        <i class="dragFile-name cup ml-5"> {{ item.name }}</i>
                     </p>
                     <el-icon class="cup" @click.stop="removeDragFile(index)">
                         <Delete />
@@ -79,7 +79,7 @@ const props = defineProps({
     // loading动画的容器
     loadingContainer: {
         type: String,
-        default: '.uploadFileContainer',
+        default: '#uploadFileContainer',
     },
     // 是否需要下载
     needDownload: {
@@ -225,23 +225,15 @@ watch(
 </script>
 
 <style lang="less" scoped>
-.drag-uploaded {
-    :deep(.el-upload-dragger:not(:focus)),
-    :deep(.el-upload-dragger:focus),
-    :deep(.el-upload-dragger:hover) {
-        border-color: #dcdfe6;
-        cursor: auto;
-    }
-}
-.drag-upload,
-.drag-file {
+.dragUpload,
+.dragFile {
     height: 114px;
 }
-.drag-file {
-    .drag-file-main {
+.dragFile {
+    .dragFile-main {
         padding: 0 20px;
         width: 100%;
-        .drag-file-name {
+        .dragFile-name {
             color: var(--el-color-primary);
         }
     }

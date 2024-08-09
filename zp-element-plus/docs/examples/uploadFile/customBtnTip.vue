@@ -1,6 +1,8 @@
 <template>
     <ZpUploadFile
         ref="uploadFileRef"
+        id="box5"
+        loadingContainer="#box5"
         action="/test/api/quality/common/file/upload"
         :multiple="true"
         :fileList="fileList"
