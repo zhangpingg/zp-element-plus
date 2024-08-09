@@ -28,7 +28,7 @@
                 >
                     <p class="drag-file-main flex-c" @click="previewFile(item)">
                         <el-icon class="cup"><Document /></el-icon>
-                        <i class="drag-file-name e-1 cup">{{ item.name }}</i>
+                        <i class="drag-file-name e-1 cup ml-5"> {{ item.name }}</i>
                     </p>
                     <el-icon class="cup" @click.stop="removeDragFile(index)">
                         <Delete />

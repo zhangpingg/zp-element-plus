@@ -4,6 +4,7 @@
         id="box4"
         loadingContainer="#box4"
         action="/test/api/quality/common/file/upload"
+        :fileList="fileList"
         :show-file-list="true"
         :maxSizeList="[
             { types: ['image'], maxSize: 3, errTip: '图片文件大小不超过3M' },
@@ -18,6 +19,7 @@
 import { ref } from 'vue';
 
 const uploadFileRef = ref();
+const fileList = ref([]);
 
 // 获取文件列表
 const getFileList = () => {

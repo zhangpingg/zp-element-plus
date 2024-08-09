@@ -4,6 +4,7 @@
         id="box3"
         loadingContainer="#box3"
         action="/test/api/quality/common/file/upload"
+        :fileList="fileList"
         :show-file-list="true"
         :maxSize="3"
     />
@@ -14,6 +15,7 @@
 import { ref } from 'vue';
 
 const uploadFileRef = ref();
+const fileList = ref([]);
 
 // 获取文件列表
 const getFileList = () => {

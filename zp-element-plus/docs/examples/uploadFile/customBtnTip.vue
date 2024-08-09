@@ -3,6 +3,7 @@
         ref="uploadFileRef"
         action="/test/api/quality/common/file/upload"
         :multiple="true"
+        :fileList="fileList"
         :show-file-list="true"
         accept=".jpg,.png"
         needDownload
@@ -21,6 +22,7 @@
 import { ref } from 'vue';
 
 const uploadFileRef = ref();
+const fileList = ref([]);
 
 // 单击名称 needDownload 为false才执行
 const previewFile = (uploadFile) => {

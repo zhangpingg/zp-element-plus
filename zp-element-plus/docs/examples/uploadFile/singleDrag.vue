@@ -3,6 +3,7 @@
         ref="uploadFileRef"
         action="/test/api/quality/common/file/upload"
         :multiple="true"
+        :fileList="fileList"
         :show-file-list="true"
         accept=".jpg,.png"
         drag
@@ -10,7 +11,6 @@
         @onPreviewFile="previewFile"
     >
     </ZpUploadFile>
-
     <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
 
@@ -18,6 +18,7 @@
 import { ref } from 'vue';
 
 const uploadFileRef = ref();
+const fileList = ref([]);
 
 // 单击名称 needDownload 为false才执行
 const previewFile = (uploadFile) => {
