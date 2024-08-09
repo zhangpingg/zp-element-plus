@@ -5,6 +5,7 @@
         loadingContainer="#box2"
         action="/test/api/quality/common/file/upload"
         :show-file-list="true"
+        needDownload
     />
     <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>

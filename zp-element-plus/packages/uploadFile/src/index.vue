@@ -3,45 +3,40 @@
         name="uploadFile"
         :headers="{ [headersToken]: Cookies.get('token') }"
         :file-list="fileList"
-        :show-file-list="!isDragType"
-        :disabled="isDragUploadedDisabled"
+        :disabled="isSingleDragUploadedDisabled"
         :before-upload="beforeUpload"
-        :on-success="handleSuccess"
-        :on-remove="handleRemove"
-        :on-exceed="handleExceed"
-        :on-preview="handlePreview"
-        :class="[{ 'drag-uploaded': isDragUploadedDisabled }, 'uploadFileContainer']"
+        :on-success="uploadSuccess"
+        :on-remove="removeFile"
+        :on-exceed="exceedFileAuantity"
+        :on-preview="previewFile"
+        :class="[{ 'drag-uploaded': drag }, 'uploadFileContainer']"
+        :drag="drag"
     >
         <slot>
             <!-- 拖拽上传 -->
-            <template v-if="isDragType">
-                <div class="drag-upload" v-if="fileList.length === 0">
+            <template v-if="drag">
+                <div class="drag-upload" v-if="(singleDrag && fileList.length === 0) || !singleDrag">
                     <el-icon class="el-icon--upload" size="52"><upload-filled /></el-icon>
                     <div class="el-upload__text">点击或将文件拖拽到这里上传</div>
-                    <div class="el-upload__tip" v-if="attrs?.accept">
-                        支持扩展名：{{ attrs?.accept }}
-                    </div>
+                    <div class="el-upload__tip" v-if="attrs?.accept">支持扩展名：{{ attrs?.accept }}</div>
                 </div>
                 <div
                     class="drag-file flex-col-c"
                     v-for="(item, index) in fileList"
                     :key="index"
-                    v-else
+                    v-if="singleDrag && fileList.length > 0"
                 >
-                    <p class="drag-file-main flex-c" @click="handlePreview(item)">
+                    <p class="drag-file-main flex-c" @click="previewFile(item)">
                         <el-icon class="cup"><Document /></el-icon>
-                        <!--<Icon class="cup" type="md-document" size="52" color="red" />-->
                         <i class="drag-file-name e-1 cup">{{ item.name }}</i>
                     </p>
-                    <el-icon class="cup" @click.stop="removeDragFileItem(index)">
+                    <el-icon class="cup" @click.stop="removeDragFile(index)">
                         <Delete />
                     </el-icon>
                 </div>
             </template>
             <!-- 常规上传 -->
-            <el-button v-else :icon="Plus" :disabled="fileList.length >= attrs?.limit">
-                上传文件
-            </el-button>
+            <el-button v-else :icon="Plus" :disabled="fileList.length >= attrs?.limit"> 上传文件 </el-button>
         </slot>
         <template #tip>
             <slot name="tip">
@@ -66,12 +61,17 @@ import type { IMaxSizeItem } from './interface';
 const attrs: { [key: string]: any } = useAttrs();
 
 const props = defineProps({
+    // 是否拖拽上传
+    drag: {
+        type: Boolean,
+        default: false,
+    },
     // 默认的文件列表
     fileList: {
         type: Array,
         default: [],
     },
-    // 设置上传的请求头部的token字段名
+    // 设置上传的请求头部的token字段名（注意：当token为空时，请求头中不会添加该字段）
     headersToken: {
         type: String,
         default: 'Authorization',
@@ -97,19 +97,20 @@ const props = defineProps({
         type: Array,
         default: () => [],
     },
+    // 是否单个拖拽
+    singleDrag: {
+        type: Boolean,
+        default: false,
+    },
 });
-const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onClickFileName']);
+const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onPreviewFile']);
 
 const fileList = ref<any[]>([]); // 上传的文件列表
 const uploadLoad = ref<any>(null); // 上传loading对象
-// 是否拖拽
-const isDragType = computed(() => {
-    // 解决drag属性简写问题
-    return attrs?.drag || attrs.drag === '';
-});
-// 是否拖拽上传成功
-const isDragUploadedDisabled = computed(() => {
-    return isDragType.value && fileList.value.length > 0;
+
+// 是否拖拽上传成功（只能上传一个文件）
+const isSingleDragUploadedDisabled = computed(() => {
+    return props.drag && props.singleDrag && fileList.value.length > 0;
 });
 
 // 上传前
@@ -165,7 +166,7 @@ const checkSize = (rawFile: UploadRawFile) => {
     return !sizeError;
 };
 // 上传成功
-const handleSuccess = (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     if (response.code !== 200) {
         uploadFile.status = 'fail';
         uploadFile.url = '';
@@ -186,32 +187,28 @@ const handleSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
         fileList.value = uploadFiles.filter((k) => k.status === 'success');
         uploadLoad.value.close();
         uploadLoad.value = null;
-        fileList.value.length && emit('onUploadSuccess', fileList.value);
+        fileList.value.length && emit('onUploadSuccess', fileList.value); // 全部上传成功
     }
 };
-
-// 移除
-const handleRemove = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+// 删除文件
+const removeFile = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     fileList.value = [...uploadFiles];
     emit('onRemoveSuccess', fileList.value);
 };
-
 // 超出数量限制
-const handleExceed = () => {
+const exceedFileAuantity = () => {
     ElMessage({ plain: true, message: '超出上传数量限制', type: 'error' });
 };
-
-// 单击名称
-const handlePreview = (uploadFile: UploadFile) => {
+// 单击名称-预览文件
+const previewFile = (uploadFile: UploadFile) => {
     if (props.needDownload) {
-        downloadFile(uploadFile.url, uploadFile.name);
+        downloadFile(uploadFile.url!, uploadFile.name);
         return;
     }
-    emit('onClickFileName', uploadFile);
+    emit('onPreviewFile', uploadFile);
 };
-
 // 删除已上传的拖拽文件
-const removeDragFileItem = (index: number) => {
+const removeDragFile = (index: number) => {
     fileList.value.splice(index, 1);
 };
 

@@ -55,8 +55,8 @@ const clearInvalidKey = (data: any, isCLearEmptyArray = true) => {
  * @param {String } fileName 文件名（文件流必传）
  * @param {Boolean } isFileStream 是否是文件流
  */
-const downloadFile = (url, fileName, isFileStream = false) => {
-    const downloadByBlob = (blob) => {
+const downloadFile = (url: string, fileName = '', isFileStream = false) => {
+    const downloadByBlob = (blob: Blob) => {
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(blob);
         downloadLink.download = fileName || url.split('/').pop().split('?')[0];

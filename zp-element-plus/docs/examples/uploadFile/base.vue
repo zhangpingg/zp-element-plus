@@ -5,7 +5,7 @@
         loadingContainer="#box1"
         action="/test/api/quality/common/file/upload"
         :show-file-list="true"
-        @onClickFileName="clickFileName"
+        @onPreviewFile="previewFile"
     />
     <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
@@ -27,7 +27,7 @@ const files = [
 ];
 
 // 单击名称 needDownload 为false才执行
-const clickFileName = (uploadFile) => {
+const previewFile = (uploadFile) => {
     console.log('文件', uploadFile);
 };
 // 获取文件列表
