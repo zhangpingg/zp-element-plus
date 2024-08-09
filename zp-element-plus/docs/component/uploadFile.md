@@ -24,6 +24,12 @@
 
 <preview path="../examples/uploadFile/complexFileSize.vue"></preview>
 
-### demo
+### 上传按钮/Tip插槽
 
-<preview path="../examples/uploadFile/demo.vue"></preview>
+自定义按钮，提示文案。
+
+<preview path="../examples/uploadFile/customBtnTip.vue"></preview>
+
+### 单个拖拽上传
+
+<preview path="../examples/uploadFile/singleDrag.vue"></preview>
