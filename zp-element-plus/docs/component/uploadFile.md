@@ -35,3 +35,13 @@
 只能上传一个文件。如果要上传多个，则去掉 `singleDrag` 属性即可。
 
 <preview path="../examples/uploadFile/singleDrag.vue"></preview>
+
+### API
+
+#### Attributes
+
+| 属性名           | 说明                                 | 类型         | 默认值               |
+| :--------------- | :----------------------------------- | :----------- | :------------------- |
+| headersToken     | 上传时请求头部 `token` 的 `key` 键值 | `string`     | Authorization        |
+| loadingContainer | 加载动画的容器                       | `class`/`id` | #uploadFileContainer |
+| needDownload     | 一行展示表单项的个数                 | `string`     | 3                    |
