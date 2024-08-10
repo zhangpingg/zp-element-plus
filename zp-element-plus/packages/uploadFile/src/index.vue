@@ -3,7 +3,7 @@
         name="uploadFile"
         :headers="{ [headersToken]: Cookies.get('token') }"
         :file-list="fileList"
-        :disabled="isSingleDragUploadedDisabled"
+        :disabled="fileList.length >= attrs?.limit || isSingleDragUploadedDisabled"
         :before-upload="beforeUpload"
         :on-success="uploadSuccess"
         :on-remove="removeFile"
@@ -20,20 +20,17 @@
                     <div class="el-upload__text">点击或将文件拖拽到这里上传</div>
                     <div class="el-upload__tip" v-if="attrs?.accept">支持扩展名：{{ attrs?.accept }}</div>
                 </div>
-                <div
-                    class="dragFile"
-                    v-for="(item, index) in fileList"
-                    :key="index"
-                    v-if="singleDrag && fileList.length > 0"
-                >
-                    <p class="dragFile-main" @click="previewFile(item)">
-                        <el-icon class="cup"><Document /></el-icon>
-                        <i class="dragFile-name cup ml-5"> {{ item.name }}</i>
-                    </p>
-                    <el-icon class="cup" @click.stop="removeDragFile(index)">
-                        <Delete />
-                    </el-icon>
-                </div>
+                <template v-if="singleDrag && fileList.length > 0">
+                    <div class="dragFile" v-for="(item, index) in fileList" :key="index">
+                        <p class="dragFile-main" @click="previewFile(item)">
+                            <el-icon class="cup"><Document /></el-icon>
+                            <i class="dragFile-name cup ml-5"> {{ item.name }}</i>
+                        </p>
+                        <el-icon class="cup" @click.stop="removeDragFile(index)">
+                            <Delete />
+                        </el-icon>
+                    </div>
+                </template>
             </template>
             <!-- 常规上传 -->
             <el-button v-else :icon="Plus" :disabled="fileList.length >= attrs?.limit"> 上传文件 </el-button>
@@ -49,7 +46,7 @@
     </el-upload>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="ZpUploadFile">
 import { ref, computed, watch, useAttrs } from 'vue';
 import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
@@ -86,7 +83,7 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    // 通用上传文件大小限制 maxSize 和 maxSizeList 二选一
+    // 文件大小限制
     maxSize: {
         type: Number,
         default: null,

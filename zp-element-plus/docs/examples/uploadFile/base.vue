@@ -28,10 +28,11 @@ const previewFile = (uploadFile) => {
 };
 // 获取文件列表
 const getFileList = () => {
-    const fileList = uploadFileRef.value.fileList.map((item) => ({
+    const _fileList = uploadFileRef.value.fileList.map((item) => ({
         name: item.name,
         url: item.url,
     }));
-    console.log('文件列表', fileList);
+    console.log('文件列表', _fileList);
+    console.log(22, fileList);
 };
 </script>
