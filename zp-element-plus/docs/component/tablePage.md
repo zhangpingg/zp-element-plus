@@ -22,7 +22,7 @@
 
 ### 列值转换
 
-根据接口返回的值，前端转换成相应的数据。
+根据接口返回的值，前端转换成相应的数据。对于圆点状态列，需自己项目安装`view-ui-plus`，自己书写`slotColumns.vue`组件即可。
 
 <preview path="../examples/tablePage/convertValue.vue"></preview>
 

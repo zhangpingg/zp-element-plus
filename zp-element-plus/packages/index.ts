@@ -3,6 +3,7 @@ import ZpSearchForm from './searchForm';
 import ZpTablePage from './tablePage';
 import ZpUploadFile from './uploadFile';
 import ZpButton from './button';
+import * as utils from './utils'; // 通用方法
 
 // 组件列表
 const components: {
@@ -30,4 +31,4 @@ export default {
 };
 
 // 【2-按需引用】导出各个组件
-export { ZpSearchForm, ZpTablePage, ZpUploadFile, ZpButton };
+export { ZpSearchForm, ZpTablePage, ZpUploadFile, ZpButton, utils };

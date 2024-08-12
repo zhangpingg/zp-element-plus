@@ -9,7 +9,6 @@ export default defineConfig({
             '/test/api': {
                 target: 'http://10.1.13.23',
                 changeOrigin: true,
-                //rewrite: (path) => path.replace('/zp-element-plus', ''),
                 bypass(req, res, options) {
                     const realUrl = new URL(req.url || '', options.target).href || '';
                     res.setHeader('x-res-proxyUrl', realUrl);

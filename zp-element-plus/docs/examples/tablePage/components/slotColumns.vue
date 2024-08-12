@@ -9,14 +9,14 @@
             {{ getItemByValue(value).text }}
         </el-text>
     </template>
-    <template v-if="slotType === 'badge'">
+    <!--<template v-if="slotType === 'badge'">
         <Badge :color="getItemByValue(value).color" :text="getItemByValue(value).text" />
-    </template>
+    </template>-->
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-import { Badge } from 'view-ui-plus';
+//import { Badge } from 'view-ui-plus';
 
 const props = defineProps({
     // 插槽模板类型
@@ -49,8 +49,8 @@ const isStringArray = (arr) => {
     return arr.every((item) => typeof item === 'string');
 };
 // 获取某项,通过value
-const getItemByValue = (value) => {
-    const _list = props.options.filter((item) => item.value === value);
+const getItemByValue = (value: string | number | boolean): any => {
+    const _list: any[] = props.options.filter((item: any) => item.value === value);
     return _list.length > 0 && _list[0];
 };
 </script>

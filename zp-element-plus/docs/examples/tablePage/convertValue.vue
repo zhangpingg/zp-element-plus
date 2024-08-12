@@ -20,7 +20,7 @@
                 ]"
             />
         </template>
-        <template #ff="{ scope: { row } }">
+        <!--<template #ff="{ scope: { row } }">
             <SlotColumns
                 slotType="badge"
                 :value="row.ff"
@@ -31,7 +31,7 @@
                     { text: '审核中', color: 'purple', value: 4 },
                 ]"
             />
-        </template>
+        </template>-->
     </ZpTablePage>
 </template>
 

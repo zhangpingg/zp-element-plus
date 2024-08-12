@@ -90,9 +90,9 @@ const downloadFile = (url: string, fileName = '', isFileStream = false) => {
  * @param {Array} 列表数据
  * @param {Array } 需要合并的字段key列表
  */
-const transToMergeCellList = (dataList, strList) => {
+const transToMergeCellList = (dataList: { [key: string]: any }[], strList: string[]) => {
     let _dataList = [...dataList];
-    const mergeCell = (cellList, mergeType) => {
+    const mergeCell = (cellList: { [key: string]: any }[], mergeType: string) => {
         const mergeTypeMap = cellList.reduce((prev, curr) => {
             const prevX = { ...prev };
             if (prevX[curr[mergeType]]) {
