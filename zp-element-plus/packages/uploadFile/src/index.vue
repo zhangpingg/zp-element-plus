@@ -63,11 +63,6 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    // 默认的文件列表
-    fileList: {
-        type: Array,
-        default: [],
-    },
     // 设置上传的请求头部的token字段名（注意：当token为空时，请求头中不会添加该字段）
     headersToken: {
         type: String,
@@ -189,8 +184,9 @@ const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
 };
 // 删除文件
 const removeFile = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
-    fileList.value = [...uploadFiles];
-    emit('onRemoveSuccess', fileList.value);
+    console.log(11, uploadFile, uploadFiles); // 被删除的文件, 剩下的文件
+    //fileList.value = [...uploadFiles];
+    //emit('onRemoveSuccess', fileList.value);
 };
 // 超出数量限制
 const exceedFileAuantity = () => {
@@ -212,13 +208,6 @@ const removeDragFile = (index: number) => {
 defineExpose({
     fileList,
 });
-watch(
-    () => props.fileList,
-    (newVal) => {
-        fileList.value = newVal;
-    },
-    { immediate: true },
-);
 </script>
 
 <style lang="less" scoped>

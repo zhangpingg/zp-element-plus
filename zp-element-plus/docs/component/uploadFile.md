@@ -8,7 +8,7 @@
 
 ### 回显文件列表-`ref`
 
-使用 `ref` 回显文件列表，适用于表格中。当文件改变的时候，不会从新渲染整个表格，用户界面不会闪屏。
+去掉了 `element-plus` 中的 `file-list` 属性，而使用 `ref` 回显文件列表，适用于表格中。普通上传也可以使用。当文件改变的时候，不会从新渲染整个表格，用户界面不会闪屏，因为此时改变的是子组件里面的数据源，而非父组件的数据源。
 
 <preview path="../examples/uploadFile/echoFileList.vue"></preview>
 
@@ -35,10 +35,6 @@
 拖拽上传时，只能上传一个文件，上传成功后，展示在上传框中。如果不需要该功能，则去掉 `singleDrag` 属性即可。
 
 <preview path="../examples/uploadFile/singleDrag.vue"></preview>
-
-### fileList？？？
-
-uploadFileRef.value.fileList，fileList 看着2个值，当上传文件后，看是否是一样的
 
 ### 上传头像？？？
 
