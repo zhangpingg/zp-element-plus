@@ -10,21 +10,21 @@
         :on-preview="previewFile"
         :drag="drag"
         id="uploadFileContainer"
-        :class="{ hideUploadBtn: fileList.length >= attrs?.limit }"
+        :class="{ uf: true, 'uf-hideUploadBtn': fileList.length >= attrs?.limit }"
     >
         <slot>
             <!-- 拖拽上传 -->
             <template v-if="drag">
-                <div class="dragUpload" v-if="(singleDrag && fileList.length === 0) || !singleDrag">
+                <div class="uf-dragUpload" v-if="(singleDrag && fileList.length === 0) || !singleDrag">
                     <el-icon class="el-icon--upload" size="52"><upload-filled /></el-icon>
                     <div class="el-upload__text">点击或将文件拖拽到这里上传</div>
                     <div class="el-upload__tip" v-if="attrs?.accept">支持扩展名：{{ attrs?.accept }}</div>
                 </div>
                 <template v-if="singleDrag && fileList.length > 0">
-                    <div class="dragFile" v-for="(item, index) in fileList" :key="index">
-                        <p class="dragFile-main" @click="previewFile(item)">
+                    <div class="uf-dragFile" v-for="(item, index) in fileList" :key="index">
+                        <p class="uf-dragFile-main" @click="previewFile(item)">
                             <el-icon class="cup"><Document /></el-icon>
-                            <i class="dragFile-name cup ml-5"> {{ item.name }}</i>
+                            <i class="uf-dragFile-name cup ml-5"> {{ item.name }}</i>
                         </p>
                         <el-icon class="cup" @click.stop="removeDragFile(index)">
                             <Delete />
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts" name="ZpUploadFile">
-import { ref, computed, watch, useAttrs } from 'vue';
+import { ref, computed, useAttrs } from 'vue';
 import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import Cookies from 'js-cookie';
@@ -189,9 +189,8 @@ const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
 };
 // 删除文件
 const removeFile = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
-    console.log(11, uploadFile, uploadFiles); // 被删除的文件, 剩下的文件
-    //fileList.value = [...uploadFiles];
-    //emit('onRemoveSuccess', fileList.value);
+    fileList.value = [...uploadFiles];
+    emit('onRemoveSuccess', fileList.value);
 };
 // 超出数量限制
 const exceedFileAuantity = () => {
@@ -216,7 +215,22 @@ defineExpose({
 </script>
 
 <style lang="less" scoped>
-.hideUploadBtn :deep(.el-upload--picture-card) {
+.uf {
+    .uf-dragUpload,
+    .uf-dragFile {
+        height: 114px;
+    }
+    .uf-dragFile {
+        .uf-dragFile-main {
+            padding: 0 20px;
+            width: 100%;
+            .uf-dragFile-name {
+                color: var(--el-color-primary);
+            }
+        }
+    }
+}
+.uf-hideUploadBtn :deep(.el-upload--picture-card) {
     display: none;
 }
 .img60 {
@@ -238,19 +252,6 @@ defineExpose({
     :deep(.el-upload--picture-card) {
         width: 120px;
         height: 120px;
-    }
-}
-.dragUpload,
-.dragFile {
-    height: 114px;
-}
-.dragFile {
-    .dragFile-main {
-        padding: 0 20px;
-        width: 100%;
-        .dragFile-name {
-            color: var(--el-color-primary);
-        }
     }
 }
 </style>
