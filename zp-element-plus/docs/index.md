@@ -6,7 +6,7 @@ editLink: true
 lastUpdated: true
 
 hero:
-    name: "zp-element-plus"
+    name: 'zp-element-plus'
     text: ' '
     tagline: 使用Vue3基于Element-plus二次封装的组件库
     image:
@@ -28,7 +28,7 @@ features:
       title: 封装模式
       details: 基于 Element-plus 二次封装
     - icon: ✈️
-      title: 封装模式
+      title: 框架模式
       details: vite + vue3 模式
 ---
 
