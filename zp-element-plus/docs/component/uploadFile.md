@@ -55,7 +55,7 @@
 | needDownload     | 点击文件列表中的文件，是否下载文件               | `boolean`       | false                |
 | maxSize          | 上传文件大小限制                                 | `number`        | -                    |
 | maxSizeList      | 根据文件类型分别设置上传文件大小限制             | `maxSizeItem[]` | []                   |
-| singleDrag       | 拖拽上传时，只能上传一个文件                     | `maxSizeItem[]` | []                   |
+| singleDrag       | 拖拽上传时，只能上传一个文件                     | `boolean`       | false                |
 | 其他属性         | 继承至 `element-plus` 的 `Upload API`            | -               | -                    |
 
 #### maxSizeItem

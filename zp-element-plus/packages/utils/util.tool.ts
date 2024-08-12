@@ -6,7 +6,7 @@ import _ from 'lodash';
  * @returns {boolean} 返回boolean
  */
 const isValidVal = (val: any) => {
-    if ([null, undefined, ''].includes(val)) {
+    if ([null, undefined, 'null', 'undefined', ''].includes(val)) {
         return false;
     }
     return true;
@@ -55,7 +55,7 @@ const clearInvalidKey = (data: any, isCLearEmptyArray = true) => {
  * @param {String } fileName 文件名（文件流必传）
  * @param {Boolean } isFileStream 是否是文件流
  */
-const downloadFile = (url: string, fileName = '', isFileStream = false) => {
+const downloadFile = (url: any, fileName = '', isFileStream = false) => {
     const downloadByBlob = (blob: Blob) => {
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(blob);

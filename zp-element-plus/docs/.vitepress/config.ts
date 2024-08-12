@@ -19,26 +19,20 @@ export default defineConfig({
             { text: '安装指南', link: '/component/indexGuide' },
             { text: '组件预览', link: '/component/button', activeMatch: '^/component/' },
             {
-                text: 'GitHub地址',
-                link: 'https://www.baidu.com/',
-            },
-            {
-                text: '博客',
+                text: '地址',
                 items: [
-                    { text: 'CSDN', link: 'https://blog.csdn.net/cwin8951' },
-                    {
-                        text: '掘金',
-                        link: 'https://juejin.cn/user/888061128344087/posts',
-                    },
+                    { text: 'VitePress', link: 'https://vitepress.dev/zh/' },
+                    { text: 'GitHub', link: 'https://github.com/zhangpingg/zp-element-plus' },
+                    { text: 'zp-element-plus', link: 'https://zhangpingg.github.io/zp-element-plus/' },
                 ],
             },
         ],
         // github 跳转
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+            { icon: 'github', link: 'https://github.com/zhangpingg/zp-element-plus' },
             {
                 icon: 'npm',
-                link: 'https://www.npmjs.com/package/pf-component-library',
+                link: 'https://www.npmjs.com/package/zp-element-plus',
             },
         ],
         // 左侧侧边栏
@@ -52,12 +46,10 @@ export default defineConfig({
                     { text: 'UploadFile 上传文件', link: '/component/uploadFile' },
                 ],
             },
-            // {
-            //     text: "工具",
-            //     items: [
-            //         { text: "utils", link: "/component/button.md" },
-            //     ],
-            // },
+            {
+                text: '工具',
+                items: [{ text: 'tool 工具', link: '/component/util.tool' }],
+            },
         ],
     },
     markdown: {
