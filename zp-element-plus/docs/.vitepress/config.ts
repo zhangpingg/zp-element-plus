@@ -17,7 +17,7 @@ export default defineConfig({
         // 导航
         nav: [
             { text: '安装指南', link: '/component/indexGuide' },
-            { text: '组件预览', link: '/component/button', activeMatch: '^/component/' },
+            { text: '组件预览', link: '/component/searchForm', activeMatch: '^/component/' },
             {
                 text: '地址',
                 items: [
@@ -40,7 +40,6 @@ export default defineConfig({
             {
                 text: '组件',
                 items: [
-                    { text: 'ZpButton', link: '/component/button' },
                     { text: 'SearchForm 查询表单', link: '/component/searchForm' },
                     { text: 'TablePage 表格分页', link: '/component/tablePage' },
                     { text: 'UploadFile 上传文件', link: '/component/uploadFile' },

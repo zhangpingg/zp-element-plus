@@ -2,7 +2,6 @@ import type { Component, App } from 'vue';
 import ZpSearchForm from './searchForm';
 import ZpTablePage from './tablePage';
 import ZpUploadFile from './uploadFile';
-import ZpButton from './button';
 import * as utils from './utils'; // 通用方法
 
 // 组件列表
@@ -12,7 +11,6 @@ const components: {
     ZpSearchForm,
     ZpTablePage,
     ZpUploadFile,
-    ZpButton,
 };
 
 // vue 插件中的 install 方法（app：Vue应用程序实例）
@@ -31,4 +29,4 @@ export default {
 };
 
 // 【2-按需引用】导出各个组件
-export { ZpSearchForm, ZpTablePage, ZpUploadFile, ZpButton, utils };
+export { ZpSearchForm, ZpTablePage, ZpUploadFile, utils };
