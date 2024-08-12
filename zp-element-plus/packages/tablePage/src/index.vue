@@ -15,19 +15,11 @@
             v-bind="props.tableConfig"
             class="r-table"
         >
-            <el-table-column
-                v-for="item in props.tableConfig.columns"
-                :key="item.prop"
-                v-bind="item"
-            >
+            <el-table-column v-for="item in props.tableConfig.columns" :key="item.prop" v-bind="item">
                 <template #default="scope" v-if="item.type != 'selection'">
                     <slot :name="item.prop" v-if="item.prop === item.slotName" :scope="scope" />
                     <span v-else>
-                        {{
-                            isValidVal(scope.row[item.prop])
-                                ? scope.row[item.prop]
-                                : props.emptyCellContent
-                        }}
+                        {{ isValidVal(scope.row[item.prop]) ? scope.row[item.prop] : props.emptyCellContent }}
                     </span>
                 </template>
             </el-table-column>
@@ -76,12 +68,7 @@ const props = defineProps({
         default: '-',
     },
 });
-const emit = defineEmits([
-    'onSelectionChange',
-    'onRowClick',
-    'onChangePageCurrent',
-    'onChangePageSize',
-]);
+const emit = defineEmits(['onSelectionChange', 'onRowClick', 'onChangePageCurrent', 'onChangePageSize']);
 
 const tableRef = ref();
 

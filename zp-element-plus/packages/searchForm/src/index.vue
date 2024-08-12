@@ -23,31 +23,14 @@
             <el-row>
                 <el-col
                     :span="formItemLayoutSpan"
-                    v-for="{
-                        type,
-                        label,
-                        prop,
-                        options,
-                        customComponent,
-                        ...restItem
-                    } in props.formList"
+                    v-for="{ type, label, prop, options, customComponent, ...restItem } in props.formList"
                     :key="prop"
                 >
                     <el-form-item :label="label" :prop="prop" v-if="type === 'input'">
-                        <el-input
-                            v-model="formData[prop]"
-                            placeholder="请输入"
-                            clearable
-                            v-bind="restItem"
-                        />
+                        <el-input v-model="formData[prop]" placeholder="请输入" clearable v-bind="restItem" />
                     </el-form-item>
                     <el-form-item :label="label" :prop="prop" v-if="type === 'select'">
-                        <el-select
-                            v-model="formData[prop]"
-                            placeholder="请选择"
-                            clearable
-                            v-bind="restItem"
-                        >
+                        <el-select v-model="formData[prop]" placeholder="请选择" clearable v-bind="restItem">
                             <el-option
                                 v-for="item in options"
                                 :key="item.value"
@@ -88,10 +71,7 @@
                             :is="customComponent"
                             :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
                             :restItem="restItem"
-                            @onChange="
-                                (val: string | number) =>
-                                    changeCustomComponent(prop, val, restItem.onChange)
-                            "
+                            @onChange="(val: string | number) => changeCustomComponent(prop, val, restItem.onChange)"
                         />
                     </el-form-item>
                 </el-col>
@@ -241,12 +221,8 @@ const formatFormData = (data: { [key: string]: any }) => {
                     break;
                 case 'daterange':
                     if (_item.isJoinTimeSuffix) {
-                        _data[key.split(',')[0]] = dayjs(_data[key][0]).format(
-                            'YYYY-MM-DD HH:mm:ss',
-                        );
-                        _data[key.split(',')[1]] = dayjs(`${_data[key][1]} 23:59:59`).format(
-                            'YYYY-MM-DD HH:mm:ss',
-                        );
+                        _data[key.split(',')[0]] = dayjs(_data[key][0]).format('YYYY-MM-DD HH:mm:ss');
+                        _data[key.split(',')[1]] = dayjs(`${_data[key][1]} 23:59:59`).format('YYYY-MM-DD HH:mm:ss');
                     } else {
                         _data[key.split(',')[0]] = _data[key][0];
                         _data[key.split(',')[1]] = _data[key][1];
@@ -254,12 +230,8 @@ const formatFormData = (data: { [key: string]: any }) => {
                     break;
                 case 'datetimerange':
                     if (_item.isJoinTimeSuffix) {
-                        _data[key.split(',')[0]] = dayjs(`${_data[key][0]}00`).format(
-                            'YYYY-MM-DD HH:mm:ss',
-                        );
-                        _data[key.split(',')[1]] = dayjs(`${_data[key][1]}59`).format(
-                            'YYYY-MM-DD HH:mm:ss',
-                        );
+                        _data[key.split(',')[0]] = dayjs(`${_data[key][0]}00`).format('YYYY-MM-DD HH:mm:ss');
+                        _data[key.split(',')[1]] = dayjs(`${_data[key][1]}59`).format('YYYY-MM-DD HH:mm:ss');
                     } else {
                         _data[key.split(',')[0]] = _data[key][0];
                         _data[key.split(',')[1]] = _data[key][1];
