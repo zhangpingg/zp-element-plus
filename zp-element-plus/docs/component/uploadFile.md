@@ -36,23 +36,27 @@
 
 <preview path="../examples/uploadFile/singleDrag.vue"></preview>
 
-### 上传头像？？？
+### 照片墙
 
-。。。
+设置 `list-type="picture-card"`，支持的照片宽度有 `60px, 90px, 120px`，配置相应的类名即可。
+<preview path="../examples/uploadFile/pictureCard.vue"></preview>
 
 ### API
 
 #### Attributes
 
-| 属性名           | 说明                                  | 类型            | 默认值               |
-| :--------------- | :------------------------------------ | :-------------- | :------------------- |
-| headersToken     | 上传时请求头部 `token` 的 `key` 键值  | `string`        | Authorization        |
-| loadingContainer | 加载动画的容器                        | `class`/`id`    | #uploadFileContainer |
-| needDownload     | 点击文件列表中的文件，是否下载文件    | `boolean`       | false                |
-| maxSize          | 上传文件大小限制                      | `number`        | -                    |
-| maxSizeList      | 根据文件类型分别设置上传文件大小限制  | `maxSizeItem[]` | []                   |
-| singleDrag       | 拖拽上传时，只能上传一个文件          | `maxSizeItem[]` | []                   |
-| 其他属性         | 继承至 `element-plus` 的 `Upload API` | -               | -                    |
+去掉了 `element-plus` 中的 `file-list` 属性, 如果需要回显文件列表，请使用 `ref` 的方式，详见上方的示例。
+
+| 属性名           | 说明                                             | 类型            | 默认值               |
+| :--------------- | :----------------------------------------------- | :-------------- | :------------------- |
+| headersTokenKey  | 上传时请求头部 `token` 的 `key` 键名             | `string`        | Authorization        |
+| cookiesTokenKey  | 上传时请求头部 `token` 的值取至`Cookies`中的字段 | `string`        | token                |
+| loadingContainer | 加载动画的容器                                   | `class`/`id`    | #uploadFileContainer |
+| needDownload     | 点击文件列表中的文件，是否下载文件               | `boolean`       | false                |
+| maxSize          | 上传文件大小限制                                 | `number`        | -                    |
+| maxSizeList      | 根据文件类型分别设置上传文件大小限制             | `maxSizeItem[]` | []                   |
+| singleDrag       | 拖拽上传时，只能上传一个文件                     | `maxSizeItem[]` | []                   |
+| 其他属性         | 继承至 `element-plus` 的 `Upload API`            | -               | -                    |
 
 #### maxSizeItem
 

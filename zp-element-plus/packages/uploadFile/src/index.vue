@@ -1,9 +1,8 @@
 <template>
     <el-upload
-        name="uploadFile"
-        :headers="{ [headersToken]: Cookies.get('token') }"
+        :headers="{ [headersTokenKey]: Cookies.get(cookiesTokenKey) }"
         :file-list="fileList"
-        :disabled="fileList.length >= attrs?.limit || isSingleDragUploadedDisabled"
+        :disabled="isSingleDragUploadedDisabled"
         :before-upload="beforeUpload"
         :on-success="uploadSuccess"
         :on-remove="removeFile"
@@ -11,6 +10,7 @@
         :on-preview="previewFile"
         :drag="drag"
         id="uploadFileContainer"
+        :class="{ hideUploadBtn: fileList.length >= attrs?.limit }"
     >
         <slot>
             <!-- 拖拽上传 -->
@@ -63,10 +63,15 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
-    // 设置上传的请求头部的token字段名（注意：当token为空时，请求头中不会添加该字段）
-    headersToken: {
+    // 设置上传的请求头部的 token 的键名（注意：当token为空时，请求头中不会添加该字段）
+    headersTokenKey: {
         type: String,
         default: 'Authorization',
+    },
+    // 设置上传的请求头部的 token 的值，默认是 Cookies 中的 token 字段
+    cookiesTokenKey: {
+        type: String,
+        default: 'token',
     },
     // loading动画的容器
     loadingContainer: {
@@ -211,6 +216,30 @@ defineExpose({
 </script>
 
 <style lang="less" scoped>
+.hideUploadBtn :deep(.el-upload--picture-card) {
+    display: none;
+}
+.img60 {
+    :deep(.el-upload-list__item),
+    :deep(.el-upload--picture-card) {
+        width: 60px;
+        height: 60px;
+    }
+}
+.img90 {
+    :deep(.el-upload-list__item),
+    :deep(.el-upload--picture-card) {
+        width: 90px;
+        height: 90px;
+    }
+}
+.img120 {
+    :deep(.el-upload-list__item),
+    :deep(.el-upload--picture-card) {
+        width: 120px;
+        height: 120px;
+    }
+}
 .dragUpload,
 .dragFile {
     height: 114px;

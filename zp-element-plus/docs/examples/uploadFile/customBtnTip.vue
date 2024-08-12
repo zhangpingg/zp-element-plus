@@ -1,6 +1,7 @@
 <template>
     <ZpUploadFile
         ref="uploadFileRef"
+        name="uploadFile"
         id="box5"
         loadingContainer="#box5"
         action="/test/api/quality/common/file/upload"

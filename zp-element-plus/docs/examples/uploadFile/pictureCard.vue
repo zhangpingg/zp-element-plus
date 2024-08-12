@@ -2,12 +2,16 @@
     <ZpUploadFile
         ref="uploadFileRef"
         name="uploadFile"
-        id="box2"
-        loadingContainer="#box2"
+        id="box8"
+        loadingContainer="#box8"
         action="/test/api/quality/common/file/upload"
         :show-file-list="true"
-        needDownload
-    />
+        list-type="picture-card"
+        class="img90"
+        :limit="3"
+    >
+        <el-icon><Plus /></el-icon>
+    </ZpUploadFile>
     <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
 
