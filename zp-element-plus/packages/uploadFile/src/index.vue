@@ -6,7 +6,7 @@
         :before-upload="beforeUpload"
         :on-success="uploadSuccess"
         :on-remove="removeFile"
-        :on-exceed="exceedFileAuantity"
+        :on-exceed="exceedLimitQuantity"
         :on-preview="previewFile"
         :drag="drag"
         id="uploadFileContainer"
@@ -193,7 +193,7 @@ const removeFile = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     emit('onRemoveSuccess', fileList.value);
 };
 // 超出数量限制
-const exceedFileAuantity = () => {
+const exceedLimitQuantity = () => {
     ElMessage({ plain: true, message: '超出上传数量限制', type: 'error' });
 };
 // 单击名称-预览文件
