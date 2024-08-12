@@ -44,11 +44,3 @@ isValidArr(fileStream, '图片.png', true); // 文件流下载
 ```js
 transToNergeCellList(list, ['a', 'b']);
 ```
-
-::: details 点击查看代码
-
-::: code-group
-
-<<< @/../packages/utils/util.tool.ts
-
-:::
