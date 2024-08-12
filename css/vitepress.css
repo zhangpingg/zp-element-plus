@@ -1,26 +1,29 @@
-
 @media (min-width: 1440px) {
-  .VPSidebar {
-     padding-left: 20px !important;
-     width: 260px !important;
-  }
-  .VPNavBar.has-sidebar .title{
-    padding-left: 10px !important;
-    width: 260px !important;
-  }
-  .VPContent.has-sidebar{
-     padding-left: 260px !important;
-    padding-right: 0px !important;
-  }
-  .VPNavBar.has-sidebar .content{
-     padding-left: 260px !important;
-    padding-right: 20px !important;
-  }
-  .VPNavBar.has-sidebar .divider{
-    padding-left: 0px !important;
-  }
+    .VPSidebar {
+        padding-left: 20px !important;
+        width: 260px !important;
+    }
+    .VPNavBar.has-sidebar .title {
+        padding-left: 10px !important;
+        width: 260px !important;
+    }
+    .VPContent.has-sidebar {
+        padding-left: 260px !important;
+        padding-right: 0px !important;
+    }
+    .VPNavBar.has-sidebar .content {
+        padding-left: 260px !important;
+        padding-right: 20px !important;
+    }
+    .VPNavBar.has-sidebar .divider {
+        padding-left: 0px !important;
+    }
 }
 
-.VPDoc.has-aside .content-container{
-  max-width: none !important;
+.VPDoc.has-aside .content-container {
+    max-width: none !important;
+}
+.vp-doc ul {
+    list-style-type: none;
+    padding-left: 0;
 }
