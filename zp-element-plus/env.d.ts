@@ -6,3 +6,4 @@ declare module '*.vue' {
     export default vueComponent;
 }
 declare module 'js-cookie';
+declare module '@packages/*';

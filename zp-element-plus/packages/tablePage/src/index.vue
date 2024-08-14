@@ -44,7 +44,7 @@
 
 <script setup lang="ts" name="ZpTablePage">
 import { ref } from 'vue';
-import { isValidVal } from '../../utils/util.tool';
+import { isValidVal } from '@packages/utils/util.tool';
 
 const props = defineProps({
     // 表格配置
