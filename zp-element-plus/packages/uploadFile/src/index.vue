@@ -51,7 +51,7 @@ import { ref, computed, useAttrs } from 'vue';
 import { ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import Cookies from 'js-cookie';
-import { downloadFile } from '@packages/utils/util.tool';
+import { downloadFile } from '../../utils/util.tool';
 import type { UploadRawFile, UploadFile, UploadFiles } from 'element-plus';
 import type { IMaxSizeItem } from './interface';
 
