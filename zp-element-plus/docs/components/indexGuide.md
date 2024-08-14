@@ -54,3 +54,11 @@ import 'zp-element-plus/lib/style.css';
     import {Xxx} from "zp-element-plus"
 </script>;
 ```
+
+### 工具使用
+
+```js
+import { utils } from 'zp-element-plus';
+const { isValidVal } = utils;
+console.log(isValidVal(1)); // true
+```
