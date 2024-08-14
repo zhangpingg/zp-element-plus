@@ -15,10 +15,10 @@ hero:
     actions:
         - theme: alt
           text: 安装指南
-          link: /component/indexGuide.md
+          link: /components/indexGuide.md
         - theme: brand
           text: 组件预览
-          link: /component/button.md
+          link: /components/button.md
 
 features:
     - icon: 🧩

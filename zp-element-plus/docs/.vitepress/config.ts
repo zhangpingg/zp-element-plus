@@ -16,8 +16,8 @@ export default defineConfig({
         outline: [3, 4], // 控制的目录层级，哪些显示。因为文档中的标题是3级标题。默认是显示的
         // 导航
         nav: [
-            { text: '安装指南', link: '/component/indexGuide' },
-            { text: '组件预览', link: '/component/searchForm', activeMatch: '^/component/' },
+            { text: '安装指南', link: '/components/indexGuide' },
+            { text: '组件预览', link: '/components/searchForm', activeMatch: '^/components/' },
             {
                 text: '地址',
                 items: [
@@ -40,14 +40,14 @@ export default defineConfig({
             {
                 text: '组件',
                 items: [
-                    { text: 'SearchForm 查询表单', link: '/component/searchForm' },
-                    { text: 'TablePage 表格分页', link: '/component/tablePage' },
-                    { text: 'UploadFile 上传文件', link: '/component/uploadFile' },
+                    { text: 'SearchForm 查询表单', link: '/components/searchForm' },
+                    { text: 'TablePage 表格分页', link: '/components/tablePage' },
+                    { text: 'UploadFile 上传文件', link: '/components/uploadFile' },
                 ],
             },
             {
                 text: '工具',
-                items: [{ text: 'tool 工具', link: '/component/util.tool' }],
+                items: [{ text: 'tool 工具', link: '/components/util.tool' }],
             },
         ],
     },
