@@ -174,7 +174,7 @@ const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
             duration: 3000,
         });
         // 导入失败下载错误链接文件
-        response.data && downloadFile(response.data);
+        downloadFile(response.data);
     }
     if (response.code === 200 && typeof response.data === 'string') {
         uploadFile.url = response.data;
@@ -184,7 +184,7 @@ const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: Uploa
         fileList.value = uploadFiles.filter((k) => k.status === 'success');
         uploadLoad.value.close();
         uploadLoad.value = null;
-        fileList.value.length && emit('onUploadSuccess', fileList.value); // 全部上传成功
+        emit('onUploadSuccess', fileList.value); // 全部上传成功
     }
 };
 // 删除文件

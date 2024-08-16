@@ -50,12 +50,12 @@ const props = defineProps({
     // 表格配置
     tableConfig: {
         type: Object,
-        default: { columns: [], data: [] },
+        default: () => ({ columns: [], data: [] }),
     },
     // 分页配置
     pageConfig: {
         type: Object,
-        default: {},
+        default: () => {},
     },
     // 是否有页码
     isHasPage: {

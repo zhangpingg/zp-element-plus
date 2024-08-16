@@ -96,7 +96,7 @@ const props = defineProps({
     // form配置
     formConfig: {
         type: Object,
-        default: {},
+        default: () => {},
     },
     // 查询条件列表
     formList: {
@@ -250,7 +250,7 @@ const formatFormData = (data: { [key: string]: any }) => {
     return clearInvalidKey(_data);
 };
 // change-自定义组件
-const changeCustomComponent = (prop: string, val: string | number, callback: Function) => {
+const changeCustomComponent = (prop: string, val: string | number, callback: () => void) => {
     formData[prop] = val;
     callback?.();
 };

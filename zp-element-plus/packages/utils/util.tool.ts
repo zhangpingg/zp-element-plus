@@ -31,8 +31,8 @@ const isValidArr = (list: any): boolean => {
  * @returns {Object} 返回value有值的key对象
  */
 const clearInvalidKey = (data: any, isCLearEmptyArray = true) => {
-    let _data: any = { ...data };
-    for (let key in _data) {
+    const _data: any = { ...data };
+    for (const key in _data) {
         if (
             _data[key] === '' ||
             _data[key] === null ||
