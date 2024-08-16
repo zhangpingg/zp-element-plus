@@ -21,7 +21,27 @@
         "docs:preview": "vitepress preview docs",
         "docs:deploy": "deploy.sh",
         "lint": "eslint src/ packages/",
+        "lint-staged": "lint-staged",
         "format": "prettier --write src/ packages/ docs/"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.vue": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.js?(x)": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.ts?(x)": [
+            "prettier --write",
+            "eslint --fix"
+        ]
     },
     "dependencies": {
         "lodash": "^4.17.21",
@@ -46,8 +66,10 @@
         "eslint-plugin-prettier": "^5.2.1",
         "eslint-plugin-vue": "^9.27.0",
         "globals": "^15.9.0",
+        "husky": "^9.1.4",
         "js-cookie": "^3.0.5",
         "less": "^4.2.0",
+        "lint-staged": "^15.2.9",
         "npm-run-all2": "^6.2.0",
         "prettier": "^3.3.3",
         "rimraf": "^6.0.1",
