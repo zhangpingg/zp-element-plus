@@ -23,7 +23,10 @@ export default defineConfig({
                 items: [
                     { text: 'VitePress', link: 'https://vitepress.dev/zh/' },
                     { text: 'GitHub', link: 'https://github.com/zhangpingg/zp-element-plus' },
-                    { text: 'zp-element-plus', link: 'https://zhangpingg.github.io/zp-element-plus/' },
+                    {
+                        text: 'zp-element-plus',
+                        link: 'https://zhangpingg.github.io/zp-element-plus/',
+                    },
                 ],
             },
         ],

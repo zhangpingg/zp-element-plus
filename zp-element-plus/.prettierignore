@@ -7,3 +7,12 @@
 **/*.sh
 
 /public/*
+
+/cypress/videos/
+/cypress/screenshots/
+docs/.vitepress/.temp
+docs/.vitepress/cache
+docs/.vitepress/cache/deps/
+docs/.vitepress/dist
+.vitepress/cache
+lib

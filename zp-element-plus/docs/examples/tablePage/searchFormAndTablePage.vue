@@ -1,10 +1,5 @@
 <template>
-    <ZpSearchForm
-        :formList="formList"
-        @onSubmit="onSubmit"
-        @onReset="onReset"
-        ref="zpSearchFormRef"
-    />
+    <ZpSearchForm :formList="formList" @onSubmit="onSubmit" @onReset="onReset" ref="zpSearchFormRef" />
     <ZpTablePage
         :tableConfig="tablePageData.tableConfig"
         :pageConfig="tablePageData.pageConfig"

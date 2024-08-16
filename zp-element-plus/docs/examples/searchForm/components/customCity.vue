@@ -6,12 +6,7 @@
 
 <template>
     <el-select v-model="city" placeholder="请选择" clearable @change="changeCity" v-bind="restItem">
-        <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-        />
+        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
     </el-select>
 </template>
 

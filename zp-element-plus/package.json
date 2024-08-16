@@ -20,7 +20,7 @@
         "docs:build": "vitepress build docs",
         "docs:preview": "vitepress preview docs",
         "docs:deploy": "deploy.sh",
-        "format": "prettier --write src/ packages/"
+        "format": "prettier --write src/ packages/ docs/"
     },
     "dependencies": {
         "lodash": "^4.17.21",
