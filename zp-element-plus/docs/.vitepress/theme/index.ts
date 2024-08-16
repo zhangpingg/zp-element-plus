@@ -21,7 +21,7 @@ export default {
     // router: Vue Router 实例
     // siteData：VitePress 生成的站点数据
     enhanceApp(ctx) {
-        const { app, router, siteData } = ctx;
+        const { app } = ctx;
         DefaultTheme.enhanceApp(ctx); // 调用默认主题的 enhanceApp 方法，保留默认行为
 
         // 注册element-plus插件

@@ -21,7 +21,7 @@ const tablePageData = reactive<{ [key: string]: any }>({
             { label: '手机号', prop: 'bb', minWidth: 100 },
         ],
         data: [],
-        spanMethod: ({ row, column, rowIndex, columnIndex }) => {
+        spanMethod: ({ row, columnIndex }) => {
             switch (columnIndex) {
                 case 0:
                     return [row['hh'] ? row['hhRowSpan'] : 1, 1];

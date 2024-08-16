@@ -20,7 +20,7 @@
         "docs:build": "vitepress build docs",
         "docs:preview": "vitepress preview docs",
         "docs:deploy": "deploy.sh",
-        "lint": "eslint src/ packages/",
+        "lint": "eslint src/ packages/ docs/",
         "lint-staged": "lint-staged",
         "format": "prettier --write src/ packages/ docs/"
     },

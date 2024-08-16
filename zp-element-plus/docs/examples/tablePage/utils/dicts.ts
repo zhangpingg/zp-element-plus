@@ -11,8 +11,8 @@ export const getLabelByValue = (options, value, label = 'label') => {
     if ([null, undefined, ''].includes(value)) {
         return '-';
     }
-    let _list = options.filter((item) => String(value).split(',').includes(String(item.value)));
-    let _label = _list.map((item) => item[label]).join('、');
+    const _list = options.filter((item) => String(value).split(',').includes(String(item.value)));
+    const _label = _list.map((item) => item[label]).join('、');
     return _label;
 };
 
