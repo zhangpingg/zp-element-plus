@@ -49,6 +49,7 @@ const getData = async () => {
         }, 1000);
     } catch (error) {
         tablePageData.tableConfig.loading = false;
+        console.log(error);
     }
 };
 // change-分页页码

@@ -15,8 +15,11 @@ export default [
             '@typescript-eslint/no-explicit-any': 'off',
             'vue/multi-word-component-names': 'off',
             'no-unused-vars': 'warn',
-            'no-use-before-define': 'error',
             'no-undef': 'error',
         },
+    },
+    // 忽略某些文件
+    {
+        ignores: ['**/aa.js'],
     },
 ];
