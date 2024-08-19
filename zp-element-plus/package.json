@@ -1,6 +1,6 @@
 {
 	"name": "zp-element-plus",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"private": false,
 	"author": "Tuwan",
 	"description": "使用Vue3基于Element-plus二次封装的组件库",
