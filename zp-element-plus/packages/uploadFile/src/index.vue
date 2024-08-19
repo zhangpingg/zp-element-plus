@@ -110,17 +110,6 @@ const isSingleDragUploadedDisabled = computed(() => {
     return props.drag && props.singleDrag && fileList.value.length > 0;
 });
 
-// 上传前
-const beforeUpload = (rawFile: UploadRawFile) => {
-    if (!checkAccept(rawFile)) return false;
-    if (!checkSize(rawFile)) return false;
-    if (!uploadLoad.value) {
-        uploadLoad.value = ElLoading.service({
-            target: props.loadingContainer,
-            text: '上传中...',
-        });
-    }
-};
 // 校验允许上传文件后缀名
 const checkAccept = (rawFile: UploadRawFile) => {
     const accept = attrs?.accept;
@@ -161,6 +150,17 @@ const checkSize = (rawFile: UploadRawFile) => {
         }
     }
     return !sizeError;
+};
+// 上传前
+const beforeUpload = (rawFile: UploadRawFile) => {
+    if (!checkAccept(rawFile)) return false;
+    if (!checkSize(rawFile)) return false;
+    if (!uploadLoad.value) {
+        uploadLoad.value = ElLoading.service({
+            target: props.loadingContainer,
+            text: '上传中...',
+        });
+    }
 };
 // 上传成功
 const uploadSuccess = (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
