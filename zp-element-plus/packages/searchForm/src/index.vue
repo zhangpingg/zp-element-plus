@@ -91,6 +91,7 @@
 import { reactive, computed, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
 import { isValidArr, clearInvalidKey } from '../../utils/util.tool';
+import type { FormListItemProps } from './interface';
 
 const props = defineProps({
     // form配置
@@ -100,7 +101,7 @@ const props = defineProps({
     },
     // 查询条件列表
     formList: {
-        type: Array<{ [key: string]: any }>,
+        type: Array<FormListItemProps>,
         default: [],
     },
     // 一行展示表单项的个数
@@ -183,10 +184,10 @@ const getDatePickerAttr = (type: string) => {
 };
 // 初始化查询的参数，赋默认值
 const initSearchParams = () => {
-    props.formList.forEach((item: any) => {
+    props.formList.forEach((item: FormListItemProps) => {
         const { prop } = item;
         if (item.value || item.value === 0) {
-            formData[isValidArr(prop) ? prop.join(',') : prop] = item.value;
+            formData[isValidArr(prop) ? (prop || []).join(',') : prop] = item.value;
         }
     });
 };
