@@ -10,17 +10,19 @@ type TypeProps =
     | 'month'
     | 'monthrange'
     | 'daterange'
-    | 'datetimerang'
+    | 'datetimerange'
     | 'custom';
 
 // formList 的每一项自定义的部分
 interface FormListItemCustomProps {
     type: TypeProps;
+    value: string | number | string[] | number[];
+    prop: string | string[];
+    options: any[];
     customComponent: Component;
     isConvertToBoolean: boolean;
     isJoinTimeSuffix: boolean;
-    value: string | number | string[] | number[];
-    prop: string | string[];
+    onChange: () => void;
 }
 
 // formList 的每一项

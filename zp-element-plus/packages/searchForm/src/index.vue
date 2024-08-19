@@ -27,10 +27,15 @@
                     :key="prop"
                 >
                     <el-form-item :label="label" :prop="prop" v-if="type === 'input'">
-                        <el-input v-model="formData[prop]" placeholder="请输入" clearable v-bind="restItem" />
+                        <el-input
+                            v-model="formData[validProp(prop)]"
+                            placeholder="请输入"
+                            clearable
+                            v-bind="restItem"
+                        />
                     </el-form-item>
                     <el-form-item :label="label" :prop="prop" v-if="type === 'select'">
-                        <el-select v-model="formData[prop]" placeholder="请选择" clearable v-bind="restItem">
+                        <el-select v-model="formData[validProp(prop)]" placeholder="请选择" clearable v-bind="restItem">
                             <el-option
                                 v-for="item in options"
                                 :key="item.value"
@@ -41,7 +46,7 @@
                     </el-form-item>
                     <el-form-item :label="label" :prop="prop" v-if="type === 'cascader'">
                         <el-cascader
-                            v-model="formData[prop]"
+                            v-model="formData[validProp(prop)]"
                             :options="options"
                             placeholder="请选择"
                             clearable
@@ -50,7 +55,7 @@
                     </el-form-item>
                     <el-form-item
                         :label="label"
-                        :prop="isValidArr(prop) ? prop.join(',') : prop"
+                        :prop="validProp(prop)"
                         v-if="
                             type === 'year' ||
                             type === 'month' ||
@@ -60,7 +65,7 @@
                         "
                     >
                         <el-date-picker
-                            v-model="formData[isValidArr(prop) ? prop.join(',') : prop]"
+                            v-model="formData[validProp(prop)]"
                             :type="type"
                             clearable
                             v-bind="{ ...getDatePickerAttr(type), ...restItem }"
@@ -69,7 +74,7 @@
                     <el-form-item :label="label" :prop="prop" v-if="type === 'custom'">
                         <component
                             :is="customComponent"
-                            :value="formData[isValidArr(prop) ? prop.join(',') : prop]"
+                            :value="formData[validProp(prop)]"
                             :restItem="restItem"
                             @onChange="(val: string | number) => changeCustomComponent(prop, val, restItem.onChange)"
                         />
@@ -133,6 +138,11 @@ const btnLayoutSpan = computed(() => {
     };
     return _layoutSpanMap[props.formList.length % props.colSpan];
 });
+
+// 有效的 prop
+const validProp = (prop: string | string[]) => {
+    return Array.isArray(prop) ? prop.join(',') : prop;
+};
 /**
  * @description 根据日期选择器类型，获取日期时间选择器相应的属性
  * @param {String} type 日期选择器类型
@@ -187,7 +197,7 @@ const initSearchParams = () => {
     props.formList.forEach((item: FormListItemProps) => {
         const { prop } = item;
         if (item.value || item.value === 0) {
-            formData[isValidArr(prop) ? (prop || []).join(',') : prop] = item.value;
+            formData[validProp(prop)] = item.value;
         }
     });
 };
@@ -197,9 +207,10 @@ const initSearchParams = () => {
  * @param {String} key 对象中的某个key
  * @returns {String} 返回选项
  */
-const getItemByKey = (list: { [key: string]: any }, key: string) => {
-    const _item = list.find((item: any) => {
-        const _flag = (isValidArr(item.prop) ? item.prop.join(',') : item.prop) === key;
+const getItemByKey = (list: FormListItemProps[], key: string) => {
+    const _item = list.find((item: FormListItemProps) => {
+        const { prop } = item;
+        const _flag = validProp(prop) === key;
         return _flag;
     });
     return _item;
@@ -251,8 +262,8 @@ const formatFormData = (data: { [key: string]: any }) => {
     return clearInvalidKey(_data);
 };
 // change-自定义组件
-const changeCustomComponent = (prop: string, val: string | number, callback: () => void) => {
-    formData[prop] = val;
+const changeCustomComponent = (prop: string | string[], val: string | number, callback: () => void) => {
+    formData[validProp(prop)] = val;
     callback?.();
 };
 // 提交表单
