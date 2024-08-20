@@ -4,3 +4,4 @@ export interface IMaxSizeItem {
     maxSize: number;
     errTip: string;
 }
+
