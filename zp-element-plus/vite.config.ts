@@ -31,6 +31,7 @@ export default defineConfig({
                 globals: {
                     vue: 'Vue',
                 },
+                format: 'es',
             },
         },
         lib: {
@@ -40,3 +41,4 @@ export default defineConfig({
         },
     },
 });
+
