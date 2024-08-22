@@ -1,23 +1,7 @@
 <template>
-  <t-layout-page class="t_button_demo">
-    <t-layout-page-item>
-      <div style="display: flex; align-items: center">
-        <div style="width: 140px; font-weight: 700">输入防抖时间：</div>
-        <el-input-number
-          style="width: 240px"
-          v-model="time"
-          placeholder="请输入防抖时间（毫秒）"
-          :min="1000"
-          :max="10000"
-          :controls="false"
-          @change="handleChange"
-        />
-      </div>
-      <t-button style="margin-top: 15px" color="#626aef" :time="time" @click="exportExcel"
-        >导出</t-button
-      >
-    </t-layout-page-item>
-  </t-layout-page>
+  <t-button style="margin-top: 15px" color="#626aef" :time="time" @click="exportExcel"
+    >导出</t-button
+  >
 </template>
 <script setup lang="ts">
 import { ref } from "vue"
