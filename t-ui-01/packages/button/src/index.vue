@@ -4,9 +4,7 @@
       <slot />
     </el-button>
   </el-tooltip>
-  <el-button v-else v-bind="$attrs" @click="handleClick">
-    前缀1+<slot />
-  </el-button>
+  <el-button v-else v-bind="$attrs" @click="handleClick"> 前缀1+<slot /> </el-button>
 </template>
 
 <script setup lang="ts" name="TButton">
@@ -40,24 +38,4 @@ const handleClick = () => {
   record.value = new Date().getTime()
 }
 </script>
-<style lang="scss" scoped>
-.t-button-tip {
-  padding: 0;
-  height: auto;
-}
-.t-button-tip:hover,
-.t-button-tip:focus {
-  animation: jump 0.3s;
-}
-@keyframes jump {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-</style>
+<style lang="scss" scoped></style>
