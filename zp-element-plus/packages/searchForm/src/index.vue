@@ -24,7 +24,7 @@
                 <el-col
                     :span="formItemLayoutSpan"
                     v-for="{ type, label, prop, options, customComponent, ...restItem } in props.formList"
-                    :key="prop"
+                    :key="validProp(prop)"
                 >
                     <el-form-item :label="label" :prop="prop" v-if="type === 'input'">
                         <el-input
