@@ -89,7 +89,7 @@ prompt({
         console.log('push code ...');
         execSync('git push origin master');
 
-        console.log('publish package ...');
+        //console.log('publish package ...');
         //execSync('npm publish');
     } catch (error) {
         console.log(error);

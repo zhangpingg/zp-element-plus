@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'; // 设置neme属性
+//import vueSetupExtend from 'vite-plugin-vue-setup-extend'; // 设置neme属性
 // import AutoImport from 'unplugin-auto-import/vite' // 自动导入
 import viteCompression from 'vite-plugin-compression'; // 静态资源压缩
 
@@ -12,16 +12,16 @@ export default defineConfig({
     plugins: [
         vue(),
         dts(),
-        //vueJsx(),
+        vueJsx(),
         //vueSetupExtend(),
-        //viteCompression({
-        //    verbose: true,
-        //    disable: false, // 不禁用压缩
-        //    deleteOriginFile: false, // 压缩后是否删除原文件
-        //    threshold: 10240, // 压缩前最小文件大小
-        //    algorithm: 'gzip', // 压缩算法
-        //    ext: '.gz', // 文件类型
-        //}),
+        viteCompression({
+            verbose: true,
+            disable: false, // 不禁用压缩
+            deleteOriginFile: false, // 压缩后是否删除原文件
+            threshold: 10240, // 压缩前最小文件大小
+            algorithm: 'gzip', // 压缩算法
+            ext: '.gz', // 文件类型
+        }),
     ],
     server: {
         host: '0.0.0.0',
