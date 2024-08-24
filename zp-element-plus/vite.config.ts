@@ -24,9 +24,10 @@ export default defineConfig({
             disable: false, // 是否禁用压缩功能，默认 false（不禁用，即开启压缩）
         }),
         visualizer({
-            open: true, //注意这里要设置为true，否则无效
-            gzipSize: true,
-            brotliSize: true,
+            filename: 'stats.html', // 输出文件的名称。默认 stats.html
+            open: false, // 打包完成后自动打开生成的HTML文件，默认 true
+            gzipSize: true, // 否考虑 gzip 压缩后的大小
+            brotliSize: true, // 否考虑 Brotli 压缩后的大小
         }),
     ],
     server: {
