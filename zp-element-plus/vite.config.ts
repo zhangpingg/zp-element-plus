@@ -3,9 +3,10 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import dts from 'vite-plugin-dts';
-//import vueSetupExtend from 'vite-plugin-vue-setup-extend'; // 设置neme属性
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'; // 设置组件neme属性
 // import AutoImport from 'unplugin-auto-import/vite' // 自动导入
 import viteCompression from 'vite-plugin-compression'; // 静态资源压缩
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,14 +14,19 @@ export default defineConfig({
         vue(),
         dts(),
         vueJsx(),
-        //vueSetupExtend(),
+        vueSetupExtend(),
         viteCompression({
-            verbose: true,
-            disable: false, // 不禁用压缩
-            deleteOriginFile: false, // 压缩后是否删除原文件
-            threshold: 10240, // 压缩前最小文件大小
-            algorithm: 'gzip', // 压缩算法
-            ext: '.gz', // 文件类型
+            verbose: true, // 是否开启详细日志输出
+            algorithm: 'gzip', // 压缩算法，默认为 'gzip'
+            ext: '.gz', // 压缩文件的扩展名，默认为 '.gz'
+            deleteOriginFile: false, // 是否删除源文件，默认为 false（不删除）
+            threshold: 10240, // 压缩阈值，只对大于 10KB 的文件进行压缩
+            disable: false, // 是否禁用压缩功能，默认 false（不禁用，即开启压缩）
+        }),
+        visualizer({
+            open: true, //注意这里要设置为true，否则无效
+            gzipSize: true,
+            brotliSize: true,
         }),
     ],
     server: {
@@ -58,3 +64,4 @@ export default defineConfig({
         },
     },
 });
+
