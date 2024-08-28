@@ -8,6 +8,7 @@
         :on-remove="removeFile"
         :on-exceed="exceedLimitQuantity"
         :on-preview="previewFile"
+        :on-error="uploadError"
         :drag="drag"
         id="uploadFileContainer"
         :class="{ uf: true, 'uf-hideUploadBtn': fileList.length >= attrs?.limit }"
@@ -208,6 +209,11 @@ const previewFile = (uploadFile: UploadFile) => {
 const removeDragFile = (index: number) => {
     fileList.value.splice(index, 1);
 };
+// 上传失败
+const uploadError = () => {
+    uploadLoad.value.close();
+    uploadLoad.value = null;
+};
 
 defineExpose({
     fileList,
@@ -255,3 +261,4 @@ defineExpose({
     }
 }
 </style>
+
