@@ -126,4 +126,41 @@ const transToMergeCellList = (dataList: { [key: string]: any }[], strList: strin
     return _dataList;
 };
 
-export { isValidVal, isValidArr, clearInvalidKey, downloadFile, transToMergeCellList };
+/**
+ * @description 获取url的query参数，取当前页面地址
+ * @returns {null || object} 无参数，返回null，有参数则返回一个参数对象
+ */
+const getUrlQuery = () => {
+    const url = window.location.href;
+    if (url.indexOf('?') < 0) {
+        return null;
+    }
+    return formatData(joinParam(url));
+
+    function joinParam(url) {
+        const _obj = {};
+        url.split('?')[1]
+            .split('&')
+            .forEach((item) => {
+                const _key = item.split('=')[0];
+                const _val = item.split('=')[1];
+                if (_obj[_key]) {
+                    _obj[_key].push(decodeURI(_val));
+                } else {
+                    _obj[_key] = [decodeURI(_val)];
+                }
+            });
+        return _obj;
+    }
+    function formatData(obj) {
+        for (const key in obj) {
+            if (obj[key].length === 1) {
+                obj[key] = obj[key][0];
+            }
+        }
+        return obj;
+    }
+};
+
+export { isValidVal, isValidArr, clearInvalidKey, downloadFile, transToMergeCellList, getUrlQuery };
+

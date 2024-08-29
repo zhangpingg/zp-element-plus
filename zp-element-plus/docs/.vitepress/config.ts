@@ -18,6 +18,7 @@ export default defineConfig({
         nav: [
             { text: '安装指南', link: '/components/indexGuide' },
             { text: '组件预览', link: '/components/searchForm', activeMatch: '^/components/' },
+            { text: '工具', link: '/utils/util.tool', activeMatch: '^/utils/' },
             {
                 text: '地址',
                 items: [
@@ -50,7 +51,11 @@ export default defineConfig({
             },
             {
                 text: '工具',
-                items: [{ text: 'tool 工具', link: '/components/util.tool' }],
+                items: [
+                    { text: 'tool 工具', link: '/utils/util.tool' },
+                    { text: 'num 数字', link: '/utils/util.num' },
+                    { text: 'regular 正则', link: '/utils/util.regular' },
+                ],
             },
         ],
     },
@@ -62,3 +67,4 @@ export default defineConfig({
         },
     },
 });
+
