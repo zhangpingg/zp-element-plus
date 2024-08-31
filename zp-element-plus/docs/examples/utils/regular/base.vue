@@ -1,25 +1,25 @@
 <template>
-    <div>
-        <el-form :model="formData" label-width="120px">
-            <el-form-item label="正则类型">
-                <el-select v-model="formData.regType" class="m-2" placeholder="请选择">
-                    <el-option v-for="item in regOptions" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-            </el-form-item>
-            <el-form-item label="内容">
-                <el-input v-model="formData.content" placeholder="请输入" />
-            </el-form-item>
-            <el-form-item v-if="formData.content">
-                <span style="color: green" v-if="regMap[formData.regType].test(formData.content)">正确</span>
-                <span style="color: #f00" v-else>错误</span>
-            </el-form-item>
-        </el-form>
-    </div>
+    <el-form :model="formData" label-width="120px">
+        <el-form-item label="正则类型">
+            <el-select v-model="formData.regType" class="m-2" placeholder="请选择">
+                <el-option v-for="item in regOptions" :key="item.value" :label="item.label" :value="item.value" />
+            </el-select>
+        </el-form-item>
+        <el-form-item label="内容">
+            <el-input v-model="formData.content" placeholder="请输入" />
+        </el-form-item>
+        <el-form-item v-if="formData.content">
+            <span style="color: green" v-if="regMap[formData.regType].test(formData.content)">正确</span>
+            <span style="color: #f00" v-else>错误</span>
+        </el-form-item>
+    </el-form>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { MOBILE_REG, EMAIL_REG, CARD_REG, CODE_REG, BANK_CARD } from '../../../../packages/utils';
+import { utils } from '../../../../packages';
+
+const { MOBILE_REG, EMAIL_REG, CARD_REG, CODE_REG, BANK_CARD } = utils;
 
 const regOptions = [
     { value: 1, label: '手机号正则' },
