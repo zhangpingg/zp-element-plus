@@ -61,4 +61,10 @@ import 'zp-element-plus/lib/style.css';
 import { utils } from 'zp-element-plus';
 const { isValidVal } = utils;
 console.log(isValidVal(1)); // true
+
+// 类型定义
+// global.d.ts
+declare module 'zp-element-plus' {
+    export const utils: any;
+}
 ```

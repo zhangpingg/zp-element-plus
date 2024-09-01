@@ -24,8 +24,8 @@ const install: any = (app: any) => {
 
 // 【1-全局安装组件库】导出vue插件（如果插件是一个对象，必须提供 install 方法，并且参数是Vue对象，即应用实例）
 // 把组件库当做一个插件去安装，即使用 Vue.use() 方法安装
-// import TuiPlus from "@wocwin/t-ui-plus"   （TuiPlus就是导出的插件对象）
-// app.use(TuiPlus)
+// import ZpElementPlus from "zp-element-plus"   （ZpElementPlus就是导出的插件对象）
+// app.use(ZpElementPlus)
 export default {
     install,
 };
