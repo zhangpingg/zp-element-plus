@@ -1,15 +1,14 @@
 <template>
-    <div id="box1">
-        <ZpUploadFile
-            ref="uploadFileRef"
-            loadingContainer="#box1"
-            name="uploadFile"
-            action="/test/api/quality/common/file/upload"
-            :show-file-list="true"
-            @onPreviewFile="previewFile"
-        />
-        <el-button type="primary" @click="getFileList">获取文件列表</el-button>
-    </div>
+    <ZpUploadFile
+        ref="uploadFileRef"
+        id="box1"
+        loadingContainer="#box1"
+        name="uploadFile"
+        action="/test/api/quality/common/file/upload"
+        :show-file-list="true"
+        @onPreviewFile="previewFile"
+    />
+    <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
 
 <script setup lang="ts">

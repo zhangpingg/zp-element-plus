@@ -11,7 +11,10 @@
         needDownload
         @onPreviewFile="previewFile"
     >
-        <el-button>上传文件</el-button>
+        <template #trigger>
+            <el-button>+ 上传文件</el-button>
+        </template>
+        <a class="dib ml-10">下载模板</a>
         <template #tip>
             <div class="el-upload__tip">支持jpg、png格式；图片文件大小不超过5M</div>
         </template>
@@ -38,3 +41,4 @@ const getFileList = () => {
     console.log('文件列表', fileList);
 };
 </script>
+

@@ -10,7 +10,9 @@
         class="img90"
         :limit="3"
     >
-        <el-icon><Plus /></el-icon>
+        <template #trigger>
+            <el-icon><Plus /></el-icon>
+        </template>
     </ZpUploadFile>
     <el-button type="primary" @click="getFileList">获取文件列表</el-button>
 </template>
@@ -49,3 +51,4 @@ onMounted(() => {
     getDetail();
 });
 </script>
+
