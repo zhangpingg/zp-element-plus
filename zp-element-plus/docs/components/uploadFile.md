@@ -24,7 +24,7 @@
 
 <preview path="../examples/uploadFile/complexFileSize.vue"></preview>
 
-### 上传按钮/Tip插槽
+### 触发插槽 / Tip插槽 / 默认插槽
 
 自定义按钮，提示文案。
 
@@ -45,7 +45,7 @@
 
 #### Attributes
 
-去掉了 `element-plus` 中的 `file-list` 属性, 如果需要回显文件列表，请使用 `ref` 的方式，详见上方的示例。
+去掉了 `element-plus` 中的 `file-list` 属性, 如果需要回显文件列表，请使用 `ref` 的方式，详见上方 `回显文件列表-ref` 的示例。
 
 | 属性名           | 说明                                             | 类型            | 默认值               |
 | :--------------- | :----------------------------------------------- | :-------------- | :------------------- |
@@ -56,7 +56,13 @@
 | maxSize          | 上传文件大小限制                                 | `number`        | -                    |
 | maxSizeList      | 根据文件类型分别设置上传文件大小限制             | `maxSizeItem[]` | []                   |
 | singleDrag       | 拖拽上传时，只能上传一个文件                     | `boolean`       | false                |
+| isReUpload       | 是否覆盖上一次文件，`limit`必须为1               | `boolean`       | false                |
+| resType          | 接口返回格式                                     | `object`        | -                    |
 | 其他属性         | 继承至 `element-plus` 的 `Upload API`            | -               | -                    |
+
+> [!NOTE] resType 属性
+> 1：code=200返回{data:'fileUrl'}，code!=200返回{data:'failExcelFileUrl'}报错并下载  
+> 2：code=200返回{data:{fileUrl:'',failExcelFileUrl:'',...}}，failExcelFileUrl有值报错并下载，code!=200仅报错
 
 #### maxSizeItem
 
@@ -84,3 +90,8 @@
 | onUploadSuccess | 文件上传成功                               | <abbr title="() => fileList">`Function`</abbr> |
 | onRemoveSuccess | 文件移除成功                               | <abbr title="() => fileList">`Function`</abbr> |
 | onPreviewFile   | 预览文件，`needDownload` 为 `false` 时有效 | <abbr title="() => fileList">`Function`</abbr> |
+
+#### Slot
+
+继承至 `element-plus` 的 `Upload` 插槽，具体请查看 `element-plus` 官网。
+
