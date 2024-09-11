@@ -100,7 +100,7 @@ const props = defineProps({
         default: null,
     },
     // 根据文件类型分别设置上传文件大小限制
-    // types: image-图片 video-视频 audio-音频 application=wps/pdf text-txt other-其他文件类型
+    // types: image-图片 video-视频 audio-音频 application-wps/pdf text-txt other-其他文件类型
     maxSizeList: {
         type: Array,
         default: () => [],
