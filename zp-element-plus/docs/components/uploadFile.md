@@ -36,6 +36,12 @@
 
 <preview path="../examples/uploadFile/singleDrag.vue"></preview>
 
+### 覆盖单个上传
+
+只能上传一个文件，再次上传会覆盖上次的文件。
+
+<preview path="../examples/uploadFile/singleUpload.vue"></preview>
+
 ### 照片墙
 
 设置 `list-type="picture-card"`，支持的照片宽度有 `60px, 90px, 120px`，配置相应的类名即可。

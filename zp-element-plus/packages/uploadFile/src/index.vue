@@ -1,5 +1,6 @@
 <template>
     <el-upload
+        ref="elUploadRef"
         :headers="{ [headersTokenKey]: Cookies.get(cookiesTokenKey) }"
         :file-list="fileList"
         :disabled="isSingleDragUploadedDisabled || disabled"
@@ -35,7 +36,11 @@
                     </template>
                 </template>
                 <!-- 常规上传 -->
-                <el-button v-else :icon="Upload" :disabled="fileList.length >= attrs?.limit || disabled">
+                <el-button
+                    v-else
+                    :icon="Upload"
+                    :disabled="(fileList.length >= attrs?.limit && !isReUpload) || disabled"
+                >
                     上传文件
                 </el-button>
             </slot>
@@ -60,7 +65,6 @@ import Cookies from 'js-cookie';
 import { downloadFile } from '../../utils/util.tool';
 import type { UploadRawFile, UploadFile, UploadFiles } from 'element-plus';
 import type { IMaxSizeItem } from './interface';
-import { disabledTimeListsProps } from 'element-plus/es/components/time-picker/src/props/shared';
 
 const attrs: { [key: string]: any } = useAttrs();
 
@@ -96,7 +100,7 @@ const props = defineProps({
         default: null,
     },
     // 根据文件类型分别设置上传文件大小限制
-    // types: image=图片 video=视频 audio=音频 application=wps/pdf text=txt other=其他文件类型
+    // types: image-图片 video-视频 audio-音频 application=wps/pdf text-txt other-其他文件类型
     maxSizeList: {
         type: Array,
         default: () => [],
@@ -127,6 +131,7 @@ const props = defineProps({
 
 const emit = defineEmits(['onUploadSuccess', 'onRemoveSuccess', 'onPreviewFile']);
 
+const elUploadRef = ref();
 const fileList = ref<any[]>([]); // 上传的文件列表
 const uploadLoad = ref<any>(null); // 上传loading对象
 
@@ -232,7 +237,13 @@ const removeFile = (uploadFile: UploadFile, uploadFiles: UploadFiles) => {
     emit('onRemoveSuccess', fileList.value);
 };
 // 超出数量限制
-const exceedLimitQuantity = () => {
+const exceedLimitQuantity = (files) => {
+    if (props.isReUpload && attrs?.limit === 1) {
+        elUploadRef.value.clearFiles();
+        elUploadRef.value.handleStart(files[0]); // 手动选择文件
+        elUploadRef.value.submit(); // 手动上传
+        return;
+    }
     ElMessage({ plain: true, message: '超出上传数量限制', type: 'error' });
 };
 // 单击名称-预览文件
